@@ -1,0 +1,120 @@
+/* [project]/styles/PromotionBanner.module.css [app-client] (css) */
+.PromotionBanner-module__8R3BGa__bannerContainer {
+  background-color: var(--dark-gray);
+  border-radius: var(--rounded-lg);
+  width: 100%;
+  min-height: 300px;
+  max-height: 450px;
+  margin: 2rem 0;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.PromotionBanner-module__8R3BGa__bannerImageWrapper {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.PromotionBanner-module__8R3BGa__bannerImage {
+  transition: transform .7s ease-out;
+}
+
+.PromotionBanner-module__8R3BGa__bannerContainer:hover .PromotionBanner-module__8R3BGa__bannerImage {
+  transform: scale(1.03);
+}
+
+.PromotionBanner-module__8R3BGa__bannerOverlay {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.PromotionBanner-module__8R3BGa__bannerContent {
+  z-index: 3;
+  flex-direction: column;
+  width: 100%;
+  padding: 2.5rem;
+  display: flex;
+  position: relative;
+}
+
+.PromotionBanner-module__8R3BGa__align-left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.PromotionBanner-module__8R3BGa__align-center {
+  text-align: center;
+  align-items: center;
+}
+
+.PromotionBanner-module__8R3BGa__align-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.PromotionBanner-module__8R3BGa__align-left .PromotionBanner-module__8R3BGa__bannerButton, .PromotionBanner-module__8R3BGa__align-right .PromotionBanner-module__8R3BGa__bannerButton {
+  align-self: auto;
+}
+
+.PromotionBanner-module__8R3BGa__align-left > div > .PromotionBanner-module__8R3BGa__btn {
+  align-self: flex-start;
+}
+
+.PromotionBanner-module__8R3BGa__align-right > div > .PromotionBanner-module__8R3BGa__btn {
+  align-self: flex-end;
+}
+
+.PromotionBanner-module__8R3BGa__align-center > div > .PromotionBanner-module__8R3BGa__btn {
+  align-self: center;
+}
+
+.PromotionBanner-module__8R3BGa__bannerTitle {
+  text-shadow: 1px 1px 4px #0006;
+  margin-bottom: .7rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.PromotionBanner-module__8R3BGa__bannerSubtitle {
+  opacity: .9;
+  max-width: 600px;
+  margin-bottom: 1.8rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.PromotionBanner-module__8R3BGa__bannerButton {
+  padding: .8rem 2rem;
+  font-size: 1rem;
+}
+
+@media (width <= 768px) {
+  .PromotionBanner-module__8R3BGa__bannerContainer {
+    min-height: 280px;
+  }
+
+  .PromotionBanner-module__8R3BGa__bannerTitle {
+    font-size: 1.8rem;
+  }
+
+  .PromotionBanner-module__8R3BGa__bannerSubtitle {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .PromotionBanner-module__8R3BGa__bannerContent {
+    padding: 2rem;
+  }
+}
+
+/*# sourceMappingURL=styles_PromotionBanner_module_css_f9ee138c._.single.css.map*/

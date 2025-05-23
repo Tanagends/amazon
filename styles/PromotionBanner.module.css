@@ -1,0 +1,84 @@
+/* styles/PromotionBanner.module.css */
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  min-height: 300px; /* Adjusted min-height */
+  max-height: 450px;
+  display: flex;
+  overflow: hidden;
+  background-color: var(--dark-gray); /* Fallback */
+  border-radius: var(--rounded-lg); /* Optional rounded corners for the banner */
+  margin: 2rem 0; /* Space around the banner */
+}
+
+.bannerImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.bannerImage { /* For Next.js Image */
+  transition: transform 0.7s ease-out;
+}
+.bannerContainer:hover .bannerImage {
+  transform: scale(1.03); /* Subtle zoom on hover */
+}
+
+.bannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* background-color set dynamically */
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 3;
+  padding: 2.5rem; /* Increased padding */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.align-left { align-items: flex-start; text-align: left; }
+.align-center { align-items: center; text-align: center; }
+.align-right { align-items: flex-end; text-align: right; }
+
+.align-left .bannerButton, .align-right .bannerButton { /* Ensure button aligns with text */
+  align-self: auto; /* Reset if CallToAction has its own alignment */
+}
+.align-left > div > .btn { align-self: flex-start; } /* Target CallToAction's button */
+.align-right > div > .btn { align-self: flex-end; }
+.align-center > div > .btn { align-self: center; }
+
+
+.bannerTitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  line-height: 1.25;
+}
+.bannerSubtitle {
+  font-size: 1.1rem;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+  max-width: 600px; /* Limit subtitle width */
+  opacity: 0.9;
+}
+.bannerButton { /* Specific overrides for CallToAction used in banner */
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .bannerContainer { min-height: 280px; }
+  .bannerTitle { font-size: 1.8rem; }
+  .bannerSubtitle { font-size: 1rem; margin-bottom: 1.5rem; }
+  .bannerContent { padding: 2rem; }
+}

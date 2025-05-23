@@ -1,0 +1,110 @@
+/* [project]/styles/CategoryHighlight.module.css [app-client] (css) */
+.CategoryHighlight-module__pG9lLW__categoryCard {
+  border-radius: var(--rounded-xl);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--neutral-black);
+  aspect-ratio: 3 / 4;
+  min-height: 320px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.CategoryHighlight-module__pG9lLW__categoryLink {
+  width: 100%;
+  height: 100%;
+  color: var(--neutral-white);
+  flex-direction: column;
+  text-decoration: none;
+  display: flex;
+}
+
+.CategoryHighlight-module__pG9lLW__imageContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.CategoryHighlight-module__pG9lLW__categoryImage {
+  transition: transform .5s ease-out, filter .3s ease-out;
+}
+
+.CategoryHighlight-module__pG9lLW__categoryCard:hover .CategoryHighlight-module__pG9lLW__categoryImage {
+  filter: brightness(.85);
+  transform: scale(1.08);
+}
+
+.CategoryHighlight-module__pG9lLW__overlay {
+  z-index: 1;
+  opacity: .9;
+  background: linear-gradient(to top, #000000e6 0%, #00000080 35%, #0000 70%);
+  width: 100%;
+  height: 100%;
+  transition: opacity .3s ease-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.CategoryHighlight-module__pG9lLW__categoryCard:hover .CategoryHighlight-module__pG9lLW__overlay {
+  opacity: 1;
+}
+
+.CategoryHighlight-module__pG9lLW__contentWrapper {
+  z-index: 2;
+  text-align: left;
+  margin-top: auto;
+  padding: 1.25rem;
+  transition: transform .3s ease-out;
+  position: relative;
+}
+
+.CategoryHighlight-module__pG9lLW__categoryCard:hover .CategoryHighlight-module__pG9lLW__contentWrapper {
+  transform: translateY(-5px);
+}
+
+.CategoryHighlight-module__pG9lLW__categoryName {
+  text-shadow: 1px 1px 3px #000000b3;
+  margin-bottom: .2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.CategoryHighlight-module__pG9lLW__productCount {
+  color: var(--light-gray);
+  opacity: .8;
+  margin-bottom: .6rem;
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.CategoryHighlight-module__pG9lLW__exploreAction {
+  color: var(--primary-yellow);
+  opacity: 0;
+  align-items: center;
+  font-size: .9rem;
+  font-weight: 600;
+  transition: opacity .3s ease-out .1s, transform .3s ease-out .1s;
+  display: inline-flex;
+  transform: translateY(8px);
+}
+
+.CategoryHighlight-module__pG9lLW__categoryCard:hover .CategoryHighlight-module__pG9lLW__exploreAction {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.CategoryHighlight-module__pG9lLW__exploreIcon {
+  margin-left: .4rem;
+  font-size: 1.1rem;
+  transition: transform .2s ease-out;
+}
+
+.CategoryHighlight-module__pG9lLW__categoryCard:hover .CategoryHighlight-module__pG9lLW__exploreIcon {
+  transform: translateX(3px);
+}
+
+/*# sourceMappingURL=styles_CategoryHighlight_module_css_f9ee138c._.single.css.map*/

@@ -1,0 +1,193 @@
+/* [project]/styles/Navbar.module.css [app-client] (css) */
+.Navbar-module__Ubi64G__navbar {
+  background-color: var(--neutral-black);
+  color: var(--neutral-white);
+  z-index: 1000;
+  width: 100%;
+  transition: background-color var(--transition-medium), box-shadow var(--transition-medium), padding var(--transition-medium);
+  box-shadow: var(--shadow-sm);
+  padding: .9rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.Navbar-module__Ubi64G__navbar.Navbar-module__Ubi64G__scrolled {
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-md);
+  background-color: #1a1a1af7;
+  padding: .7rem 0;
+}
+
+.Navbar-module__Ubi64G__navContainer {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.Navbar-module__Ubi64G__logo {
+  color: var(--neutral-white);
+  transition: color var(--transition-fast);
+  letter-spacing: -.5px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.Navbar-module__Ubi64G__logo:hover {
+  color: var(--primary-yellow);
+  text-decoration: none;
+}
+
+.Navbar-module__Ubi64G__logoAccent {
+  color: var(--primary-green);
+}
+
+.Navbar-module__Ubi64G__navMenu {
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+  display: flex;
+}
+
+.Navbar-module__Ubi64G__navMenu a {
+  color: var(--neutral-white);
+  padding: .4rem .1rem;
+  font-size: .9rem;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+}
+
+.Navbar-module__Ubi64G__navMenu a:after {
+  content: "";
+  background-color: var(--primary-yellow);
+  border-radius: var(--rounded-md);
+  width: 0;
+  height: 2px;
+  transition: width var(--transition-medium);
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.Navbar-module__Ubi64G__navMenu a:hover {
+  color: var(--primary-yellow);
+  text-decoration: none;
+}
+
+.Navbar-module__Ubi64G__navMenu a:hover:after {
+  width: 100%;
+}
+
+.Navbar-module__Ubi64G__navActions {
+  align-items: center;
+  gap: .75rem;
+  display: flex;
+}
+
+.Navbar-module__Ubi64G__actionButton {
+  color: var(--neutral-white);
+  cursor: pointer;
+  border-radius: var(--rounded-full);
+  transition: var(--transition-fast);
+  background: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+  font-size: 1.2rem;
+  display: flex;
+}
+
+.Navbar-module__Ubi64G__actionButton:hover {
+  color: var(--primary-yellow);
+  background-color: #ffffff1a;
+}
+
+.Navbar-module__Ubi64G__contactButton {
+  padding: .5rem 1.2rem;
+  font-size: .85rem;
+}
+
+.Navbar-module__Ubi64G__mobileMenuToggle {
+  color: var(--neutral-white);
+  cursor: pointer;
+  z-index: 1005;
+  background: none;
+  border: none;
+  padding: .5rem;
+  display: none;
+}
+
+.Navbar-module__Ubi64G__mobileMenu {
+  background-color: var(--neutral-black);
+  border-top: 1px solid var(--primary-yellow);
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  max-height: calc(100vh - 70px);
+  padding: 1rem 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  overflow-y: auto;
+}
+
+.Navbar-module__Ubi64G__mobileMenu ul {
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  list-style: none;
+  display: flex;
+}
+
+.Navbar-module__Ubi64G__mobileMenu li a {
+  color: var(--neutral-white);
+  text-align: center;
+  border-radius: var(--rounded-md);
+  width: 100%;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  padding: .8rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  display: block;
+}
+
+.Navbar-module__Ubi64G__mobileMenu li a:hover {
+  background-color: var(--primary-yellow);
+  color: var(--neutral-black);
+  text-decoration: none;
+}
+
+.Navbar-module__Ubi64G__desktopNav {
+  display: flex;
+}
+
+@media (width <= 992px) {
+  .Navbar-module__Ubi64G__desktopNav, .Navbar-module__Ubi64G__navActions .Navbar-module__Ubi64G__contactButton {
+    display: none;
+  }
+
+  .Navbar-module__Ubi64G__mobileMenuToggle {
+    align-items: center;
+    display: flex;
+  }
+
+  .Navbar-module__Ubi64G__mobileMenu {
+    display: block;
+  }
+}
+
+@media (width <= 768px) {
+  .Navbar-module__Ubi64G__logo {
+    font-size: 1.4rem;
+  }
+
+  .Navbar-module__Ubi64G__navContainer {
+    padding-left: .8rem;
+    padding-right: .8rem;
+  }
+}
+
+/*# sourceMappingURL=styles_Navbar_module_css_f9ee138c._.single.css.map*/

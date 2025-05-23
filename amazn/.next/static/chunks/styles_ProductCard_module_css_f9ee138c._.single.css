@@ -1,0 +1,198 @@
+/* [project]/styles/ProductCard.module.css [app-client] (css) */
+.ProductCard-module__HOiECa__card {
+  background-color: var(--neutral-white);
+  border-radius: var(--rounded-lg);
+  border: 1px solid var(--medium-gray);
+  height: 100%;
+  transition: border-color var(--transition-fast);
+  flex-direction: column;
+  display: flex;
+  overflow: hidden;
+}
+
+.ProductCard-module__HOiECa__card:hover {
+  border-color: var(--primary-green);
+}
+
+.ProductCard-module__HOiECa__dealCard {
+  border-color: var(--primary-yellow);
+}
+
+.ProductCard-module__HOiECa__dealCard:hover {
+  border-color: var(--secondary-yellow);
+}
+
+.ProductCard-module__HOiECa__cardLinkWrapper {
+  color: inherit;
+  flex-direction: column;
+  flex-grow: 1;
+  text-decoration: none;
+  display: flex;
+}
+
+.ProductCard-module__HOiECa__imageWrapper {
+  aspect-ratio: 4 / 3;
+  background-color: var(--light-gray);
+  position: relative;
+  overflow: hidden;
+}
+
+.ProductCard-module__HOiECa__productImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform .4s ease-out;
+}
+
+.ProductCard-module__HOiECa__dealTag, .ProductCard-module__HOiECa__promoTag {
+  border-radius: var(--rounded-md);
+  z-index: 1;
+  color: var(--neutral-white);
+  box-shadow: var(--shadow-sm);
+  padding: .3rem .7rem;
+  font-size: .75rem;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.ProductCard-module__HOiECa__dealTag {
+  background-color: var(--secondary-yellow);
+  color: var(--neutral-black);
+}
+
+.ProductCard-module__HOiECa__promoTag {
+  background-color: var(--primary-green);
+}
+
+.ProductCard-module__HOiECa__quickActions {
+  opacity: 0;
+  flex-direction: column;
+  gap: .5rem;
+  transition: opacity .3s, transform .3s;
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transform: translateX(5px);
+}
+
+.ProductCard-module__HOiECa__card:hover .ProductCard-module__HOiECa__quickActions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ProductCard-module__HOiECa__actionButton {
+  width: 32px;
+  height: 32px;
+  color: var(--neutral-black);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  background-color: #ffffffe6;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: .9rem;
+  display: flex;
+}
+
+.ProductCard-module__HOiECa__actionButton:hover {
+  background-color: var(--neutral-white);
+  color: var(--primary-green);
+}
+
+.ProductCard-module__HOiECa__cardContent {
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem 1.2rem;
+  display: flex;
+}
+
+.ProductCard-module__HOiECa__productCategory {
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  margin-bottom: .2rem;
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.ProductCard-module__HOiECa__productName {
+  color: var(--neutral-black);
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: 2.7em;
+  margin-bottom: .4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+.ProductCard-module__HOiECa__ratingContainer {
+  align-items: center;
+  gap: .2rem;
+  margin-bottom: .5rem;
+  font-size: .9rem;
+  display: flex;
+}
+
+.ProductCard-module__HOiECa__starFilled {
+  color: var(--primary-yellow);
+}
+
+.ProductCard-module__HOiECa__starEmpty {
+  color: var(--medium-gray);
+}
+
+.ProductCard-module__HOiECa__reviewCount {
+  color: var(--dark-gray);
+  margin-left: .3rem;
+  font-size: .75rem;
+}
+
+.ProductCard-module__HOiECa__priceContainer {
+  align-items: baseline;
+  gap: .4rem;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
+.ProductCard-module__HOiECa__currentPrice {
+  color: var(--primary-green);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.ProductCard-module__HOiECa__dealCard .ProductCard-module__HOiECa__currentPrice {
+  color: var(--secondary-yellow);
+}
+
+.ProductCard-module__HOiECa__oldPrice {
+  color: #999;
+  font-size: .85rem;
+  text-decoration: line-through;
+}
+
+.ProductCard-module__HOiECa__amazonButton {
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 2.4rem);
+  margin: 0 1.2rem 1.2rem;
+  font-size: .9rem;
+  display: flex;
+}
+
+.ProductCard-module__HOiECa__cardSkeleton {
+  background-color: var(--light-gray);
+  border-radius: var(--rounded-lg);
+  height: 380px;
+  color: var(--dark-gray);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/*# sourceMappingURL=styles_ProductCard_module_css_f9ee138c._.single.css.map*/

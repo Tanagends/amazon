@@ -1,0 +1,162 @@
+/* styles/ProductCard.module.css */
+.card {
+  background-color: var(--neutral-white);
+  border-radius: var(--rounded-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--medium-gray);
+  transition: border-color var(--transition-fast);
+}
+.card:hover {
+  border-color: var(--primary-green);
+}
+.dealCard {
+  border-color: var(--primary-yellow);
+}
+.dealCard:hover {
+  border-color: var(--secondary-yellow);
+}
+
+.cardLinkWrapper { /* Applied to Link component */
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background-color: var(--light-gray);
+}
+.productImage { /* For next/image */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-out;
+}
+.card:hover .productImage {
+  /* transform handled by imageVariants in Framer Motion */
+}
+
+.dealTag, .promoTag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--rounded-md);
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 1;
+  color: var(--neutral-white);
+  box-shadow: var(--shadow-sm);
+}
+.dealTag { background-color: var(--secondary-yellow); color: var(--neutral-black); }
+.promoTag { background-color: var(--primary-green); }
+
+.quickActions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateX(5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.card:hover .quickActions {
+  opacity: 1;
+  transform: translateX(0);
+}
+.actionButton {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--neutral-black);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.actionButton:hover {
+  background-color: var(--neutral-white);
+  color: var(--primary-green);
+}
+
+.cardContent {
+  padding: 1rem 1.2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.productCategory {
+  font-size: 0.75rem;
+  color: var(--dark-gray);
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.productName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--neutral-black);
+  margin-bottom: 0.4rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.35em * 2);
+}
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+.starFilled { color: var(--primary-yellow); }
+.starEmpty { color: var(--medium-gray); }
+.reviewCount {
+  font-size: 0.75rem;
+  color: var(--dark-gray);
+  margin-left: 0.3rem;
+}
+.priceContainer {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+.currentPrice {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+.dealCard .currentPrice { color: var(--secondary-yellow); }
+.oldPrice {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.85rem;
+}
+.amazonButton {
+  width: calc(100% - 2.4rem); /* Full width minus padding */
+  margin: 0 1.2rem 1.2rem; /* Consistent with content padding */
+  font-size: 0.9rem;
+  display: flex; /* For icon alignment */
+  align-items: center;
+  justify-content: center;
+}
+.cardSkeleton {
+  height: 380px; background-color: var(--light-gray); border-radius: var(--rounded-lg);
+  display: flex; align-items: center; justify-content: center; color: var(--dark-gray);
+}
