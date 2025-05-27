@@ -41,6 +41,7 @@ const Navbar = () => {
     { href: "/deals", label: "Hot Deals" },
     { href: "/guides", label: "Guides" },   // Example
     { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact Us" },
   ];
 
   return (
@@ -65,15 +66,7 @@ const Navbar = () => {
           ))}
         </motion.ul>
 
-        {/* Right-side icons (e.g., Search) */}
-        <div className={styles.navActions}>
-          <button className={styles.actionButton} aria-label="Search">
-            <FiSearch />
-          </button>
-          {/* Add other actions like a "Contact" button if needed */}
-          {/* <Link href="/contact" className={`btn btn-primary ${styles.contactButton}`}>Contact</Link> */}
-        </div>
-
+        
         {/* Mobile Menu Toggle Button */}
         <button
           className={styles.mobileMenuToggle}

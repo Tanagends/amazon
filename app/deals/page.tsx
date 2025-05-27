@@ -98,16 +98,6 @@ export default function DealsPage() {
         </section>
 
         {/* Optional: Call to action for newsletter or other pages */}
-        <section className={styles.ctaBannerSection} data-aos="fade-up" data-aos-delay="300">
-            <div className="container">
-                <div className={styles.ctaBannerContent}>
-                    <h3>Want More Deals?</h3>
-                    <p>Subscribe to our newsletter to get the best deals delivered straight to your inbox!</p>
-                    <CallToAction text="Subscribe Now" link="/newsletter-signup" type="secondary" />
-                </div>
-            </div>
-        </section>
-
       </div>
     </AnimatedPageWrapper>
   );

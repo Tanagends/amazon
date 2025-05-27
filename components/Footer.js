@@ -75,7 +75,6 @@ const Footer = () => {
                     <ul>
                         {section.links.map(link => (
                             <li key={link.href}>
-                                {/* Link: Removed legacyBehavior */}
                                 <Link href={link.href}>{link.label}</Link>
                             </li>
                         ))}

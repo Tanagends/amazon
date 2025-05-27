@@ -1,8 +1,10 @@
-"use client"; // Using motion.a, so mark as client component
+// components/Footer.js
+"use client";
 
 import Link from 'next/link';
-import styles from '../styles/Footer.module.css'; // Create this CSS Module file
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaAmazon } from 'react-icons/fa';
+import styles from '../styles/Footer.module.css'; // Ensure this path is correct
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaAmazon } from 'react-icons/fa'; // Added FiZap, FiBookOpen
+import { FiZap, FiBookOpen } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -13,93 +15,101 @@ const Footer = () => {
     { href: "#", icon: <FaTwitter />, label: "Twitter" },
     { href: "#", icon: <FaInstagram />, label: "Instagram" },
     { href: "#", icon: <FaYoutube />, label: "YouTube" },
-    { href: "#", icon: <FaAmazon />, label: "Our Amazon Store" }, // Example
+    { href: "#", icon: <FaAmazon />, label: "Amazon Store" },
   ];
 
-  const footerLinkSections = [
+  const footerSections = [
     {
-      title: "Explore Site",
+      title: "Explore",
       links: [
         { href: "/products", label: "All Products" },
-        { href: "/deals", label: "Today's Deals" },
+        { href: "/deals", label: "Hot Deals" },
         { href: "/guides", label: "Buying Guides" },
-        { href: "/categories", label: "Shop Categories" }, // Example
       ]
     },
     {
       title: "About AffiliateAura",
       links: [
-        { href: "/about", label: "Our Story" },
-        { href: "/contact", label: "Contact Us" },
-        { href: "/blog", label: "Affiliate Blog" }, // Example
+        { href: "/about", label: "About Us" },
+        { href: "/contact", label: "Contact" },
       ]
     },
     {
-      title: "Legal & Support",
+      title: "Support",
       links: [
-        { href: "/privacy-policy", label: "Privacy Policy" },
-        { href: "/terms-of-service", label: "Terms of Service" },
-        { href: "/faq", label: "FAQ" }, // Example
+        { href: "/faq", label: "FAQ" },
       ]
     }
   ];
 
+
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.footerContainer}`}>
-        {/* Top part of the footer: Brand and Newsletter */}
-        <div className={styles.footerTopSection}>
-          <div className={styles.footerBrandInfo}>
-            <Link href="/" className={styles.footerLogo}>
-              Affiliate<span className={styles.logoAccent}>Aura</span>
-            </Link>
-            <p className={styles.footerTagline}>Your trusted source for curated Amazon finds and honest reviews.</p>
-            <p className={styles.affiliateDisclosure}>
-              As an Amazon Associate, we earn from qualifying purchases. This does not affect the price you pay or our editorial independence.
-            </p>
-          </div>
-          <div className={styles.footerNewsletterSignup}>
-            <h4 className={styles.newsletterTitle}>Get Exclusive Deals!</h4>
-            <p>Subscribe to our newsletter for the latest product drops and special offers.</p>
-            <form className={styles.newsletterForm}>
-              <input type="email" placeholder="your.email@example.com" required aria-label="Email for newsletter"/>
-              <button type="submit" className="btn btn-primary">Subscribe</button>
-            </form>
-          </div>
-        </div>
-
-        {/* Middle part of the footer: Link columns */}
-        <div className={styles.footerLinksGrid}>
-          {footerLinkSections.map((section) => (
-            <div key={section.title} className={styles.footerLinksColumn}>
-              <h4 className={styles.columnTitle}>{section.title}</h4>
-              <ul>
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
+        <div className={styles.footerTop}>
+            <div className={styles.footerBrand}>
+                <Link href="/" className={styles.footerLogo}>
+                    Affiliate<span className={styles.logoAccent}>Aura</span>
+                </Link>
+                <p className={styles.footerTagline}>Your trusted guide to Amazon's best finds.</p>
+                <p className={styles.disclosure}>
+                    As an Amazon Associate, we earn from qualifying purchases. All product recommendations are independently chosen by our editorial team.
+                </p>
             </div>
-          ))}
+            {/* Replaced Newsletter with Featured Content Snippet */}
+            <div className={styles.footerFeaturedContent}>
+                <h4 className={styles.featuredContentTitle}>Don't Miss Out!</h4>
+                <div className={styles.featuredItem}>
+                    {/* Example: Link to a popular guide */}
+                    <FiBookOpen className={styles.featuredIcon} />
+                    <div>
+                        <Link href="/guides/best-noise-cancelling-headphones-2025" className={styles.featuredLink}>
+                            Our Top Headphone Picks for 2025
+                        </Link>
+                        <p className={styles.featuredDescription}>Dive into crystal-clear audio with our expert guide.</p>
+                    </div>
+                </div>
+                <div className={styles.featuredItem}>
+                    {/* Example: Link to deals page */}
+                    <FiZap className={styles.featuredIcon} /> {/* Using FiZap for deals */}
+                    <div>
+                        <Link href="/deals" className={styles.featuredLink}>
+                            Today's Hottest Deals
+                        </Link>
+                        <p className={styles.featuredDescription}>Grab limited-time offers before they're gone!</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        {/* Bottom part of the footer: Copyright and Social Icons */}
-        <div className={styles.footerBottomSection}>
-          <p className={styles.copyrightText}>
-            &copy; {currentYear} AffiliateAura. All Rights Reserved.
-          </p>
-          <div className={styles.socialMediaIcons}>
-            {socialLinks.map((social) => (
+        <div className={styles.footerMain}>
+            {footerSections.map(section => (
+                <div key={section.title} className={styles.footerLinksColumn}>
+                    <h4 className={styles.footerLinksTitle}>{section.title}</h4>
+                    <ul>
+                        {section.links.map(link => (
+                            <li key={link.href}>
+                                <Link href={link.href}>{link.label}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+
+        <div className={styles.footerBottom}>
+          <p className={styles.copyright}>&copy; {currentYear} AffiliateAura. All Rights Reserved.
+                           Made with ❤️ by <Link href="https://www.pixelcrafte.co.zw/">PixelCrafte</Link></p>
+          <div className={styles.socialIcons}>
+            {socialLinks.map(social => (
               <motion.a
                 key={social.label}
                 href={social.href}
                 target="_blank"
-                rel="noopener noreferrer" // Important for security and SEO
+                rel="noopener noreferrer"
                 aria-label={social.label}
-                className={styles.socialIconLink}
-                whileHover={{ y: -3, scale: 1.15 }} // Animation on hover
-                whileTap={{ scale: 0.9 }}      // Animation on tap/click
+                whileHover={{ y: -3, scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {social.icon}
               </motion.a>

@@ -1,182 +1,205 @@
 /* styles/Footer.module.css */
-/* Ensure this file is in a 'styles' directory at the root or co-located, and adjust import path if needed */
 .footer {
   background-color: var(--neutral-black);
-  color: var(--medium-gray); /* Lighter gray for text on dark background */
-  padding: 3.5rem 0 1.5rem; /* Top/bottom padding */
-  border-top: 4px solid var(--primary-green); /* Green accent top border */
-  font-size: 0.9rem; /* Base font size for footer */
+  color: var(--medium-gray); /* Lighter gray for better contrast on black */
+  padding: 4rem 0 2rem; /* More padding for a substantial footer */
+  border-top: 5px solid var(--primary-green);
+  font-size: 0.9rem;
 }
 
 /* .footerContainer is using the global .container class */
 
-.footerTopSection {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  justify-content: space-between;
-  gap: 2.5rem; /* Space between brand info and newsletter */
-  padding-bottom: 2.5rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid var(--dark-gray); /* Subtle separator */
+.footerTop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--dark-gray);
 }
 
-.footerBrandInfo {
-  flex: 1;
-  min-width: 280px; /* Minimum width before wrapping */
-  max-width: 480px; /* Max width for brand info block */
+.footerBrand {
+    flex: 1;
+    min-width: 280px;
+    max-width: 450px;
 }
 
 .footerLogo {
-  font-size: 1.8rem; /* Prominent footer logo */
+  font-size: 2rem;
   font-weight: 800;
   color: var(--neutral-white);
-  text-decoration: none;
-  display: inline-block; /* Allows margin-bottom */
-  margin-bottom: 0.75rem;
-}
-.footerLogo .logoAccent { /* Inherits from Navbar or define specifically */
-  color: var(--primary-green);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  text-decoration: none; /* Ensure Link doesn't get default underline */
 }
 .footerLogo:hover {
   color: var(--primary-yellow);
   text-decoration: none;
 }
+.footerLogo .logoAccent { /* Ensure specificity if needed */
+  color: var(--primary-green);
+}
 
 .footerTagline {
-  font-size: 0.95rem;
-  color: var(--light-gray); /* Slightly lighter than medium-gray for tagline */
-  margin-bottom: 1rem;
-  line-height: 1.6;
+    font-size: 1rem;
+    color: var(--neutral-white);
+    margin-bottom: 1rem;
 }
 
-.affiliateDisclosure {
+.disclosure {
   font-style: italic;
   font-size: 0.8rem;
-  color: #a0a0a0; /* Even lighter for less prominent text */
+  color: #a0a0a0; /* Lighter gray for disclosure */
   line-height: 1.5;
+  margin-top: 1rem;
 }
 
-.footerNewsletterSignup {
-  flex: 1;
-  min-width: 280px;
-  max-width: 400px;
+/* Styles for the new Featured Content Snippet */
+.footerFeaturedContent {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    /* background-color: rgba(255, 255, 255, 0.03); /* Subtle background */
+    /* padding: 1.5rem; */
+    /* border-radius: var(--rounded-lg); */
 }
-.newsletterTitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--primary-yellow); /* Yellow title for newsletter */
-  margin-bottom: 0.5rem;
+.featuredContentTitle {
+    font-size: 1.3rem;
+    color: var(--primary-yellow);
+    margin-bottom: 1.2rem; /* Increased margin */
+    font-weight: 600;
 }
-.footerNewsletterSignup p {
-  margin-bottom: 1rem;
-  color: var(--light-gray);
+.featuredItem {
+    display: flex;
+    align-items: flex-start; /* Align icon with multi-line text */
+    gap: 0.8rem;
+    margin-bottom: 1.2rem; /* Space between featured items */
 }
-.newsletterForm {
-  display: flex;
-  gap: 0.5rem; /* Space between input and button */
+.featuredItem:last-child {
+    margin-bottom: 0;
 }
-.newsletterForm input {
-  flex-grow: 1; /* Input takes available space */
-  padding: 0.7rem 1rem;
-  border-radius: var(--rounded-md);
-  border: 1px solid var(--dark-gray);
-  background-color: #2a2a2a; /* Darker input field */
-  color: var(--neutral-white);
-  font-size: 0.9rem;
+.featuredIcon {
+    font-size: 1.5rem; /* Size of the icon */
+    color: var(--primary-green); /* Icon color */
+    margin-top: 0.15em; /* Align icon nicely with text */
+    flex-shrink: 0;
 }
-.newsletterForm input::placeholder {
-  color: var(--medium-gray);
+.featuredLink {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--neutral-white);
+    text-decoration: none;
+    display: block; /* Make link take full width for easier click */
+    margin-bottom: 0.2rem; /* Space between link and description */
+    transition: color var(--transition-fast);
 }
-.newsletterForm button { /* Uses .btn and .btn-primary from global styles */
-  padding: 0.7rem 1.2rem; /* Adjust padding if needed */
-  white-space: nowrap; /* Prevent button text from wrapping */
+.featuredLink:hover {
+    color: var(--primary-yellow);
+    text-decoration: underline;
+}
+.featuredDescription {
+    font-size: 0.8rem;
+    color: var(--medium-gray);
+    line-height: 1.5;
 }
 
-.footerLinksGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive columns */
-  gap: 2rem; /* Gap between columns */
-  padding-bottom: 2.5rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--dark-gray);
+
+.footerMain {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--dark-gray);
 }
 
-.footerLinksColumn .columnTitle { /* Targeting h4 */
+.footerLinksColumn h4.footerLinksTitle { /* Ensure h4 is targeted */
   color: var(--primary-yellow);
-  font-size: 1.05rem;
+  font-size: 1.1rem; /* Slightly larger title for link columns */
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem; /* More space below title */
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
 .footerLinksColumn ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
 .footerLinksColumn li {
-  margin-bottom: 0.6rem; /* Spacing between links in a column */
+  margin-bottom: 0.8rem; /* More space between links */
 }
+
 .footerLinksColumn a {
   color: var(--medium-gray);
-  text-decoration: none;
   transition: color var(--transition-fast), padding-left var(--transition-fast);
+  text-decoration: none; /* Ensure Link doesn't get default underline */
 }
+
 .footerLinksColumn a:hover {
   color: var(--primary-green);
-  padding-left: 4px; /* Subtle indent on hover */
+  padding-left: 5px;
   text-decoration: none;
 }
 
-.footerBottomSection {
+.footerBottom {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
   justify-content: space-between;
   align-items: center;
   gap: 1rem; /* Space between copyright and social icons */
 }
 
-.copyrightText {
+.copyright {
   font-size: 0.85rem;
   color: #a0a0a0;
-  margin: 0; /* Remove default paragraph margin */
+  margin: 0; /* Remove default p margin */
 }
 
-.socialMediaIcons {
+.socialIcons {
   display: flex;
-  gap: 0.9rem; /* Space between social icons */
-}
-.socialIconLink { /* Styles the motion.a tag */
-  color: var(--medium-gray);
-  font-size: 1.3rem; /* Size of social icons */
-  transition: color var(--transition-fast); /* Transform handled by Framer Motion */
-}
-.socialIconLink:hover {
-  color: var(--primary-yellow); /* Yellow hover for social icons */
+  gap: 1rem; /* Space between icons */
 }
 
-/* Responsive adjustments for footer */
+.socialIcons a { /* This styles motion.a */
+  color: var(--medium-gray);
+  font-size: 1.5rem; /* Larger social icons */
+  transition: color var(--transition-fast) !important; /* Ensure color transition overrides motion if needed */
+  text-decoration: none;
+}
+
+.socialIcons a:hover {
+  color: var(--primary-yellow); /* Yellow hover for social icons */
+  /* transform handled by framer-motion */
+}
+
 @media (max-width: 768px) {
-  .footerTopSection, .footerBottomSection {
-    flex-direction: column; /* Stack elements vertically */
-    text-align: center; /* Center text for stacked elements */
-  }
-  .footerBrandInfo, .footerNewsletterSignup {
-    max-width: 100%; /* Allow full width when stacked */
-  }
-  .newsletterForm {
-    flex-direction: column; /* Stack input and button */
-  }
-  .newsletterForm button {
-    width: 100%; /* Full width button */
-    margin-top: 0.5rem;
-  }
-  .footerLinksGrid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Adjust for smaller screens */
-    gap: 1.5rem;
-  }
-  .footerLinksColumn {
-    text-align: center; /* Center link column text on mobile */
-  }
-  .copyrightText {
-    margin-bottom: 1rem; /* Add space below copyright when stacked */
-  }
+    .footerTop {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footerBrand, .footerFeaturedContent {
+        max-width: 100%;
+        align-items: center; /* Center content within these blocks on mobile */
+    }
+    .featuredItem {
+        justify-content: center; /* Center icon and text block within featured item */
+        text-align: left; /* Keep text left-aligned within its own block */
+    }
+     .featuredItem > div { /* Ensure text block within featuredItem doesn't over-expand */
+        max-width: 300px;
+    }
+    .footerMain {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+    .footerBottom {
+        flex-direction: column;
+    }
+    .copyright {
+        margin-bottom: 1rem;
+    }
 }
