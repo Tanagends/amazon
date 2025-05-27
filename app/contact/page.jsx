@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/contact/page.js
 // This is a Server Component by default. The form itself would become a Client Component for interactivity.
 

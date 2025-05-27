@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/about/page.js
 // This is a Server Component by default.
 

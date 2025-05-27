@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/guides/page.js
 // This will be a Server Component by default.
 

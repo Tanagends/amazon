@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/guides/[slug]/page.js
 // This is a Server Component that handles dynamic routes.
 

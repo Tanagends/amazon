@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/page.js (Homepage)
 // This is a Server Component by default.
 // It will use Client Components like AnimatedPageWrapper and CallToAction.

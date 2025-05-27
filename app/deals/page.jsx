@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/deals/page.js
 // This will be a Server Component by default.
 // Client Components (like ProductCard, CallToAction, AnimatedPageWrapper) will be used within it.
