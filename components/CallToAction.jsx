@@ -16,7 +16,7 @@ const CallToAction = ({
   iconPosition = 'right',// 'left' or 'right' for the icon
   target = '_self',     // '_self' or '_blank' for link target
   rel = "",
-  onclick,
+  onClick,
     // For rel attribute, e.g., 'noopener noreferrer' for target="_blank"
     // Optional onClick handler if it's not just a link
 }) => {
