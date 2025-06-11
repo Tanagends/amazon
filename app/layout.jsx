@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       <body>
         <AppProviders> {/* Handles AnimatePresence and AOS initialization */}
           <Navbar />
-          <main style={{ minHeight: 'calc(100vh - 150px)', /* Adjusted for typical navbar/footer */ paddingTop: '70px' /* Approx Navbar height */ }}>
+          <main style={{ minHeight: 'calc(100vh - 150px)', /* Adjusted for typical navbar/footer */ paddingTop: '70px' /* Approx Navbar height */ }} key="main-content">
             {children}
           </main>
           <Footer />
