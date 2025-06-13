@@ -20,15 +20,18 @@ export default function AppProviders({ children }) {
     });
   }, []);
 
+  // Ensure that AnimatePresence always has a direct child element to apply the key to.
+  // If `children` is null or undefined (e.g., due to a page error or an empty render),
+  // wrap it in a fragment. This fragment can then be cloned and receive the key.
+  const animatableChild = React.isValidElement(children) ? children : <>{children}</>;
+
   return (
     <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
       {/*
-        Clone the children (which is the page component) and add a unique key.
-        This ensures AnimatePresence correctly tracks page transitions.
-        The page component itself (e.g., returned by app/page.js) will be the direct animatable child.
-        An AnimatedPageWrapper, used within each page, will define the actual motion.
+        Clone the animatableChild (which is either the original page component or a fragment wrapping it)
+        and assign the pathname as its key. This ensures AnimatePresence can correctly track page transitions.
       */}
-      {React.isValidElement(children) ? React.cloneElement(children, { key: pathname }) : children}
+      {React.cloneElement(animatableChild, { key: pathname })}
     </AnimatePresence>
   );
 }
