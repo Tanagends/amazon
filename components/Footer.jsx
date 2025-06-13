@@ -44,7 +44,7 @@ const Footer = () => {
 
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} key="footer">
       <div className={`container ${styles.footerContainer}`}>
         <div className={styles.footerTop}>
             <div className={styles.footerBrand}>

@@ -69,7 +69,7 @@ export default function ProductsPage() {
     <AnimatedPageWrapper>
       <main className={styles.productsPageContainer} key="products-page">
         {/* Page Header */}
-        <header className={styles.pageHeader} data-aos="fade-in" data-aos-duration="600">
+        <header className={styles.pageHeader} data-aos="fade-in" data-aos-duration="600" key="products-header">
           <div className="container">
             <FiBox className={styles.headerIcon} />
             <h1 className={styles.pageTitle}>Explore All Products</h1>

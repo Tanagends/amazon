@@ -50,6 +50,7 @@ const Navbar = () => {
       initial={{ y: -80 }} // Start off-screen
       animate={{ y: 0 }}    // Animate to original position
       transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.1 }}
+      key="navbar"
     >
       <div className={`container ${styles.navContainer}`}>
         {/* Logo */}
