@@ -18,7 +18,7 @@ const ProductCard = ({ product, isDeal = false }) => {
     category = 'Category',
     price = '0.00',
     oldPrice,
-    imageUrl = `https://placehold.co/600x400/${isDeal ? 'F1C40F' : '2ECC71'}/1A1A1A?text=${encodeURIComponent(name)}&font=Inter`,
+    imageUrl="",
     amazonLink = '#',
     rating = 4.5,
     reviewCount = 0,

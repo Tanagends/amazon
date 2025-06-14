@@ -13,7 +13,6 @@ import styles from '../styles/Home.module.css';
 import { FiZap, FiShoppingCart, FiTrendingUp, FiGift, FiShield, FiThumbsUp, FiArrowRight, FiMessageSquare, FiAward, FiCheckCircle } from 'react-icons/fi';
 import Image from 'next/image'; // For Buying Guides section images
 import Link from 'next/link'; // For guide card links
-
 // Page-specific metadata
 export const metadata = {
   title: 'AffiliateAura - Discover Top Amazon Picks & Deals',

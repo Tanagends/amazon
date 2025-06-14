@@ -1,0 +1,214 @@
+.homePageContainer {
+  /* Optional: Add overall padding if not handled by layout */
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  height: 70vh; /* Adjust height as needed */
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden; /* Ensures overlay and image stay contained */
+}
+
+.heroImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroImageWrapper img {
+  filter: brightness(0.6); /* Darken image for text readability */
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Optional: additional overlay */
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  padding: 2rem;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroButton {
+  padding: 0.8rem 1.8rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.heroButton:hover {
+  transform: translateY(-2px);
+}
+
+.primaryButton {
+  background-color: var(--primary-color, #007bff);
+  color: #fff;
+  border: 2px solid var(--primary-color, #007bff);
+}
+.primaryButton:hover {
+  background-color: var(--primary-hover-color, #0056b3);
+  border-color: var(--primary-hover-color, #0056b3);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.secondaryButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Section Header Styling (Reusable) */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-top: 3rem;
+}
+
+.sectionIcon {
+  font-size: 2.5rem;
+  color: var(--primary-color, #007bff);
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Featured Products Section */
+.featuredProductsSection {
+  padding: 2rem 0 3rem; /* Adjust padding */
+  background-color: #f9f9f9; /* Light background for this section */
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem; /* Adjust gap */
+}
+
+.viewAllLink {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.linkWithArrow {
+  font-size: 1.1rem;
+  color: var(--primary-color, #007bff);
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.linkWithArrow:hover {
+  text-decoration: underline;
+}
+
+/* Categories Section */
+.categoriesSection {
+    padding: 2rem 0 3rem;
+}
+
+.categoryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.categoryCard {
+    background-color: var(--primary-color-light, #e9f5ff);
+    color: var(--primary-color, #007bff);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid var(--primary-color-border, #bde0ff);
+}
+
+.categoryCard:hover {
+    background-color: var(--primary-color, #007bff);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  .categoryGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}

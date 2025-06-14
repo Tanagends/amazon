@@ -92,13 +92,15 @@ export default function ProductsPage() {
   const [selectedCategories, setSelectedCategories] = useState([]); // New state for selected categories
   const [displayedProducts, setDisplayedProducts] = useState([]);
 
-  const baseProducts = useMemo(() => importedProducts.map(p => {
-    const { price, oldPrice, ...rest } = p;
-    return {
-      ...rest,
-      amazonLink: p.imageUrl,
-    };
-  }), []);
+  const baseProducts = useMemo(() => 
+    importedProducts.slice(0, 4).map(p => { // Take only the first 4 products
+      const { price, oldPrice, ...rest } = p;
+      return {
+        ...rest,
+        amazonLink: p.imageUrl,
+      };
+    }), 
+  []);
 
   const availableCategories = useMemo(() => {
     const categories = new Set(baseProducts.map(p => p.category));
