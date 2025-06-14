@@ -27,7 +27,7 @@ export const metadata = {
 // Placeholder Data (Prismic will manage this later)
 const placeholderProducts = [
   { id: 'feat1', slug: 'smart-thermostat-x1', name: 'SmartHome Thermostat X1', category: 'Smart Home', price: '129.99', oldPrice: '159.99', imageUrl: 'https://placehold.co/600x400/2ECC71/FFFFFF?text=Smart+Thermo&font=Inter', amazonLink: '#', rating: 4.8, reviewCount: 350, onPromotion: true },
-  { id: 'feat2', slug: 'noise-cancelling-headphones-pro', name: 'AuraSound Headphones Pro', category: 'Audio', price: '249.00', imageUrl: 'https://placehold.co/600x400/3498DB/FFFFFF?text=Headphones+Pro&font=Inter', amazonLink: '#', rating: 4.9, reviewCount: 720 },
+  { id: 'feat2', slug: 'noise-cancelling-headphones-pro', name: 'AuraSound Headphones Pro', category: 'Audio', price: '249.00', imageUrl: 'https://plus.unsplash.com/premium_photo-1679914257067-7269b0798325?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aGVhcGhvbmVzfGVufDB8fDB8fHww', amazonLink: '#', rating: 4.9, reviewCount: 720 },
   { id: 'feat3', slug: 'robot-vacuum-cleaner-s5', name: 'CleanBot Vacuum S5', category: 'Home Appliances', price: '399.50', oldPrice: '499.00', imageUrl: 'https://placehold.co/600x400/9B59B6/FFFFFF?text=Robot+Vacuum&font=Inter', amazonLink: '#', rating: 4.7, reviewCount: 510, onPromotion: true },
   { id: 'feat4', slug: 'portable-espresso-maker', name: 'EspressoGo Portable Maker', category: 'Kitchen Gadgets', price: '69.99', imageUrl: 'https://placehold.co/600x400/E67E22/FFFFFF?text=Espresso+Maker&font=Inter', amazonLink: '#', rating: 4.6, reviewCount: 215 },
 ];
