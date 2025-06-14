@@ -8,21 +8,10 @@ import AnimatedPageWrapper from '../../../components/AnimatedPageWrapper'; // Ad
 import CallToAction from '../../../components/CallToAction'; // Adjust path
 import ProductCard from '../../../components/ProductCard'; // For related products, adjust path
 import styles from '../../../styles/GuideDetailPage.module.css'; // Create this CSS Module
-import { FiCalendar, FiUser, FiTag, FiArrowLeft, FiChevronsRight, FiShare2, FiPrinter } from 'react-icons/fi';
-
-// Placeholder data - In a real app, this would be fetched from Prismic based on the slug
-const allGuidesData = [
-  { id: 'guide001', slug: 'best-noise-cancelling-headphones-2025', title: "Ultimate Guide: Best Noise-Cancelling Headphones 2025", content: "<p>In a world buzzing with noise, finding your sanctuary of sound is more important than ever. Noise-cancelling headphones have become an essential tool for commuters, office workers, travelers, and anyone seeking focus or relaxation. This guide dives deep into the top noise-cancelling headphones of 2025, comparing their audio quality, noise cancellation effectiveness, comfort, battery life, and extra features.</p><h2>Understanding Noise Cancellation Technology</h2><p>Before we jump into the reviews, let's briefly understand how this magic works. Active Noise Cancellation (ANC) uses microphones to detect ambient sounds and then generates opposing sound waves to neutralize them. This is different from passive noise isolation, which simply blocks sound physically (like earmuffs).</p><h3>Key Factors to Consider:</h3><ul><li><strong>ANC Effectiveness:</strong> How well do they block out low-frequency rumbles (like engines) versus high-frequency chatter?</li><li><strong>Audio Quality:</strong> Does the ANC affect the sound signature? Look for balanced, clear, and rich audio.</li><li><strong>Comfort & Design:</strong> Over-ear, on-ear, or in-ear? Material quality and long-wear comfort are crucial.</li><li><strong>Battery Life:</strong> Essential for long flights or workdays. Check ANC-on battery duration.</li><li><strong>Connectivity & Features:</strong> Bluetooth version, multi-point pairing, companion apps, touch controls, transparency mode.</li></ul><h2>Top Picks for 2025</h2><h3>1. AuraSound Serenity Pro X</h3><p>The Serenity Pro X continues to dominate the market with its unparalleled noise cancellation and sublime audio fidelity. They boast an impressive 30-hour battery life with ANC on and feature a redesigned, more comfortable earcup. The new transparency mode is also remarkably natural-sounding.</p><p><em>Pros: Industry-leading ANC, superb sound, premium comfort.</em><br/><em>Cons: Premium price tag.</em></p><h3>2. NovaQuiet Voyager Elite</h3><p>A strong contender, the Voyager Elite offers excellent ANC performance, particularly for travel. They are lightweight, foldable, and come with a robust carrying case. Their sound profile is slightly warmer, which many find pleasing for music.</p><p><em>Pros: Great for travel, good value, comfortable.</em><br/><em>Cons: ANC not quite as powerful as the top tier.</em></p><h2>Conclusion</h2><p>Choosing the right noise-cancelling headphones depends on your specific needs and budget. The AuraSound Serenity Pro X is the undisputed king for those who want the absolute best, while the NovaQuiet Voyager Elite offers a fantastic balance of features and price. Consider what's most important to you – be it noise obliteration, audio purity, or travel-friendliness – and this guide will help you make the perfect choice.</p>", imageUrl: "https://placehold.co/1200x600/3498DB/FFFFFF?text=Headphone+Guide+Banner&font=Inter", category: "Audio Reviews", date: "May 20, 2025", author: "Alex Chen", tags: ["headphones", "audio", "noise-cancelling", "tech review", "2025"], relatedProductSlugs: ['noise-cancelling-headphones-pro'] },
-  { id: 'guide002', slug: 'choosing-robot-vacuum-for-pet-owners', title: "Pet Owner's Guide to Choosing the Perfect Robot Vacuum", content: "<p>Detailed content about choosing robot vacuums for pet owners...</p>", imageUrl: "https://placehold.co/1200x600/9B59B6/FFFFFF?text=Pet+Vacuum+Guide+Banner&font=Inter", category: "Home Appliances", date: "May 15, 2025", author: "Sarah Miller", tags: ["robot vacuum", "pets", "home cleaning", "smart home"], relatedProductSlugs: ['robot-vacuum-cleaner-s5'] },
-  // Add other guides here to allow for dynamic fetching
-];
-
-// Placeholder for related products data
-const allProductsData = [
-  { id: 'prod002', slug: 'noise-cancelling-headphones-pro', name: 'AuraSound Headphones Pro', category: 'Audio', price: '249.00', imageUrl: 'https://placehold.co/600x400/3498DB/FFFFFF?text=Headphones+Pro&font=Inter', amazonLink: '#', rating: 4.9, reviewCount: 720 },
-  { id: 'prod003', slug: 'robot-vacuum-cleaner-s5', name: 'CleanBot Vacuum S5', category: 'Home Appliances', price: '399.50', oldPrice: '499.00', imageUrl: 'https://placehold.co/600x400/9B59B6/FFFFFF?text=Robot+Vacuum&font=Inter', amazonLink: '#', rating: 4.7, reviewCount: 510, onPromotion: true },
-];
-
+import { FiCalendar, FiUser, FiTag, FiArrowLeft, FiChevronsRight } from 'react-icons/fi'; // Removed FiShare2, FiPrinter
+import allGuides from '../../../data/guidesData'; // Import from the central data file
+import allProductsData from '../../../components/ten-products'; // Import products
+import GuideArticleActions from '../../../components/GuideArticleActions'; // Import the new client component
 
 // Function to fetch guide data (simulated)
 async function getGuideData(slug) {
@@ -30,12 +19,13 @@ async function getGuideData(slug) {
   // const client = createClient(); // Your Prismic client
   // const guide = await client.getByUID('guide', slug, { fetchLinks: ['product.title', 'product.image'] });
   // return guide?.data;
-  return allGuidesData.find(guide => guide.slug === slug);
+  return allGuides.find(guide => guide.slug === slug); // Use imported allGuides
 }
 
 async function getRelatedProducts(slugs) {
     if (!slugs || slugs.length === 0) return [];
-    return allProductsData.filter(product => slugs.includes(product.slug));
+    // Assuming product slugs in guides match product slugs in ten-products.tsx
+    return allProductsData.filter(product => slugs.includes(product.slug)); // Use imported allProductsData
 }
 
 // Dynamic metadata generation for each guide page
@@ -61,14 +51,14 @@ export async function generateStaticParams() {
     // const client = createClient();
     // const guides = await client.getAllByType('guide', { fields: ['uid'] });
     // return guides.map((guide) => ({ slug: guide.uid }));
-    return allGuidesData.map((guide) => ({
+    return allGuides.map((guide) => ({ // Use imported allGuides
         slug: guide.slug,
     }));
 }
 
 
 export default async function GuideDetailPage({ params }) {
-  const { slug } = params;
+  const { slug } = params; // Correctly accessed for Server Component
   const guide = await getGuideData(slug);
   const relatedProducts = guide ? await getRelatedProducts(guide.relatedProductSlugs) : [];
 
@@ -100,9 +90,8 @@ export default async function GuideDetailPage({ params }) {
             <Image
               src={guide.imageUrl}
               alt={guide.title}
-              width={1200} // Set appropriate dimensions or use layout="fill" with a sized parent
-              height={500}
               style={{ objectFit: 'cover' }}
+              fill              
               priority // Consider for LCP
             />
             <div className={styles.heroOverlay}></div>
@@ -161,11 +150,8 @@ export default async function GuideDetailPage({ params }) {
                     </div>
                 </div>
 
-                {/* Share and Print Buttons */}
-                <div className={styles.articleActions} data-aos="fade-up">
-                    <button className={styles.actionButton} onClick={() => alert('Sharing functionality to be implemented!')}><FiShare2 /> Share</button>
-                    <button className={styles.actionButton} onClick={() => typeof window !== 'undefined' && window.print()}><FiPrinter /> Print</button>
-                </div>
+                {/* Share and Print Buttons - Replaced with Client Component */}
+                <GuideArticleActions />
 
             </div>
 
@@ -212,3 +198,4 @@ export default async function GuideDetailPage({ params }) {
     </AnimatedPageWrapper>
   );
 }
+

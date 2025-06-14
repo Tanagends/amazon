@@ -1,0 +1,118 @@
+/* Guide Detail Container */
+.guideDetailContainer {
+  padding: 2rem 0 4rem;
+}
+
+/* Back Link */
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #007bff;
+}
+
+/* Guide Article */
+.guideArticle {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Guide Header */
+.guideHeader {
+  margin-bottom: 2.5rem;
+}
+
+.guideTitle {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.guideMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.guideMeta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Featured Image */
+.guideFeatureImage {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+/* Guide Content */
+.guideContent {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.guideContent h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  color: #333;
+}
+
+.guideContent h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: #333;
+}
+
+.guideContent p {
+  margin-bottom: 1.5rem;
+}
+
+.guideContent ul, 
+.guideContent ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.guideContent li {
+  margin-bottom: 0.5rem;
+}
+
+/* Tags Section */
+.guideTags {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.tagsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #666;
+}
