@@ -36,15 +36,18 @@
 /* Controls Bar: Search, Filter, Sort, View Toggle */
 .controlsBar {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-    background-color: var(--light-gray);
-    border-radius: var(--rounded-lg);
-    margin-bottom: 2.5rem;
-    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+    gap: 1.5rem; /* Space between control sections */
+    margin-bottom: 2rem;
+    align-items: flex-start; /* Align items at the top if they have different heights */
+}
+
+.searchAndFilter,
+.sortAndView {
+  flex: 1 1 300px; /* Allow growing, shrinking, with a base size */
+  display: flex;
+  flex-direction: column; /* Stack items vertically if needed */
+  gap: 1rem;
 }
 
 .searchAndFilter {
@@ -203,6 +206,55 @@
     color: var(--dark-gray);
 }
 
+
+/* Styling for the category filter section */
+.categoryFilters {
+  flex: 1 1 100%; /* Allow it to take full width, especially when wrapped */
+  padding: 1rem 1.5rem;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filterTitle {
+  font-size: 1.2rem; /* Increased font size */
+  font-weight: 600; /* Bolder title */
+  color: #333;
+  margin-bottom: 1rem; /* More space below title */
+  display: flex; /* For aligning icon with text */
+  align-items: center; /* Vertically align icon and text */
+}
+
+.filterTitle svg {
+  margin-right: 0.75em; /* More space for the icon */
+  color: var(--primary-color, #007bff); /* Use a primary color if available */
+}
+
+/* Styling for individual category filter items (labels) */
+.categoryLabel {
+  display: flex; /* Align checkbox and text nicely */
+  align-items: center;
+  padding: 0.6rem 0.25rem; /* Add some padding */
+  margin-bottom: 0.25rem; /* Space between filter items */
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+  font-size: 0.95rem;
+  color: #454545;
+}
+
+.categoryLabel:hover {
+  background-color: #e9e9e9; /* Subtle hover effect */
+}
+
+.categoryCheckbox {
+  margin-right: 0.75rem; /* Space between checkbox and text */
+  width: 18px; /* Custom size for checkbox */
+  height: 18px; /* Custom size for checkbox */
+  cursor: pointer;
+  accent-color: var(--primary-color, #007bff); /* Color for the checkbox tick/fill */
+}
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
