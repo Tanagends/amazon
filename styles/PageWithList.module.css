@@ -1,0 +1,159 @@
+.pageContainer {
+  padding-bottom: 4rem;
+}
+
+.pageHeader {
+  background-color: #f8f9fa;
+  padding: 3rem 1rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.headerIcon {
+  font-size: 3rem;
+  color: var(--primary-color, #007bff);
+  margin-bottom: 1rem;
+}
+
+.pageTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.pageSubtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6; /* Added for better readability */
+}
+
+.listSection {
+  max-width: 800px; /* Slightly reduced max-width for better readability of FAQ items */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Increased gap between FAQ items */
+}
+
+.listItem {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Added subtle shadow */
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background-color: #f9f9f9; /* Light background for question header */
+  border: none; /* Remove border if any was here, border is on listItem */
+  border-bottom: 1px solid #e0e0e0; /* Separator line if answer is not open */
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.itemHeader[aria-expanded="true"] { /* Style when FAQ is open */
+  background-color: #f0f0f0;
+  border-bottom-color: transparent; /* Remove bottom border when open as content has top border */
+}
+
+.itemHeader:hover {
+  background-color: #f0f0f0;
+}
+
+.itemHeader:focus-visible { /* Accessibility: focus style */
+  outline: 2px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+.itemHeader svg {
+  font-size: 1.3rem;
+  color: var(--primary-color, #007bff);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform 0.2s ease-in-out; /* Smooth icon rotation */
+}
+
+.itemHeader[aria-expanded="true"] svg {
+  transform: rotate(180deg); /* Rotate chevron when open */
+}
+
+
+.itemContent {
+  padding: 1.5rem; /* Consistent padding */
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  background-color: #fff; /* Ensure answer area has white background */
+  /* border-top: 1px solid #e0e0e0; Removed, as .itemHeader handles separator */
+}
+
+.itemContent p {
+  margin: 0;
+}
+
+.noItemsMessage {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: #777;
+}
+
+.additionalContactInfo {
+  text-align: center;
+  margin-top: 4rem; /* Increased top margin */
+  padding: 2.5rem 1rem; /* Increased padding */
+  background-color: #f8f9fa; /* Consistent light background */
+  border-top: 1px solid #e9ecef;
+}
+
+.additionalContactInfo h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600; /* Bolder heading */
+}
+
+.additionalContactInfo p {
+  font-size: 1.05rem; /* Slightly larger text */
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto; /* Increased bottom margin */
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 2rem;
+  }
+  .pageSubtitle {
+    font-size: 1rem;
+  }
+  .itemHeader {
+    font-size: 1rem;
+    padding: 1rem 1.25rem;
+  }
+  .itemContent {
+    font-size: 0.95rem;
+    padding: 0 1.25rem 1rem 1.25rem;
+  }
+  .additionalContactInfo h2 {
+    font-size: 1.5rem;
+  }
+}

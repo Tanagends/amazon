@@ -1,88 +1,75 @@
-export const dynamic = 'force-dynamic';
-// app/contact/page.js
-// This is a Server Component by default. The form itself would become a Client Component for interactivity.
+"use client";
 
-import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjust path
-import CallToAction from '../../components/CallToAction'; // Adjust path
-import styles from '../../styles/ContactPage.module.css'; // Create this CSS Module
-import { FiMail, FiMessageSquare, FiMapPin, FiPhone, FiSend, FiInstagram, FiTwitter, FiFacebook } from 'react-icons/fi';
+import React, { useState } from 'react';
+import AnimatedPageWrapper from '../../components/AnimatedPageWrapper';
+import styles from '../../styles/PageWithList.module.css'; // Or a new FaqOnContactPage.module.css
+import { FiHelpCircle, FiChevronDown, FiChevronUp, FiMail, FiPhone, FiMapPin, FiFacebook, FiTwitter, FiInstagram } from 'react-icons/fi';
+import faqData from '../../data/faqData'; // Ensure this path is correct
+import { section } from 'framer-motion/client';
 
-// Metadata for the Contact Us page
-export const metadata = {
-  title: 'Contact AffiliateAura - Get In Touch With Us',
-  description: 'Have questions, suggestions, or partnership inquiries? Contact the AffiliateAura team. We\'d love to hear from you!',
-  openGraph: {
-    title: 'Contact Us | AffiliateAura',
-    description: 'Reach out to AffiliateAura for support, feedback, or collaborations.',
-    // images: ['/og-images/contact-us.jpg'], // Create an OG image for this page
-  },
+const FaqItem = ({ faq }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className={styles.listItem} data-aos="fade-up"> {/* Using generic listItem style */}
+      <button
+        className={styles.itemHeader} // Using generic itemHeader style
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={`faq-answer-${faq.id}`}
+      >
+        <span>{faq.question}</span>
+        {isOpen ? <FiChevronUp /> : <FiChevronDown />}
+      </button>
+      {isOpen && (
+        <div id={`faq-answer-${faq.id}`} className={styles.itemContent}> {/* Using generic itemContent style */}
+          <p>{faq.answer}</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
-// Simple Contact Form (Visual Only - would be a Client Component for functionality)
-const ContactForm = () => {
-    // In a real app, this would be a Client Component with useState for inputs and an onSubmit handler.
-    // For example:
-    // "use client";
-    // import { useState } from 'react';
-    // const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-    // const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value });
-    // const handleSubmit = (e) => { e.preventDefault(); console.log(formData); /* Implement submission logic */ };
-
-    return (
-        <form className={styles.contactForm} data-aos="fade-up" data-aos-delay="200">
-            <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                    <label htmlFor="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="e.g., Jane Doe" required />
-                </div>
-                <div className={styles.formGroup}>
-                    <label htmlFor="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="e.g., jane.doe@example.com" required />
-                </div>
-            </div>
-            <div className={styles.formGroup}>
-                <label htmlFor="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="e.g., Product Review Request" required />
-            </div>
-            <div className={styles.formGroup}>
-                <label htmlFor="message">Your Message</label>
-                <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
-            </div>
-            <button type="submit" className={`btn btn-primary ${styles.submitButton}`}>
-                <FiSend style={{ marginRight: '0.5em' }} /> Send Message
-            </button>
-        </form>
-    );
-};
-
-
-export default function ContactPage() {
+export default function ContactPageWithFaq() { // Renamed component for clarity
   return (
     <AnimatedPageWrapper>
-      <div className={styles.contactPageContainer}>
-        {/* Page Header */}
-        <header className={styles.pageHeader} data-aos="fade-in" data-aos-duration="600">
+      <main className={styles.pageContainer} key="contact-faq-page"> {/* Using generic pageContainer style */}
+        <header className={styles.pageHeader} data-aos="fade-in">
           <div className="container">
-            <FiMessageSquare className={styles.headerIcon} />
-            <h1 className={styles.pageTitle}>Get In Touch</h1>
+            <FiHelpCircle className={styles.headerIcon} />
+            <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
             <p className={styles.pageSubtitle}>
-              We're here to help and answer any question you might have. We look forward to hearing from you!
+              Have questions? We've got answers. If you don't find what you're looking for, feel free to reach out through other channels.
             </p>
           </div>
         </header>
 
-        {/* Main Content Section: Form and Contact Info */}
-        <section className={`${styles.mainContentSection} container`}>
-          <div className={styles.contactLayout}>
-            {/* Contact Form Area */}
-            <div className={styles.formWrapper}>
-              <h2 className={styles.sectionHeading}>Send Us a Message</h2>
-              <p className={styles.formIntro}>
-                Fill out the form below, and we'll get back to you as soon as possible.
+        <section className={styles.listSection}> {/* Using generic listSection style */}
+          <div className="container">
+            {faqData.length > 0 ? (
+              <div className={styles.itemsList}> {/* Using generic itemsList style */}
+                {faqData.map(faq => (
+                  <FaqItem key={faq.id} faq={faq} />
+                ))}
+              </div>
+            ) : (
+              <p className={styles.noItemsMessage}> {/* Using generic noItemsMessage style */}
+                No FAQs available at the moment. Please check back later.
               </p>
-              <ContactForm />
-            </div>
-
+            )}
+          </div>
+        </section>
+        
+        {/* You can add a small section here if you still want to provide other contact means */}
+        <section className={styles.additionalContactInfo} data-aos="fade-up">
+            <div className="container">
+                <h2>Still Need Help?</h2>
+                <p>
+                    If your question isn't answered above, you can try reaching out to us via our social media channels or community forums (if applicable).
+                </p>
+                {/* Example: <Link href="/community">Visit our Community Forum</Link> */}
+          <section className={styles.contactSection} data-aos="fade-up">
+          <div className={styles.contactLayout}>
             {/* Contact Information Area */}
             <aside className={styles.contactInfoWrapper} data-aos="fade-left" data-aos-delay="100">
               <h2 className={styles.sectionHeadingAlt}>Contact Information</h2>
@@ -121,7 +108,10 @@ export default function ContactPage() {
                 <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.socialLink}><FiInstagram /></a>
               </div>
             </aside>
-          </div>
+        </div>
+        </section>
+
+            </div>
         </section>
 
         {/* Optional: Map Section */}
@@ -143,8 +133,7 @@ export default function ContactPage() {
                 </div>
             </div>
         </section>
-
-      </div>
+      </main>
     </AnimatedPageWrapper>
   );
-};
+}
