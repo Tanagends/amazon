@@ -19,9 +19,6 @@ import importedProducts from '../../components/ten-products';
 //   },
 // };
 
-// ProductPageControls component now accepts props for interactivity
-
-// https://images.unsplash.com/photo-1653990480360-31a12ce9723e?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 const ProductPageControls = ({
     searchTerm,
     onSearchChange,
@@ -216,11 +213,11 @@ export default function ProductsPage() {
         </section>
 
         {/* Pagination Placeholder - Would be a Client Component */}
-        <div className={styles.paginationControls} data-aos="fade-up">
+        {/* <div className={styles.paginationControls} data-aos="fade-up">
             <button className={styles.paginationButton} disabled>&laquo; Previous</button>
             <span className={styles.pageInfo}>Page 1 of 5</span>
             <button className={styles.paginationButton}>Next &raquo;</button>
-        </div>
+        </div> */}
       </main>
     </AnimatedPageWrapper>
   );
