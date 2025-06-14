@@ -1,105 +1,137 @@
-export const dynamic = 'force-dynamic';
-// app/deals/page.js
-// This will be a Server Component by default.
-// Client Components (like ProductCard, CallToAction, AnimatedPageWrapper) will be used within it.
+"use client";
 
-import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjust path if your components folder is elsewhere
+import React, { useState, useEffect, useMemo } from 'react';
+import AnimatedPageWrapper from '../../components/AnimatedPageWrapper';
 import ProductCard from '../../components/ProductCard';
 import CallToAction from '../../components/CallToAction';
-import styles from '../../styles/DealsPage.module.css'; // Create this CSS Module
-import { FiTag, FiFilter, FiArrowRight, FiAlertCircle } from 'react-icons/fi'; // Icons for the page
+import styles from '../../styles/ProductsPage.module.css'; // Re-use styles
+import { FiZap, FiFilter } from 'react-icons/fi'; // Added FiFilter
+import importedProducts from '../../components/ten-products';
 
-// Placeholder data for deals - In a real app, this would be fetched from Prismic or an API
-const allDealProducts = [
-  { id: 'deal001', slug: 'xtreme-gaming-laptop-deal', name: 'Xtreme Gaming Laptop - 25% Off!', category: 'Laptops', price: '1199.99', oldPrice: '1599.99', imageUrl: 'https://placehold.co/600x400/E74C3C/FFFFFF?text=Gaming+Laptop+DEAL&font=Inter', amazonLink: '#', rating: 4.7, reviewCount: 210, onPromotion: true, shortDescription: "Powerhouse gaming laptop with top-tier specs, now at an unbeatable price for a limited time." },
-  { id: 'deal002', slug: 'smart-coffee-maker-pro', name: 'Smart Coffee Maker Pro - Morning Bliss!', category: 'Kitchen Appliances', price: '79.50', oldPrice: '110.00', imageUrl: 'https://placehold.co/600x400/F39C12/1A1A1A?text=Coffee+Maker+DEAL&font=Inter', amazonLink: '#', rating: 4.6, reviewCount: 350, onPromotion: true, shortDescription: "Start your day perfectly. Brews your favorite coffee برنامجmatically, just the way you like it." },
-  { id: 'deal003', slug: 'ultra-hd-4k-monitor-deal', name: 'UltraHD 4K Monitor - Crystal Clear Display', category: 'Monitors', price: '299.00', oldPrice: '399.00', imageUrl: 'https://placehold.co/600x400/3498DB/FFFFFF?text=4K+Monitor+DEAL&font=Inter', amazonLink: '#', rating: 4.8, reviewCount: 420, onPromotion: true, shortDescription: "Experience stunning visuals for work and play with this vibrant 27-inch 4K monitor." },
-  { id: 'deal004', slug: 'wireless-earbuds-soundwave', name: 'SoundWave True Wireless Earbuds', category: 'Audio', price: '49.99', oldPrice: '79.99', imageUrl: 'https://placehold.co/600x400/9B59B6/FFFFFF?text=Earbuds+DEAL&font=Inter', amazonLink: '#', rating: 4.5, reviewCount: 890, onPromotion: true, shortDescription: "Immersive sound, long battery life, and a comfortable fit. Your perfect audio companion." },
-  { id: 'deal005', slug: 'ergonomic-office-chair-comfort', name: 'ComfortMax Ergonomic Office Chair', category: 'Office Furniture', price: '189.99', oldPrice: '259.99', imageUrl: 'https://placehold.co/600x400/2ECC71/FFFFFF?text=Office+Chair+DEAL&font=Inter', amazonLink: '#', rating: 4.7, reviewCount: 310, onPromotion: true, shortDescription: "Work in ultimate comfort and style with adjustable lumbar support and breathable mesh." },
-  { id: 'deal006', slug: 'portable-ssd-1tb-lightning', name: 'LightningFast 1TB Portable SSD', category: 'Storage', price: '89.00', oldPrice: '129.00', imageUrl: 'https://placehold.co/600x400/1ABC9C/FFFFFF?text=SSD+DEAL&font=Inter', amazonLink: '#', rating: 4.9, reviewCount: 650, onPromotion: true, shortDescription: "Blazing fast data transfer speeds in a compact and durable design. Take your files anywhere." },
-];
-
-// Metadata for the Deals page
-export const metadata = {
-  title: 'Hot Deals & Special Promotions',
-  description: 'Find the latest and greatest deals on Amazon products. Updated daily with discounts on electronics, home goods, fashion, and more!',
-  openGraph: {
-    title: 'Hot Deals & Special Promotions | AffiliateAura',
-    description: 'Don\'t miss out on limited-time offers and exclusive discounts curated by AffiliateAura.',
-    // images: ['/og-images/deals-page.jpg'], // Create an OG image for this page
-  },
-};
-
-// A simple FilterBar component (can be extracted to its own file and made a Client Component if state is needed)
-const FilterBar = () => {
-    // For a real filter bar, you'd use `useState` and event handlers, making this a Client Component.
-    // For this example, it's just a static visual representation.
+// Simple Category Filter Component (can be expanded or moved later)
+const CategoryFilters = ({ availableCategories, selectedCategories, onCategoryChange }) => {
+    if (!availableCategories || availableCategories.length === 0) {
+        return null;
+    }
     return (
-        <section className={styles.filtersSection} data-aos="fade-up">
-            <div className="container">
-                <div className={styles.filterControls}>
-                    <h3 className={styles.filterTitle}><FiFilter /> Filter Deals By:</h3>
-                    <div className={styles.filterButtons}>
-                        {/* These would typically be interactive buttons */}
-                        <button className={`${styles.filterButton} ${styles.active}`}>All Deals</button>
-                        <button className={styles.filterButton}>Electronics</button>
-                        <button className={styles.filterButton}>Home & Kitchen</button>
-                        <button className={styles.filterButton}>Fashion</button>
-                        <button className={styles.filterButton}>Under $50</button>
-                        <button className={styles.filterButton}>Top Rated</button>
-                    </div>
-                </div>
+        <div className={styles.categoryFiltersContainer} data-aos="fade-in"> {/* New style for container */}
+            <h3 className={styles.filterTitle}><FiFilter style={{ marginRight: '0.5em' }} />Filter by Category</h3>
+            <div className={styles.categoryFiltersList}> {/* New style for list layout */}
+                {availableCategories.map(category => (
+                    <label key={category} className={styles.categoryLabel}>
+                        <input
+                            type="checkbox"
+                            value={category}
+                            checked={selectedCategories.includes(category)}
+                            onChange={() => onCategoryChange(category)}
+                            className={styles.categoryCheckbox}
+                        />
+                        {category}
+                    </label>
+                ))}
             </div>
-        </section>
+        </div>
     );
 };
 
+export default function HotDealsPage() {
+  const [allHotDeals, setAllHotDeals] = useState([]);
+  const [displayedHotDeals, setDisplayedHotDeals] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
-export default function DealsPage() {
-  // In a real app, you might fetch deals based on filters or pagination
-  // For now, we'll display all placeholder deal products.
-  const currentDeals = allDealProducts;
+  const baseProducts = useMemo(() => importedProducts.map(p => {
+    const { price, oldPrice, ...rest } = p;
+    return {
+      ...rest,
+      amazonLink: p.imageUrl,
+    };
+  }), []);
+
+  useEffect(() => {
+    const filteredDeals = baseProducts.filter(product => product.onPromotion === true);
+    setAllHotDeals(filteredDeals);
+  }, [baseProducts]);
+
+  const availableCategories = useMemo(() => {
+    if (allHotDeals.length === 0) return [];
+    const categories = new Set(allHotDeals.map(p => p.category));
+    return Array.from(categories);
+  }, [allHotDeals]);
+
+  useEffect(() => {
+    let dealsToDisplay = [...allHotDeals];
+
+    if (selectedCategories.length > 0) {
+      dealsToDisplay = dealsToDisplay.filter(deal => selectedCategories.includes(deal.category));
+    }
+    setDisplayedHotDeals(dealsToDisplay);
+  }, [allHotDeals, selectedCategories]);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategories(prevSelected =>
+      prevSelected.includes(category)
+        ? prevSelected.filter(c => c !== category)
+        : [...prevSelected, category]
+    );
+  };
 
   return (
     <AnimatedPageWrapper>
-      <div className={styles.dealsPageContainer}>
+      <main className={styles.productsPageContainer} key="hot-deals-page">
         {/* Page Header */}
-        <header className={styles.pageHeader} data-aos="fade-in" data-aos-duration="600">
+        <header className={styles.pageHeader} data-aos="fade-in" data-aos-duration="600" key="hot-deals-header">
           <div className="container">
-            <FiTag className={styles.headerIcon} />
-            <h1 className={styles.pageTitle}>Today's Hottest Deals</h1>
+            <FiZap className={styles.headerIcon} /> {/* Using FiZap for hot deals */}
+            <h1 className={styles.pageTitle}>Hot Deals</h1>
             <p className={styles.pageSubtitle}>
-              Exclusive discounts and special offers, updated regularly. Don't miss out on these amazing savings!
+              Check out our specially selected hot deals and promotions!
             </p>
           </div>
         </header>
 
-        {/* Filters Section */}
-        <FilterBar />
+        {/* Category Filters for Hot Deals */}
+        {availableCategories.length > 0 && (
+            <div className="container">
+                 <CategoryFilters
+                    availableCategories={availableCategories}
+                    selectedCategories={selectedCategories}
+                    onCategoryChange={handleCategoryChange}
+                />
+            </div>
+        )}
 
-        {/* Deals Grid Section */}
-        <section className={styles.dealsGridSection}>
+        {/* Products Grid Section */}
+        <section className={styles.productsGridSection}>
           <div className="container">
-            {currentDeals.length > 0 ? (
+            {displayedHotDeals.length > 0 ? (
               <div className={styles.productGrid}>
-                {currentDeals.map(product => (
-                  // Pass `isDeal={true}` to ProductCard to apply deal-specific styling if any
-                  <ProductCard key={product.id} product={product} isDeal={true} />
+                {displayedHotDeals.map(product => (
+                  <ProductCard key={product.id} product={product} isDeal={product.onPromotion} />
                 ))}
               </div>
             ) : (
-              <div className={styles.noDealsMessage} data-aos="fade-up">
-                <FiAlertCircle className={styles.noDealsIcon} />
-                <h2>No Deals Currently Available</h2>
-                <p>We couldn't find any active deals matching your criteria right now. Please check back later, as we update our offers frequently!</p>
-                <CallToAction text="Explore All Products" link="/products" type="primary" icon={<FiArrowRight />} />
+              <div className={styles.noProductsMessage} data-aos="fade-up">
+                <h2>No Hot Deals Found</h2>
+                <p>
+                  {selectedCategories.length > 0 || allHotDeals.length === 0 
+                    ? "No hot deals match your current filter, or none are available." 
+                    : "Please check back later for more exciting offers!"}
+                </p>
               </div>
             )}
           </div>
         </section>
 
-        {/* Optional: Call to action for newsletter or other pages */}
-      </div>
+        {/* Optional: Call to Action Section */}
+        <CallToAction
+          title="Don't Miss Out!"
+          description="Explore our full range of products for even more great finds."
+          buttonText="View All Products"
+          buttonLink="/products"
+          imageUrl="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" // Example image
+          imageAlt="Promotional banner for all products"
+        />
+      </main>
     </AnimatedPageWrapper>
   );
 }
