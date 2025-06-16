@@ -68,10 +68,10 @@ const ProductCard = ({ product, isDeal = false }) => {
             ))}
             {reviewCount > 0 && <span className={styles.reviewCount}>({reviewCount})</span>}
           </div>
-          <div className={styles.priceContainer}>
+          {/* <div className={styles.priceContainer}>
             <span className={styles.currentPrice}>${price}</span>
             {oldPrice && <span className={styles.oldPrice}>${oldPrice}</span>}
-          </div>
+          </div> */}
         </div>
       </Link>
       <motion.a
