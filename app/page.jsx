@@ -13,6 +13,7 @@ import styles from '../styles/Home.module.css';
 import { FiZap, FiShoppingCart, FiTrendingUp, FiGift, FiShield, FiThumbsUp, FiArrowRight, FiMessageSquare, FiAward, FiCheckCircle } from 'react-icons/fi';
 import Image from 'next/image'; // For Buying Guides section images
 import Link from 'next/link'; // For guide card links
+import products from '../components/products';
 
 // Page-specific metadata
 export const metadata = {
@@ -26,19 +27,10 @@ export const metadata = {
 };
 
 // Placeholder Data (Prismic will manage this later)
-const placeholderProducts = [
-  { id: 'feat1', slug: 'smart-thermostat-x1', name: 'SmartHome Thermostat X1', category: 'Smart Home', price: '129.99', oldPrice: '159.99', imageUrl: 'https://placehold.co/600x400/2ECC71/FFFFFF?text=Smart+Thermo&font=Inter', amazonLink: '#', rating: 4.8, reviewCount: 350, onPromotion: true },
-  { id: 'feat2', slug: 'noise-cancelling-headphones-pro', name: 'AuraSound Headphones Pro', category: 'Audio', price: '249.00', imageUrl: 'https://placehold.co/600x400/3498DB/FFFFFF?text=Headphones+Pro&font=Inter', amazonLink: '#', rating: 4.9, reviewCount: 720 },
-  { id: 'feat3', slug: 'robot-vacuum-cleaner-s5', name: 'CleanBot Vacuum S5', category: 'Home Appliances', price: '399.50', oldPrice: '499.00', imageUrl: 'https://placehold.co/600x400/9B59B6/FFFFFF?text=Robot+Vacuum&font=Inter', amazonLink: '#', rating: 4.7, reviewCount: 510, onPromotion: true },
-  { id: 'feat4', slug: 'portable-espresso-maker', name: 'EspressoGo Portable Maker', category: 'Kitchen Gadgets', price: '69.99', imageUrl: 'https://placehold.co/600x400/E67E22/FFFFFF?text=Espresso+Maker&font=Inter', amazonLink: '#', rating: 4.6, reviewCount: 215 },
-];
+const placeholderProducts = products.filter(product => product.onPromotion); // Import from products.js
 
-const dealProducts = [
-  { id: 'deal1', slug: 'gaming-mouse-rgb', name: 'RGB Gaming Mouse - Flash Sale!', category: 'Gaming Peripherals', price: '29.99', oldPrice: '59.99', imageUrl: 'https://placehold.co/600x400/E74C3C/FFFFFF?text=Gaming+Mouse+DEAL&font=Inter', amazonLink: '#', rating: 4.5, reviewCount: 400, onPromotion: true },
-  { id: 'deal2', slug: 'yoga-mat-premium', name: 'Premium Eco Yoga Mat - 30% Off', category: 'Fitness', price: '34.99', oldPrice: '49.99', imageUrl: 'https://placehold.co/600x400/1ABC9C/FFFFFF?text=Yoga+Mat+DEAL&font=Inter', amazonLink: '#', rating: 4.8, reviewCount: 180, onPromotion: true },
-  { id: 'deal3', slug: 'smart-water-bottle', name: 'HydrateSmart Bottle - Today Only!', category: 'Health & Wellness', price: '24.99', oldPrice: '39.99', imageUrl: 'https://placehold.co/600x400/3498db/FFFFFF?text=Smart+Bottle+DEAL&font=Inter', amazonLink: '#', rating: 4.6, reviewCount: 320, onPromotion: true },
-  { id: 'deal4', slug: 'bluetooth-speaker-mini', name: 'MiniBlast Bluetooth Speaker', category: 'Audio', price: '19.99', oldPrice: '35.00', imageUrl: 'https://placehold.co/600x400/f1c40f/000000?text=Speaker+DEAL&font=Inter', amazonLink: '#', rating: 4.4, reviewCount: 550, onPromotion: true },
-];
+const dealProducts = products.filter(product => product.isDeal); // Import from products.js
+
 
 const placeholderCategories = [
   { id: 'cat1', name: 'Smart Home Hub', slug: 'smart-home', imageUrl: 'https://placehold.co/400x500/2ECC71/FFFFFF?text=Smart+Home&font=Inter', productCount: 150 },
@@ -137,7 +129,7 @@ export default function HomePage() {
             Limited-time offers on fantastic products. Grab them before they're gone!
           </p>
           <div className={styles.productGrid}>
-            {dealProducts.map((product) => (
+            {dealProducts.slice(0, 4).map((product) => (
               <ProductCard key={product.id} product={product} isDeal={true} />
             ))}
           </div>
