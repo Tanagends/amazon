@@ -6,18 +6,23 @@ import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjus
 import ProductCard from '../../components/ProductCard';
 import CallToAction from '../../components/CallToAction';
 import styles from '../../styles/ProductsPage.module.css'; // Create this CSS Module
-import { FiBox, FiFilter, FiArrowRight, FiSearch, FiGrid, FiList } from 'react-icons/fi';
-import {useState, useEffect, useMemo} from 'react';
+import { FiBox, FiFilter, FiSearch, FiX } from 'react-icons/fi';
+import {useState, useMemo} from 'react';
 // Metadata for the Products page
 
 export default function ProductsPage({products}) {
+  
   const [sortOption, setSortOption] = useState('featured');
-  const [categoryFilter, setCategoryFilter] = useState('all');  
   const [searchQuery, setSearchQuery] = useState('');
-
-  //for sorting using the sorting value
-    
-  const productsToShow = useMemo(() => {
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
+  // unique categories for checkbox list
+  const allCategories = useMemo(
+    () => Array.from(new Set(products.map((p) => p.category))),
+    [products]
+  );
+  const [selectedCategories, setSelectedCategories] = useState([...allCategories]); // multi-select
+      
+  const sortedProducts = useMemo(() => {
     // Clone so we don’t mutate original
     const items = [...products];
 
@@ -48,7 +53,18 @@ export default function ProductsPage({products}) {
     }
   }, [sortOption, products]);
 
-  
+  // Filter products based on selected categories
+  const filteredProducts = useMemo(() => {
+  if (!selectedCategories.length) return sortedProducts; // Return all if no filter terms
+  return sortedProducts.filter(p => selectedCategories.includes(p.category));
+}, [sortedProducts, selectedCategories]);
+
+// Handle search query on the filterd products
+  const productsToShow = useMemo(() => {
+    if (!searchQuery) return filteredProducts;
+    const q = searchQuery.toLowerCase();
+    return filteredProducts.filter(p => p.name.toLowerCase().includes(q));
+  }, [filteredProducts, searchQuery]);
 
   return (
     <AnimatedPageWrapper>
@@ -70,9 +86,13 @@ export default function ProductsPage({products}) {
             <div className={styles.searchAndFilter}>
                 <div className={styles.searchBox}>
                     <FiSearch className={styles.searchIcon} />
-                    <input type="text" placeholder="Search products..." className={styles.searchInput} />
+                    <input type="text" placeholder="Search products..." className={styles.searchInput}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                 </div>
-                <button className={styles.controlButton}>
+                <button className={styles.controlButton}
+                onClick={() => setShowFilterMenu(true)}
+                >
                     <FiFilter style={{ marginRight: '0.5em' }} /> Filters
                 </button>
             </div>
@@ -90,17 +110,60 @@ export default function ProductsPage({products}) {
                     <option value="rating">Avg. Customer Review</option>
                     <option value="newest">Newest Arrivals</option>
                 </select>
-                <div className={styles.viewToggle}>
+                {/* <div className={styles.viewToggle}>
                     <button className={`${styles.viewButton} ${styles.active}`} aria-label="Grid view">
                         <FiGrid />
                     </button>
                     <button className={styles.viewButton} aria-label="List view">
                         <FiList />
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
         </div>
+
+        {/* FILTER MENU OVERLAY */}
+        {showFilterMenu && (
+          <div className={styles.filterOverlay}>
+            <div className={styles.filterMenu}>
+              <header className={styles.filterHeader}>
+                <h2>Filter by Category</h2>
+                <button onClick={() => setShowFilterMenu(false)}>
+                  <FiX size={20} />
+                </button>
+              </header>
+              <ul className={styles.categoryList}>
+                {allCategories.map((cat) => (
+                  <li key={cat}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        value={cat}
+                        checked={selectedCategories.includes(cat)}
+                        onChange={(e) => {
+                          const { checked, value } = e.target;
+                          setSelectedCategories((prev) =>
+                            checked
+                              ? [...prev, value]
+                              : prev.filter((c) => c !== value)
+                          );
+                        }}
+                      />
+                      {cat}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+              <button
+                className={styles.applyFiltersButton}
+                onClick={() => setShowFilterMenu(false)}
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        )}
+
 
         {/* Products Grid Section */}
         <section className={styles.productsGridSection}>
