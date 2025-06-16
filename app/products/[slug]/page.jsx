@@ -9,58 +9,25 @@ import CallToAction from '../../../components/CallToAction'; // Adjust path
 import ProductCard from '../../../components/ProductCard'; // For related products, adjust path
 import styles from '../../../styles/ProductDetailPage.module.css'; // Create this CSS Module
 import { FiShoppingCart, FiTag, FiStar, FiCheckSquare, FiInfo, FiArrowLeft, FiChevronsRight, FiShare2 } from 'react-icons/fi';
-
+import products from '../../../components/products'; // Adjust path to your products data
 // Placeholder data - In a real app, this would be fetched from Prismic based on the slug
-const allProductsData = [
-  {
-    id: 'prod001', slug: 'smart-thermostat-x1', name: 'SmartHome Thermostat X1 - Energy Saver',
-    category: 'Smart Home', price: '129.99', oldPrice: '159.99',
-    imageUrl: 'https://placehold.co/800x600/2ECC71/FFFFFF?text=Smart+Thermostat+X1&font=Inter',
-    galleryImages: [ // Example gallery
-        'https://placehold.co/800x600/2ECC71/FFFFFF?text=Thermo+View+1&font=Inter',
-        'https://placehold.co/800x600/27ae60/FFFFFF?text=Thermo+View+2&font=Inter',
-        'https://placehold.co/800x600/2ecc71/E0E0E0?text=Thermo+In+Use&font=Inter',
-    ],
-    amazonLink: '#', rating: 4.8, reviewCount: 350, onPromotion: true,
-    shortDescription: "Intelligently control your home's temperature, save energy, and enhance comfort with the SmartHome Thermostat X1. Easy to install and use with voice assistants.",
-    longDescription: "<p>The SmartHome Thermostat X1 is more than just a thermostat; it's the central hub for your home's climate control. With its sleek design and intuitive interface, managing your heating and cooling has never been easier. It learns your preferences over time and creates an optimized schedule to reduce energy consumption without sacrificing comfort.</p><h3>Key Features:</h3><ul><li><strong>Smart Learning:</strong> Adapts to your schedule and preferences automatically.</li><li><strong>Energy Savings:</strong> Helps reduce your heating and cooling bills by up to 15%.</li><li><strong>Remote Control:</strong> Adjust temperature from anywhere using the mobile app.</li><li><strong>Voice Assistant Compatible:</strong> Works seamlessly with Alexa, Google Assistant, and Apple HomeKit.</li><li><strong>Easy Installation:</strong> DIY setup in under 30 minutes for most homes.</li><li><strong>Monthly Energy Reports:</strong> Track your usage and see your savings.</li></ul><h3>Specifications:</h3><ul><li>Display: Full-color LCD Touchscreen</li><li>Connectivity: Wi-Fi 802.11 b/g/n @ 2.4GHz</li><li>Compatibility: Works with most HVAC systems (check compatibility online)</li><li>Dimensions: 4.5in x 4.5in x 1.1in</li><li>Warranty: 2-year limited warranty</li></ul>",
-    features: ["Smart Learning Algorithms", "Remote App Control", "Voice Assistant Integration", "Energy Usage Reports", "DIY Installation"],
-    specs: { "Display": "LCD Touchscreen", "Connectivity": "Wi-Fi", "Warranty": "2 Years" },
-    relatedProductSlugs: ['robot-vacuum-cleaner-s5', 'air-purifier-hepa'],
-  },
-  {
-    id: 'prod002', slug: 'noise-cancelling-headphones-pro', name: 'AuraSound Headphones Pro - Immersive Audio',
-    category: 'Audio', price: '249.00',
-    imageUrl: 'https://placehold.co/800x600/3498DB/FFFFFF?text=AuraSound+Headphones&font=Inter',
-    galleryImages: [
-        'https://placehold.co/800x600/3498DB/FFFFFF?text=Headphones+Angle+1&font=Inter',
-        'https://placehold.co/800x600/2980B9/FFFFFF?text=Headphones+Earcup&font=Inter',
-    ],
-    amazonLink: '#', rating: 4.9, reviewCount: 720,
-    shortDescription: "Experience crystal-clear audio and industry-leading noise cancellation with the AuraSound Headphones Pro. Perfect for travel, work, and immersive listening.",
-    longDescription: "<p>Dive into a world of pure sound with AuraSound Headphones Pro...</p><h3>Key Features:</h3><ul><li>Advanced Active Noise Cancellation</li><li>High-Fidelity Audio Drivers</li><li>30+ Hour Battery Life</li><li>Plush Comfort Earcups</li><li>Multi-device Bluetooth Pairing</li></ul>",
-    features: ["Active Noise Cancellation", "Hi-Fi Audio", "Long Battery Life", "Comfort Design", "Bluetooth 5.2"],
-    specs: { "Driver Size": "40mm", "Battery": "30 hours (ANC on)", "Weight": "250g" },
-    relatedProductSlugs: ['smart-thermostat-x1', 'action-camera-4k'],
-  },
-  // Add more product details here
-];
+
 
 // Function to fetch product data (simulated)
 async function getProductData(slug) {
-  return allProductsData.find(product => product.slug === slug);
+  return products.find(product => product.slug === slug);
 }
 
-async function getRelatedProducts(slugs) {
+async function getRelatedProducts(slugs, slug) {
     if (!slugs || slugs.length === 0) return [];
-    // In a real app, you'd fetch these products. Here, we filter from allProductsData.
-    return allProductsData.filter(product => slugs.includes(product.slug) && product.slug !== params.slug).slice(0, 3); // Avoid self-relation, limit to 3
+    // In a real app, you'd fetch these products. Here, we filter from products.
+    return products.filter(product => slugs.includes(product.slug) && product.slug !== slug).slice(0, 3); // Avoid self-relation, limit to 3
 }
 
 
 // Dynamic metadata generation for each product page
 export async function generateMetadata({ params }) {
-  const product = await getProductData(params.slug);
+  const product = await getProductData( params.slug);
   if (!product) {
     return { title: 'Product Not Found' };
   }
@@ -71,7 +38,6 @@ export async function generateMetadata({ params }) {
       title: `${product.name} | AffiliateAura`,
       description: product.shortDescription || `Discover the ${product.name} on AffiliateAura.`,
       images: [product.imageUrl || '/og-images/default-product.jpg'],
-      type: 'product', // Indicate OG type as product
       // Add more product-specific OG tags if needed (price, availability, etc.)
     },
   };
@@ -79,7 +45,7 @@ export async function generateMetadata({ params }) {
 
 // Optional: generateStaticParams to pre-render dynamic routes at build time
 export async function generateStaticParams() {
-    return allProductsData.map((product) => ({
+    return products.map((product) => ({
         slug: product.slug,
     }));
 }
@@ -177,7 +143,7 @@ export default async function ProductDetailPage({ params }) {
               <p className={styles.affiliateNote}>Prices and availability are subject to change. As an Amazon Associate, we earn from qualifying purchases.</p>
 
               <div className={styles.shareProduct}>
-                <button className={styles.actionButtonSmall} onClick={() => alert('Sharing functionality to be implemented!')}><FiShare2 /> Share this product</button>
+                <button className={styles.actionButtonSmall}><FiShare2 /> Share this product</button>
               </div>
             </div>
           </div>

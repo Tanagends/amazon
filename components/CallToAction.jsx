@@ -67,7 +67,6 @@ const CallToAction = ({
   // Otherwise, render as a Link (wrapped in motion.a for animation)
   return (
     // Using passHref with a motion.a child for Next.js Link
-    <Link href={link} passHref>
       <motion.a
         className={buttonClasses}
         style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }} // For icon alignment
@@ -76,11 +75,11 @@ const CallToAction = ({
         transition={{ type: "spring", stiffness: 300, damping: 15 }} // Springy animation
         target={target}
         rel={linkRel}
+        href={link} // Ensure href is set for the Link
         {...aosData} // Spread AOS data attributes (e.g., data-aos="fade-up")
       >
         {content}
       </motion.a>
-    </Link>
   );
 };
 

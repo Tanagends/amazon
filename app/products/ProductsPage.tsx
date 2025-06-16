@@ -66,6 +66,7 @@ export default function ProductsPage({products}) {
     return filteredProducts.filter(p => p.name.toLowerCase().includes(q));
   }, [filteredProducts, searchQuery]);
 
+
   return (
     <AnimatedPageWrapper>
       <div className={styles.productsPageContainer}>
