@@ -14,6 +14,7 @@ import { FiZap, FiShoppingCart, FiTrendingUp, FiGift, FiShield, FiThumbsUp, FiAr
 import Image from 'next/image'; // For Buying Guides section images
 import Link from 'next/link'; // For guide card links
 import products from '../components/products';
+import allGuides from '../components/guides';
 
 // Page-specific metadata
 export const metadata = {
@@ -39,12 +40,7 @@ const placeholderCategories = [
   { id: 'cat4', name: 'Outdoor Adventures', slug: 'outdoor', imageUrl: 'https://placehold.co/400x500/F1C40F/1A1A1A?text=Outdoor+Gear&font=Inter', productCount: 120 },
 ];
 
-const placeholderGuides = [
-    { id: 'guide1', slug: 'best-noise-cancelling-headphones', title: "Ultimate Guide: Best Noise-Cancelling Headphones 2025", excerpt: "Escape the noise and immerse yourself in pure sound. We review the top headphones for travel, work, and relaxation.", imageUrl: "https://placehold.co/600x338/3498DB/FFFFFF?text=Headphone+Guide&font=Inter" },
-    { id: 'guide2', slug: 'choosing-robot-vacuum', title: "How to Choose the Perfect Robot Vacuum for Your Home", excerpt: "Say goodbye to manual vacuuming! Our guide helps you find the ideal robot cleaner based on your needs and budget.", imageUrl: "https://placehold.co/600x338/9B59B6/FFFFFF?text=Vacuum+Guide&font=Inter" },
-    { id: 'guide3', slug: 'top-kitchen-gadgets-2025', title: "Must-Have Kitchen Gadgets to Elevate Your Cooking in 2025", excerpt: "Discover innovative tools that save time, enhance flavor, and make cooking a joy. Your kitchen will thank you!", imageUrl: "https://placehold.co/600x338/e67e22/FFFFFF?text=Kitchen+Guide&font=Inter" },
-];
-
+const placeholderGuides = allGuides.slice(0, 3)
 
 export default function HomePage() {
   return (
@@ -65,6 +61,9 @@ export default function HomePage() {
             <CallToAction text="Explore Hot Deals" link="/deals" type="secondary" className={styles.heroCtaButton} icon={<FiZap />} iconPosition="left" />
             <CallToAction text="Browse All Products" link="/products" type="primary" className={`${styles.heroCtaButton} ${styles.heroCtaOutline}`} icon={<FiShoppingCart />} iconPosition="left" />
           </div>
+          <p
+          style={{ marginTop: '1rem', color: '#fff', fontSize: '0.875rem', textAlign: 'center' }} data-aos-delay="800">
+          As an Amazon Associate, we earn from qualifying purchases.</p>
         </div>
       </header>
 

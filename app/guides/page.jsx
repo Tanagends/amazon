@@ -8,16 +8,10 @@ import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjus
 import CallToAction from '../../components/CallToAction'; // Adjust path
 import styles from '../../styles/GuidesPage.module.css'; // Create this CSS Module
 import { FiMessageSquare, FiFilter, FiSearch, FiArrowRight, FiCalendar, FiUser } from 'react-icons/fi';
+import allGuides from '../../components/guides';
 
 // Placeholder data for guides - In a real app, this would be fetched from Prismic
-const allGuidesData = [
-  { id: 'guide001', slug: 'best-noise-cancelling-headphones-2025', title: "Ultimate Guide: Best Noise-Cancelling Headphones 2025", excerpt: "Escape the noise and immerse yourself in pure sound. We review the top headphones for travel, work, and relaxation, comparing features, comfort, and battery life.", imageUrl: "https://placehold.co/600x338/3498DB/FFFFFF?text=Headphone+Guide&font=Inter", category: "Audio Reviews", date: "May 20, 2025", author: "Alex Chen" },
-  { id: 'guide002', slug: 'choosing-robot-vacuum-for-pet-owners', title: "Pet Owner's Guide to Choosing the Perfect Robot Vacuum", excerpt: "Keep your home fur-free effortlessly. Our guide helps you find the ideal robot vacuum with strong suction, good navigation, and pet-specific features.", imageUrl: "https://placehold.co/600x338/9B59B6/FFFFFF?text=Pet+Vacuum+Guide&font=Inter", category: "Home Appliances", date: "May 15, 2025", author: "Sarah Miller" },
-  { id: 'guide003', slug: 'top-kitchen-gadgets-to-save-time', title: "Top 10 Kitchen Gadgets That Actually Save You Time", excerpt: "Streamline your meal prep and cooking with these innovative and efficient kitchen tools. Spend less time in the kitchen and more time enjoying your food.", imageUrl: "https://placehold.co/600x338/e67e22/FFFFFF?text=Kitchen+Gadgets+Guide&font=Inter", category: "Kitchen Tips", date: "May 10, 2025", author: "David Kim" },
-  { id: 'guide004', slug: 'smart-home-security-beginners-guide', title: "Beginner's Guide to Smart Home Security Systems", excerpt: "Protect your home and loved ones with modern smart security. We explain the basics, from cameras to sensors, and recommend top systems.", imageUrl: "https://placehold.co/600x338/2ECC71/FFFFFF?text=Security+Guide&font=Inter", category: "Smart Home", date: "May 5, 2025", author: "Laura Jones" },
-  { id: 'guide005', slug: 'best-portable-projectors-movie-nights', title: "Best Portable Projectors for Epic Outdoor Movie Nights", excerpt: "Take your entertainment anywhere! Discover compact and powerful projectors that deliver a big-screen experience on the go.", imageUrl: "https://placehold.co/600x338/f1c40f/000000?text=Projector+Guide&font=Inter", category: "Entertainment Tech", date: "April 28, 2025", author: "Mike Brown" },
-  { id: 'guide006', slug: 'eco-friendly-tech-products-2025', title: "Eco-Friendly Tech: Gadgets That Are Kind to the Planet", excerpt: "Make sustainable choices without compromising on technology. Explore our top picks for green gadgets and eco-conscious tech.", imageUrl: "https://placehold.co/600x338/1abc9c/FFFFFF?text=Eco+Tech+Guide&font=Inter", category: "Sustainable Living", date: "April 22, 2025", author: "Chloe Davis" },
-];
+const allGuidesData = allGuides;
 
 // Metadata for the Guides page
 export const metadata = {
