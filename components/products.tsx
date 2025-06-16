@@ -11,7 +11,8 @@ const products = [
         rating: 4.5,
         reviewCount: 150,
         onPromotion: true,
-        shortDescription: "Efficient robot vacuum for automated home cleaning."
+        shortDescription: "Efficient robot vacuum for automated home cleaning.",
+        isDeal: true
     },
     {
         id: "prod002",
@@ -24,7 +25,8 @@ const products = [
         rating: 4.2,
         reviewCount: 80,
         onPromotion: false,
-        shortDescription: "Reliable HD dashboard camera for your vehicle's security."
+        shortDescription: "Reliable HD dashboard camera for your vehicle's security.",
+        isDeal: false
     },
     {
         id: "prod003",
@@ -37,7 +39,8 @@ const products = [
         rating: 4.7,
         reviewCount: 200,
         onPromotion: false,
-        shortDescription: "Intelligent thermostat for optimal home climate control and energy savings."
+        shortDescription: "Intelligent thermostat for optimal home climate control and energy savings.",
+        isDeal: false
     },
     {
         id: "prod004",
@@ -51,7 +54,8 @@ const products = [
         rating: 4.8,
         reviewCount: 300,
         onPromotion: true,
-        shortDescription: "Immersive ultra-wide QHD monitor for productivity and gaming."
+        shortDescription: "Immersive ultra-wide QHD monitor for productivity and gaming.",
+        isDeal: true
     },
     {
         id: "prod005",
@@ -64,7 +68,8 @@ const products = [
         rating: 4.6,
         reviewCount: 250,
         onPromotion: false,
-        shortDescription: "High-efficiency HEPA air purifier for cleaner indoor air quality."
+        shortDescription: "High-efficiency HEPA air purifier for cleaner indoor air quality.",
+        isDeal: false
     },
     {
         id: "prod006",
@@ -78,7 +83,8 @@ const products = [
         rating: 4.4,
         reviewCount: 180,
         onPromotion: true,
-        shortDescription: "Advanced programmable coffee maker for the perfect brew every time."
+        shortDescription: "Advanced programmable coffee maker for the perfect brew every time.",
+        isDeal: true
     },
     {
         id: "prod007",
@@ -91,7 +97,8 @@ const products = [
         rating: 4.7,
         reviewCount: 220,
         onPromotion: false,
-        shortDescription: "Classic espresso machine for authentic, barista-quality coffee at home."
+        shortDescription: "Classic espresso machine for authentic, barista-quality coffee at home.",
+        isDeal: false
     },
     {
         id: "prod008",
@@ -105,7 +112,8 @@ const products = [
         rating: 4.9,
         reviewCount: 400,
         onPromotion: true,
-        shortDescription: "Top-tier gaming laptop with powerful specs for an immersive experience."
+        shortDescription: "Top-tier gaming laptop with powerful specs for an immersive experience.",
+        isDeal: true
     },
     {
         id: "prod009",
@@ -118,7 +126,8 @@ const products = [
         rating: 4.5,
         reviewCount: 160,
         onPromotion: false,
-        shortDescription: "RGB mechanical keyboard with responsive keys for gaming and typing."
+        shortDescription: "RGB mechanical keyboard with responsive keys for gaming and typing.",
+        isDeal: false
     },
     {
         id: "prod010",
@@ -131,7 +140,8 @@ const products = [
         rating: 4.3,
         reviewCount: 120,
         onPromotion: true,
-        shortDescription: "Space-saving and efficient espresso maker for quick coffee fixes."
+        shortDescription: "Space-saving and efficient espresso maker for quick coffee fixes.",
+        isDeal: true
     }
 ]
 

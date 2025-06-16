@@ -75,7 +75,7 @@ const ProductCard = ({ product, isDeal = false }) => {
         </div>
       </Link>
       <motion.a
-        href={amazonLink}
+        href={imageUrl}
         target="_blank"
         rel="noopener noreferrer sponsored"
         className={`btn ${isDeal ? 'btn-secondary' : 'btn-primary'} ${styles.amazonButton}`}
