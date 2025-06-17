@@ -95,7 +95,7 @@ export default function AboutPage() {
             <h2 className={styles.sectionHeading}>How We Support Our Work</h2>
             <div className={styles.howWeWorkContent}>
                 <p>
-                    To keep AffiliateAura running and continue providing you with high-quality, free content, we participate in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com and affiliated sites.
+                    To keep AffiliateAura running and continue providing you with high-quality, free content, we participate in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.in and affiliated sites.
                 </p>
                 <p>
                     When you click on one of our product links and make a purchase on Amazon, we may earn a small commission <strong>at no extra cost to you</strong>. This is how we fund our research, writing, and website maintenance.
