@@ -50,7 +50,7 @@ export default function ContactPage() {
                   <FiMail className={styles.contactIcon} />
                   <div>
                     <strong>Email Us:</strong>
-                    <a href="mailto:support@affiliateaura.com">support@affiliateaura.com</a>
+                    <a href="mailto:support@affiliateaura.com">affiliateaurateam@gmail.com</a>
                   </div>
                 </li>
                 <li>
