@@ -9,6 +9,7 @@ import CallToAction from '../../../components/CallToAction'; // Adjust path
 import ProductCard from '../../../components/ProductCard'; // For related products, adjust path
 import styles from '../../../styles/ProductDetailPage.module.css'; // Create this CSS Module
 import { FiShoppingCart, FiTag, FiStar, FiCheckSquare, FiInfo, FiArrowLeft, FiChevronsRight, FiShare2 } from 'react-icons/fi';
+import MoreInfo from './MoreInfo';
 import products from '../../../components/products'; // Adjust path to your products data
 // Placeholder data - In a real app, this would be fetched from Prismic based on the slug
 
@@ -148,31 +149,8 @@ export default async function ProductDetailPage({ params }) {
             </div>
           </div>
 
-          {/* Product Details Tabs/Sections (Description, Features, Specs) */}
-          <div className={styles.productDetailsTabs} data-aos="fade-up">
-            {/* Basic Tab Structure (for a real tab system, use a Client Component) */}
-            <div className={styles.tabNav}>
-                <button className={`${styles.tabButton} ${styles.activeTab}`}>Description</button>
-                {product.features && <button className={styles.tabButton}>Features</button>}
-                {product.specs && <button className={styles.tabButton}>Specifications</button>}
-                <button className={styles.tabButton}>Reviews ({product.reviewCount})</button>
-            </div>
-
-            <div className={styles.tabContent}>
-                {/* Description */}
-                <div className={styles.tabPanel} dangerouslySetInnerHTML={{ __html: product.longDescription }} />
-
-                {/* Features (Example - would be shown on tab click) */}
-                {/* <div className={styles.tabPanel} style={{display: 'none'}}>
-                    <ul className={styles.featuresList}>
-                        {product.features && product.features.map((feature, index) => (
-                            <li key={index}><FiCheckSquare className={styles.featureIcon} /> {feature}</li>
-                        ))}
-                    </ul>
-                </div> */}
-            </div>
-          </div>
-
+          {/* More Info Space */}
+          <MoreInfo product={product} />
 
           {/* Related Products Section */}
           {relatedProducts.length > 0 && (
