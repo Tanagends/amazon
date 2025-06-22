@@ -1,4 +1,6 @@
-const products = [
+    /*
+
+    * Example product object
     {
         id: "prod001",
         slug: "robot-vacuum-cleaner",
@@ -23,215 +25,45 @@ const products = [
         relatedProductSlugs: ['hepa-air-purifier', 'smart-home-thermostat'],
         isDeal: true
     },
-    {
-        id: "prod002",
-        slug: "dashboard-camera",
-        name: "Dashboard Camera",
-        category: "Automotive Electronics",
-        price: "79.99",
-        imageUrl: "https://images.unsplash.com/photo-1716738547734-fb7cb39c5b2e?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        galleryImages: [
-            "https://images.unsplash.com/photo-1716738547734-fb7cb39c5b2e?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    */
+
+const products = [
+   {
+        id:"prod001",
+        slug:"Vaseline-Intensive-Advanced-Repair-Lotion",
+        name:"Vaseline Intensive Care Advanced Repair Lotion",
+        category:"Body Care",
+        price:0,
+        oldPrice:0,
+        imageUrl:"https://m.media-amazon.com/images/I/61Ho+7RVNkL._SY355_.jpg",
+        galleryImages:[
+            "https://m.media-amazon.com/images/I/61s00aSwVXL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/61Ho+7RVNkL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/61J36-U4j1L._SY355_.jpg"
         ],
-        amazonLink: "#",
-        rating: 4.2,
-        reviewCount: 80,
-        onPromotion: false,
-        shortDescription: "Reliable HD dashboard camera for your vehicle's security.",
-        longDescription: "<p>This Dashboard Camera provides crystal-clear recording of your journeys with full HD resolution and wide-angle lens coverage. Automatic incident detection saves footage when an impact is detected, providing crucial evidence when you need it most.</p><h3>Key Features:</h3><ul><li><strong>Full HD Recording:</strong> 1080p resolution captures clear details</li><li><strong>Wide-Angle Lens:</strong> 170° field of view</li><li><strong>Parking Mode:</strong> Motion detection records incidents while parked</li><li><strong>Loop Recording:</strong> Automatically overwrites old footage</li><li><strong>G-Sensor:</strong> Locks important footage during collisions</li></ul>",
-        features: ["Full HD Recording", "Wide-Angle Lens", "Parking Mode", "Loop Recording", "G-Sensor"],
-        specs: { "Resolution": "1080p", "Viewing Angle": "170°", "Storage": "Supports up to 128GB", "Night Vision": "Yes" },
-        relatedProductSlugs: ['robot-vacuum-cleaner', 'ultrawide-qhd-monitor'],
-        isDeal: false
-    },
-    {
-        id: "prod003",
-        slug: "smart-home-thermostat",
-        name: "Smart Home Thermostat",
-        category: "Smart Home",
-        price: "129.99",
-        imageUrl: "https://plus.unsplash.com/premium_photo-1729436833449-225649403fc0?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        galleryImages: [
-            "https://plus.unsplash.com/premium_photo-1729436833449-225649403fc0?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.7,
-        reviewCount: 200,
-        onPromotion: false,
-        shortDescription: "Intelligent thermostat for optimal home climate control and energy savings.",
-        longDescription: "<p>The Smart Home Thermostat learns your schedule and preferences to automatically adjust temperature for comfort and efficiency. Control it from anywhere using your smartphone and save up to 15% on heating and cooling bills.</p><h3>Key Features:</h3><ul><li><strong>Learning Algorithm:</strong> Adapts to your routine</li><li><strong>Remote Control:</strong> Adjust from anywhere via app</li><li><strong>Energy Reports:</strong> Track usage and savings</li><li><strong>Voice Control:</strong> Works with Alexa and Google Assistant</li><li><strong>Geofencing:</strong> Adjusts when you leave/return home</li></ul>",
-        features: ["Learning Algorithm", "Remote Control", "Energy Reports", "Voice Control", "Geofencing"],
-        specs: { "Compatibility": "Works with most HVAC systems", "Connectivity": "Wi-Fi", "Display": "Color Touchscreen", "Warranty": "3 years" },
-        relatedProductSlugs: ['robot-vacuum-cleaner', 'hepa-air-purifier'],
-        isDeal: false
-    },
-    {
-        id: "prod004",
-        slug: "ultrawide-qhd-monitor",
-        name: "UltraWide QHD Monitor",
-        category: "Monitors",
-        price: "499.00",
-        oldPrice: "599.00",
-        imageUrl: "https://images.unsplash.com/photo-1701318134822-fcc7630206ed?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        galleryImages: [
-            "https://images.unsplash.com/photo-1701318134822-fcc7630206ed?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1546538915-a9e2c8d0a8e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1552831388-6a0b3575b32a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.8,
-        reviewCount: 300,
+        amazonLink:"https://amzn.to/4kY2TP9",
+        rating:4.3,
+        reviewCount:6402,
         onPromotion: true,
-        shortDescription: "Immersive ultra-wide QHD monitor for productivity and gaming.",
-        longDescription: "<p>Experience breathtaking visuals with this 34-inch UltraWide QHD monitor featuring a 3440x1440 resolution and 100Hz refresh rate. The curved screen provides an immersive viewing experience perfect for both work and play.</p><h3>Key Features:</h3><ul><li><strong>UltraWide QHD:</strong> 3440x1440 resolution</li><li><strong>Curved Display:</strong> 1500R curvature for immersion</li><li><strong>High Refresh Rate:</strong> 100Hz smooth performance</li><li><strong>HDR Support:</strong> Vibrant colors and contrast</li><li><strong>Multi-Input:</strong> Picture-by-picture capability</li></ul>",
-        features: ["UltraWide QHD", "Curved Display", "High Refresh Rate", "HDR Support", "Multi-Input"],
-        specs: { "Screen Size": "34-inch", "Resolution": "3440x1440", "Refresh Rate": "100Hz", "Response Time": "5ms" },
-        relatedProductSlugs: ['high-performance-gaming-laptop', 'mechanical-gaming-keyboard'],
+        shortDescription:"Vaseline Derma Care Advanced Repair Body Lotion, For Sensitive, Dry Skin, Non Greasy, Long Lasting Moisturisation, 100 ml",
+        longDescription:"<p>Vaseline Intensive Care Advanced Repair Lotion is specially formulated to provide deep moisture to dry skin. This fast-absorbing, non-greasy lotion is enriched with micro-droplets of Vaseline Jelly, which helps to lock in moisture and heal dry skin. It is clinically proven to heal very dry skin in just 5 days, making it ideal for those with extremely dry skin conditions.</p><h3>Key Features:</h3><ul><li><strong>Deep Moisture:</strong> Provides long-lasting hydration to dry skin</li><li><strong>Fast-Absorbing:</strong> Non-greasy formula that absorbs quickly</li><li><strong>Healing Properties:</strong> Contains micro-droplets of Vaseline Jelly to help restore the skin's natural barrier</li><li><strong>Dermatologist Recommended:</strong> Suitable for sensitive skin and clinically proven to heal very dry skin</li><li><strong>Fragrance-Free:</strong> Ideal for those who prefer unscented products</li></ul>",
+        features: [
+            "Deep Moisture",
+            "Fast-Absorbing",
+            "Healing Properties",
+            "Dermatologist Recommended",
+            "Fragrance-Free"
+        ],
+        specs: {
+            "Volume": "100 ml",
+            "Skin Type": "Sensitive, Dry",
+            "Formulation": "Lotion",
+            "Scent": "Unscented",
+            "Brand": "Vaseline"
+        },
+        relatedProductSlugs: ['',''],
         isDeal: true
     },
-    {
-        id: "prod005",
-        slug: "hepa-air-purifier",
-        name: "HEPA Air Purifier",
-        category: "Home Appliances",
-        price: "149.99",
-        imageUrl: "https://images.unsplash.com/photo-1661767013569-da7dce8ea409?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        galleryImages: [
-            "https://images.unsplash.com/photo-1661767013569-da7dce8ea409?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.6,
-        reviewCount: 250,
-        onPromotion: false,
-        shortDescription: "High-efficiency HEPA air purifier for cleaner indoor air quality.",
-        longDescription: "<p>This HEPA Air Purifier removes 99.97% of airborne particles as small as 0.3 microns, including dust, pollen, pet dander, and smoke. With smart sensors and automatic mode, it adjusts fan speed based on air quality.</p><h3>Key Features:</h3><ul><li><strong>True HEPA Filter:</strong> Captures 99.97% of particles</li><li><strong>Smart Sensors:</strong> Auto mode adjusts to air quality</li><li><strong>Quiet Operation:</strong> As low as 22dB on low setting</li><li><strong>Large Coverage:</strong> Purifies up to 500 sq. ft.</li><li><strong>Filter Replacement Indicator:</strong> Knows when to change filters</li></ul>",
-        features: ["True HEPA Filter", "Smart Sensors", "Quiet Operation", "Large Coverage", "Filter Indicator"],
-        specs: { "Coverage": "500 sq. ft.", "Noise Level": "22-52dB", "Filter Life": "6-12 months", "CADR": "240 m³/h" },
-        relatedProductSlugs: ['robot-vacuum-cleaner', 'smart-home-thermostat'],
-        isDeal: false
-    },
-    {
-        id: "prod006",
-        slug: "programmable-coffee-maker",
-        name: "Programmable Coffee Maker",
-        category: "Kitchen Appliances",
-        price: "89.99",
-        oldPrice: "109.99",
-        imageUrl: "https://somethingsbrewing.in/cdn/shop/files/PRO_2_black_hero_grey_mottled_copped_square_woo.jpg?v=1732604384&width=1946",
-        galleryImages: [
-            "https://somethingsbrewing.in/cdn/shop/files/PRO_2_black_hero_grey_mottled_copped_square_woo.jpg?v=1732604384&width=1946",
-            "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.4,
-        reviewCount: 180,
-        onPromotion: true,
-        shortDescription: "Advanced programmable coffee maker for the perfect brew every time.",
-        longDescription: "<p>Wake up to freshly brewed coffee with this programmable coffee maker featuring 24-hour programmability, adjustable brew strength, and a keep-warm function. The thermal carafe maintains temperature without burning the coffee.</p><h3>Key Features:</h3><ul><li><strong>24-Hour Programmability:</strong> Set it the night before</li><li><strong>Adjustable Brew Strength:</strong> Regular or bold flavor</li><li><strong>Thermal Carafe:</strong> Keeps coffee hot for hours</li><li><strong>Pause & Serve:</strong> Grab a cup mid-brew</li><li><strong>Water Filtration:</strong> Improves taste by reducing impurities</li></ul>",
-        features: ["24-Hour Programmability", "Adjustable Brew Strength", "Thermal Carafe", "Pause & Serve", "Water Filtration"],
-        specs: { "Capacity": "10 cups", "Carafe Type": "Stainless steel thermal", "Brew Time": "6-10 minutes", "Dimensions": "9.8 x 7.5 x 14.5 inches" },
-        relatedProductSlugs: ['premium-espresso-machine', 'compact-espresso-maker'],
-        isDeal: true
-    },
-    {
-        id: "prod007",
-        slug: "premium-espresso-machine",
-        name: "Premium Espresso Machine",
-        category: "Kitchen Appliances",
-        price: "199.00",
-        imageUrl: "https://images.pexels.com/photos/362216/pexels-photo-362216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        galleryImages: [
-            "https://images.pexels.com/photos/362216/pexels-photo-362216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.7,
-        reviewCount: 220,
-        onPromotion: false,
-        shortDescription: "Classic espresso machine for authentic, barista-quality coffee at home.",
-        longDescription: "<p>Create café-quality espresso drinks at home with this premium 15-bar pump espresso machine. The commercial-style portafilter and steam wand allow you to craft lattes, cappuccinos, and more like a professional barista.</p><h3>Key Features:</h3><ul><li><strong>15-Bar Pump:</strong> Professional pressure for perfect extraction</li><li><strong>Steam Wand:</strong> Froth milk for lattes and cappuccinos</li><li><strong>Commercial Portafilter:</strong> 58mm professional size</li><li><strong>PID Temperature Control:</strong> Precise brewing temperature</li><li><strong>Quick Heat-Up:</strong> Ready in under 3 minutes</li></ul>",
-        features: ["15-Bar Pump", "Steam Wand", "Commercial Portafilter", "PID Temperature Control", "Quick Heat-Up"],
-        specs: { "Pressure": "15 bar", "Water Tank": "2L", "Dimensions": "13.4 x 11.4 x 12.2 inches", "Weight": "22 lbs" },
-        relatedProductSlugs: ['programmable-coffee-maker', 'compact-espresso-maker'],
-        isDeal: false
-    },
-    {
-        id: "prod008",
-        slug: "high-performance-gaming-laptop",
-        name: "High-Performance Gaming Laptop",
-        category: "Laptops",
-        price: "1299.00",
-        oldPrice: "1499.00",
-        imageUrl: "https://images.unsplash.com/photo-1640955014216-75201056c829?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        galleryImages: [
-            "https://images.unsplash.com/photo-1640955014216-75201056c829?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.9,
-        reviewCount: 400,
-        onPromotion: true,
-        shortDescription: "Top-tier gaming laptop with powerful specs for an immersive experience.",
-        longDescription: "<p>This high-performance gaming laptop delivers desktop-level power in a portable package. Featuring the latest GPU and high-refresh display, it handles the most demanding games with ease while staying cool under pressure.</p><h3>Key Features:</h3><ul><li><strong>Powerful GPU:</strong> RTX 3070 with 8GB GDDR6</li><li><strong>High Refresh Display:</strong> 240Hz for ultra-smooth gameplay</li><li><strong>Advanced Cooling:</strong> Vapor chamber and multiple fans</li><li><strong>Mechanical Keyboard:</strong> Per-key RGB lighting</li><li><strong>Upgradeable:</strong> Easy access to RAM and storage</li></ul>",
-        features: ["Powerful GPU", "High Refresh Display", "Advanced Cooling", "Mechanical Keyboard", "Upgradeable"],
-        specs: { "Processor": "Intel Core i7-11800H", "RAM": "16GB DDR4", "Storage": "1TB NVMe SSD", "Display": "15.6\" QHD 240Hz" },
-        relatedProductSlugs: ['ultrawide-qhd-monitor', 'mechanical-gaming-keyboard'],
-        isDeal: true
-    },
-    {
-        id: "prod009",
-        slug: "mechanical-gaming-keyboard",
-        name: "Mechanical Gaming Keyboard",
-        category: "Computer Accessories",
-        price: "99.99",
-        imageUrl: "https://images.unsplash.com/photo-1722666729526-1e801fe4eedb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        galleryImages: [
-            "https://images.unsplash.com/photo-1722666729526-1e801fe4eedb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1551380878-c8bf5b8f6a6a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1551380878-c8bf5b8f6a6a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.5,
-        reviewCount: 160,
-        onPromotion: false,
-        shortDescription: "RGB mechanical keyboard with responsive keys for gaming and typing.",
-        longDescription: "<p>This mechanical gaming keyboard features premium Cherry MX switches for precise actuation and durability. The per-key RGB lighting can be customized with millions of colors and dynamic effects through intuitive software.</p><h3>Key Features:</h3><ul><li><strong>Cherry MX Switches:</strong> Choice of Red, Blue, or Brown</li><li><strong>Per-Key RGB:</strong> 16.8 million colors</li><li><strong>Anti-Ghosting:</strong> N-key rollover</li><li><strong>Aluminum Frame:</strong> Durable construction</li><li><strong>Detachable Cable:</strong> Easy transport and storage</li></ul>",
-        features: ["Cherry MX Switches", "Per-Key RGB", "Anti-Ghosting", "Aluminum Frame", "Detachable Cable"],
-        specs: { "Switch Type": "Cherry MX (choice)", "Backlight": "RGB", "Polling Rate": "1000Hz", "Dimensions": "17.5 x 5.5 x 1.5 inches" },
-        relatedProductSlugs: ['high-performance-gaming-laptop', 'ultrawide-qhd-monitor'],
-        isDeal: false
-    },
-    {
-        id: "prod010",
-        slug: "compact-espresso-maker",
-        name: "Compact Espresso Maker",
-        category: "Kitchen Appliances",
-        price: "79.99",
-        imageUrl: "https://images.pexels.com/photos/362216/pexels-photo-362216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        galleryImages: [
-            "https://images.pexels.com/photos/362216/pexels-photo-362216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        ],
-        amazonLink: "#",
-        rating: 4.3,
-        reviewCount: 120,
-        onPromotion: true,
-        shortDescription: "Space-saving and efficient espresso maker for quick coffee fixes.",
-        longDescription: "<p>This compact espresso maker delivers authentic espresso in a small footprint perfect for small kitchens, offices, or dorm rooms. The rapid heat-up system and simple controls make it easy to enjoy barista-style espresso in minutes.</p><h3>Key Features:</h3><ul><li><strong>Compact Design:</strong> Fits in small spaces</li><li><strong>Fast Heat-Up:</strong> Ready in under 1 minute</li><li><strong>15-Bar Pressure:</strong> Professional extraction</li><li><strong>Removable Tank:</strong> Easy to fill and clean</li><li><strong>Milk Frother:</strong> For lattes and cappuccinos</li></ul>",
-        features: ["Compact Design", "Fast Heat-Up", "15-Bar Pressure", "Removable Tank", "Milk Frother"],
-        specs: { "Pressure": "15 bar", "Capacity": "1.2L", "Dimensions": "8.5 x 6.3 x 11 inches", "Weight": "5.5 lbs" },
-        relatedProductSlugs: ['programmable-coffee-maker', 'premium-espresso-machine'],
-        isDeal: true
-    }
 ]
 
 export default products;
