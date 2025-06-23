@@ -1,3 +1,4 @@
+    import { Product } from "../interfaces";
     /*
 
     * Example product object
@@ -27,7 +28,7 @@
     },
     */
 
-const products = [
+const products: Product[] = [
    {
         id:"prod001",
         slug:"Vaseline-Intensive-Advanced-Repair-Lotion",
@@ -64,6 +65,9 @@ const products = [
         relatedProductSlugs: ['',''],
         isDeal: true
     },
+    {
+        id:"prod002",
+    }
 ]
 
 export default products;
