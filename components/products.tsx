@@ -236,7 +236,45 @@ const products: Product[] = [
         },
         relatedProductSlugs: ['',''],
         isDeal: true
-    }
+    },
+    {
+        id:"prod007",
+        slug:"Wireless-UTRAPOD-Earbuds-Canceling-Bluetooth",
+        name:"Wireless UTRAPOD Earbuds with Noise Canceling",
+        category:"Music Accessories",
+        price:0,
+        oldPrice:0,
+        imageUrl:"https://m.media-amazon.com/images/I/61cXapys7eL._SY355_.jpg",
+        galleryImages:[
+            "https://m.media-amazon.com/images/I/81vjB9dd8gL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/61vDw+-mg1L._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/31JME1s7mLL.jpg",
+            "https://m.media-amazon.com/images/I/513Ojdf+RWL._SY355_.jpg"
+        ],
+        amazonLink:"https://amzn.to/45xniWA",
+        rating:5,
+        reviewCount:1,
+        onPromotion: true,
+        shortDescription:"TWS Wireless UTRAPOD PRO Earbuds with LED Display, RGB Light Case, Noise Canceling, 5 Hours Battery, Bluetooth 5.0 (Green)",
+        longDescription:"<p>Wireless UTRAPOD PRO Earbuds are designed for music enthusiasts who value both style and performance. These earbuds feature a sleek design with RGB light case and an LED display for a modern touch. With noise-canceling technology, you can enjoy your music without distractions. The earbuds offer up to 5 hours of battery life on a single charge, and the Bluetooth 5.0 connectivity ensures a stable and fast connection with your devices. Whether you're at the gym, commuting, or just relaxing at home, these earbuds provide an immersive audio experience.</p><h3>Key Features:</h3><ul><li><strong>Noise Canceling:</strong> Blocks out external noise for an immersive experience</li><li><strong>LED Display:</strong> Shows battery status and connectivity</li><li><strong>RGB Light Case:</strong> Adds a stylish touch</li><li><strong>5 Hours Battery Life:</strong> Long-lasting performance</li><li><strong>Bluetooth 5.0:</strong> Fast and stable connectivity</li></ul>",
+        features: [
+            "Noise Canceling",
+            "LED Display",
+            "RGB Light Case",
+            "5 Hours Battery Life",
+            "Bluetooth 5.0"
+        ],
+        specs: {
+            "Color": "Green",
+            "Material": "Plastic",
+            "Brand": "UTRAPOD",
+            "Battery Life": "Up to 5 hours",
+            "Connectivity": "Bluetooth 5.0",
+            "Earbud Type": "In-Ear"
+        },
+        relatedProductSlugs: ['',''],
+        isDeal: true
+    },
 ]
 
 export default products;
