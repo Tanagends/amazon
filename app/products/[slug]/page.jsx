@@ -126,11 +126,13 @@ export default async function ProductDetailPage({ params }) {
 
               <p className={styles.shortDescription}>{product.shortDescription}</p>
 
+              {/*
               <div className={styles.priceSection}>
                 <span className={styles.currentPrice}>${product.price}</span>
                 {product.oldPrice && <span className={styles.oldPrice}>${product.oldPrice}</span>}
                 {product.onPromotion && <span className={styles.savingsBadge}>Save {Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%</span>}
               </div>
+              */}
 
               <CallToAction
                 text="View on Amazon"
