@@ -67,6 +67,175 @@ const products: Product[] = [
     },
     {
         id:"prod002",
+        slug:"Excite-Deodorant-Protection-Coconut-Pepper",
+        name:"Excite Deodorant Protection Coconut & Pepper",
+        category:"Body Care",
+        price:0,
+        oldPrice:0,
+        imageUrl:"https://m.media-amazon.com/images/I/61O00RqQBnL._SY355_.jpg",
+        galleryImages:[
+            "https://m.media-amazon.com/images/I/61+rG3EIQLL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/71A62fJHdCL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/71wnJQCo6nL._SY355_.jpg"
+        ],
+        amazonLink:"https://amzn.to/4kLhc9v",
+        rating:4.2,
+        reviewCount:27,
+        onPromotion: true,
+        shortDescription:"Axe Excite Deodorant Body Spray for Men | 48H* Odour Protection | Crisp Coconut & Black Pepper Scent | 150ml",
+        longDescription:"<p>Axe Excite Deodorant Body Spray for Men is designed to provide long-lasting odour protection with a refreshing scent. The combination of crisp coconut and black pepper creates a unique fragrance that keeps you feeling fresh throughout the day. With 48-hour odour protection, this deodorant spray is perfect for the modern man who wants to stay confident and invigorated.</p><h3>Key Features:</h3><ul><li><strong>48H Odour Protection:</strong> Keeps you feeling fresh all day long</li><li><strong>Unique Scent:</strong> Crisp coconut and black pepper fragrance</li><li><strong>Easy to Use:</strong> Convenient spray format</li></ul>",
+        features: [
+            "48H Odour Protection",
+            "Unique Scent",
+            "Easy to Use"
+        ],
+        specs: {
+            "Volume": "150 ml",
+            "Skin Type": "All Skin Types",
+            "Formulation": "Spray",
+            "Scent": "Crisp Coconut & Black Pepper",
+            "Brand": "Axe"
+        },
+        relatedProductSlugs: ['',''],
+        isDeal: true
+    },
+    {
+        id:"prod003",
+        slug:"Fashnex-Sweat-Slim-Neoprene-Women",
+        name:"Fashnex Sweat Slim Neopreme-Women",
+        category:"Body Care",
+        price:0,
+        oldPrice:0,
+        imageUrl:"https://m.media-amazon.com/images/I/61UkXKsUs8S._SX425_.jpg",
+        galleryImages:[
+            "https://m.media-amazon.com/images/I/71rx++enStS._SX425_.jpg",
+            "https://m.media-amazon.com/images/I/71GViRBJqiL._SX425_.jpg",
+            "https://m.media-amazon.com/images/I/71SHdXJuLES._SX425_.jpg"
+        ],
+        amazonLink:"https://amzn.to/443MVM3",
+        rating:4.4,
+        reviewCount:1266,
+        onPromotion: true,
+        shortDescription:"Fashnex Waist Belt Made of Neoprene for Women & Men for Tummy Exercise.",
+        longDescription:"<p>Fashnex Sweat Slim Neoprene Waist Belt is designed to help you achieve your fitness goals by enhancing your workout experience. Made from high-quality neoprene, this waist belt provides support and helps to increase sweat production during exercise, promoting weight loss and toning of the abdominal area. It is suitable for both men and women, making it a versatile addition to your fitness routine.</p><h3>Key Features:</h3><ul><li><strong>High-Quality Neoprene:</strong> Durable and comfortable material</li><li><strong>Increased Sweat Production:</strong> Helps you sweat more during workouts</li><li><strong>Adjustable Fit:</strong> One size fits most</li></ul>",
+        features: [
+            "High-Quality Neoprene",
+            "Increased Sweat Production",
+            "Adjustable Fit"
+        ],
+        specs: {
+            "Size": "One Size Fits Most",
+            "Material": "Neoprene",
+            "Color": "Black",
+            "Brand": "Fashnex"
+        },
+        relatedProductSlugs: ['',''],
+        isDeal: true
+    },
+    {
+        id:"prod004",
+        slug:"Chubs-Stand-Exercise-Multicolor-Women",
+        name:"Chubs Stand Exercise Multicolor-Women",
+        category:"Body Care",
+        price:0,
+        oldPrice:0,
+        imageUrl:"https://m.media-amazon.com/images/I/41MusjX1zDL._SX425_.jpg",
+        galleryImages:[
+            "https://m.media-amazon.com/images/I/51uNf9XJsOL._SX425_.jpg",
+            "https://m.media-amazon.com/images/I/41xzF06l2GL._SX425_.jpg",
+            "https://m.media-amazon.com/images/I/41vqJNfdxzL._SX425_.jpg",
+        ],
+        amazonLink:"https://amzn.to/4e81uCW",
+        rating:3.3,
+        reviewCount:96,
+        onPromotion: true,
+        shortDescription:"Chubs Push Up Bar Stand For Gym & Home Exercise (Multicolor) for Men And Women",
+        longDescription:"<p>Chubs Stand Exercise Push Up Bar is designed to enhance your workout routine by providing a stable and comfortable grip for push-ups. This push-up bar is suitable for both men and women, making it a versatile addition to your home gym.</p><h3>Key Features:</h3><ul><li><strong>Durable Construction:</strong> Made from high-quality materials for long-lasting use</li><li><strong>Non-Slip Grip:</strong> Provides a secure grip during workouts</li><li><strong>Compact Design:</strong> Easy to store and transport</li></ul>",
+        features: [
+            "Durable Construction",
+            "Non-Slip Grip",
+            "Compact Design"
+        ],
+        specs: {
+            "Color": "Multicolor",
+            "Material": "Plastic",
+            "Brand": "Chubs"
+        },
+        relatedProductSlugs: ['',''],
+        isDeal: true
+    },
+    {
+        id:"prod005",
+        slug:"Wizme-Bluetooth-Wireless-Portable-Microphone",
+        name:"Wizme Bluetooth Wireless Portable Microphone",
+        category:"Music Accessories",
+        price:0,
+        oldPrice:0,
+        imageUrl:"https://m.media-amazon.com/images/I/71JLfT4pILL._SY355_.jpg",
+        galleryImages:[
+            "https://m.media-amazon.com/images/I/61+rvdfapAL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/71QzwMTonkL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/71eJG3d28gL._SY355_.jpg",
+        ],
+        amazonLink:"https://amzn.to/45ws4nc",
+        rating:4.4,
+        reviewCount:2,
+        onPromotion: true,
+        shortDescription:"Wizme Mini Bluetooth Speaker with Mic | Wireless Portable Bluetooth Speaker with Microphone & Led Lights | Birthday Gift for Kids Boys, Girls and Adults (Speaker with Mic)",
+        longDescription:"<p>Wizme Bluetooth Wireless Portable Microphone is a compact and versatile microphone designed for music lovers and content creators. This portable microphone features Bluetooth connectivity, allowing you to easily connect it to your smartphone, tablet, or laptop. With its built-in speaker and LED lights, it not only captures high-quality audio but also adds a fun visual element to your performances. Whether you're singing, recording, or hosting a party, this microphone is the perfect companion.</p><h3>Key Features:</h3><ul><li><strong>Bluetooth Connectivity:</strong> Easily connects to your devices</li><li><strong>Built-in Speaker:</strong> Enjoy high-quality audio playback</li><li><strong>LED Lights:</strong> Adds a fun visual element to your performances</li><li><strong>Compact Design:</strong> Portable and easy to carry</li><li><strong>Rechargeable Battery:</strong> Long-lasting performance for extended use</li></ul>",
+        features: [
+            "Bluetooth Connectivity",
+            "Built-in Speaker",
+            "LED Lights",
+            "Compact Design",
+            "Rechargeable Battery"
+        ],
+        specs: {
+            "Color": "Black",
+            "Material": "Plastic",
+            "Brand": "Wizme",
+            "Battery Life": "Up to 6 hours",
+            "Connectivity": "Bluetooth"
+        },
+        relatedProductSlugs: ['',''],
+        isDeal: true
+    },
+    {
+        id:"prod006",
+        slug:"pTron-Musicbot-Lite-Bluetooth-Connectivity",
+        name:"pTron Musicbot Lite Bluetooth Connectivity",
+        category:"Music Accessories",
+        price:0,
+        oldPrice:0,
+        imageUrl:"https://m.media-amazon.com/images/I/51JIW7MfGJL._SY355_.jpg",
+        galleryImages:[
+            "https://m.media-amazon.com/images/I/71bTtpxWsEL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/61Y52p7Z3KL._SY355_.jpg",
+            "https://m.media-amazon.com/images/I/71yBPJsfJvL._SY355_.jpg"
+        ],
+        amazonLink:"https://amzn.to/3G3UUkk",
+        rating:3.8,
+        reviewCount:149,
+        onPromotion: true,
+        shortDescription:"pTron Musicbot Lite 6W Bluetooth Speaker with 8 Hrs Playtime, 2.04\" Neo Driver for Pristine Sound, Mini Size Portable Speaker, BTv5.1 Connectivity, TWS Feature & Type C Charging (Blue)",
+        longDescription:"<p>pTron Musicbot Lite Bluetooth Speaker is a compact and portable speaker designed for music lovers on the go. With its 6W output and 8 hours of playtime, this speaker delivers high-quality sound in a small package. The Bluetooth v5.1 connectivity ensures a stable connection with your devices, while the TWS feature allows you to pair two speakers for an enhanced audio experience. Its mini size makes it easy to carry, making it perfect for outdoor activities or travel.</p><h3>Key Features:</h3><ul><li><strong>6W Output:</strong> Delivers powerful sound</li><li><strong>8 Hours Playtime:</strong> Long-lasting battery life</li><li><strong>Bluetooth v5.1:</strong> Stable and fast connectivity</li><li><strong>TWS Feature:</strong> Pair two speakers for stereo sound</li><li><strong>Compact Design:</strong> Easy to carry and store</li></ul>",
+        features: [
+            "6W Output",
+            "8 Hours Playtime",
+            "Bluetooth v5.1",
+            "TWS Feature",
+            "Compact Design"
+        ],
+        specs: {
+            "Color": "Blue",
+            "Material": "Plastic",
+            "Brand": "pTron",
+            "Battery Life": "Up to 8 hours",
+            "Connectivity": "Bluetooth v5.1",
+            "Speaker Size": "2.04 inches"
+        },
+        relatedProductSlugs: ['',''],
+        isDeal: true
     }
 ]
 
