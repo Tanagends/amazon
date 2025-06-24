@@ -1,5 +1,5 @@
 import ProductsPage from './ProductsPage';
-import products from '../../components/products'
+import {products} from '../../components/products'
 
 export const metadata = {
   title: 'All Products - Discover Our Full Collection',

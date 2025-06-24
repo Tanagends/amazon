@@ -1,4 +1,4 @@
-import allGuides from "../../components/guides"
+import {allGuides} from "../../components/guides"
 import GuidesPage from "./GuidesPage"
 
 export const metadata = {

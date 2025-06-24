@@ -9,7 +9,7 @@ import CallToAction from '../../../components/CallToAction'; // Adjust path
 import ProductCard from '../../../components/ProductCard'; // For related products, adjust path
 import styles from '../../../styles/GuideDetailPage.module.css'; // Create this CSS Module
 import { FiCalendar, FiUser, FiTag, FiArrowLeft, FiChevronsRight, FiShare2, FiPrinter } from 'react-icons/fi';
-import allGuides from '../../../components/guides';
+import {allGuides} from '../../../components/guides';
 
 // Placeholder data - In a real app, this would be fetched from Prismic based on the slug
 const allGuidesData = allGuides;

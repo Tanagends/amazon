@@ -1,5 +1,5 @@
 import DealsPage from "./DealsPage"
-import products from '../../components/products'
+import {products} from '../../components/products'
 // Metadata for the Deals page
 export const metadata = {
   title: 'Hot Deals & Special Promotions',

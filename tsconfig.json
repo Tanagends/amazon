@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "tailwind.config.js"  ],
+, "tailwind.config.js", "app/products/ProductsPage.jsx", "app/products/[slug]/MoreInfo.jsx", "components/products.js"  ],
   "exclude": [
     "node_modules"
   ]

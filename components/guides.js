@@ -93,4 +93,4 @@ const allGuides = [
   }
 ];
 
-export default allGuides;
+export { allGuides };

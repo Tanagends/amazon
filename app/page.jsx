@@ -13,8 +13,8 @@ import styles from '../styles/Home.module.css';
 import { FiZap, FiShoppingCart, FiTrendingUp, FiGift, FiShield, FiThumbsUp, FiArrowRight, FiMessageSquare, FiAward, FiCheckCircle } from 'react-icons/fi';
 import Image from 'next/image'; // For Buying Guides section images
 import Link from 'next/link'; // For guide card links
-import products from '../components/products';
-import allGuides from '../components/guides';
+import {products} from '../components/products';
+import {allGuides} from '../components/guides';
 
 // Page-specific metadata
 export const metadata = {

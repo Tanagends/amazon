@@ -10,7 +10,7 @@ import ProductCard from '../../../components/ProductCard'; // For related produc
 import styles from '../../../styles/ProductDetailPage.module.css'; // Create this CSS Module
 import { FiShoppingCart, FiTag, FiStar, FiCheckSquare, FiInfo, FiArrowLeft, FiChevronsRight, FiShare2 } from 'react-icons/fi';
 import MoreInfo from './MoreInfo';
-import products from '../../../components/products'; // Adjust path to your products data
+import {products} from '../../../components/products'; // Adjust path to your products data
 // Placeholder data - In a real app, this would be fetched from Prismic based on the slug
 
 
