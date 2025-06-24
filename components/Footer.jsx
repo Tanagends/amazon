@@ -11,7 +11,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { href: "#", icon: <FaFacebookF />, label: "Facebook" },
+    { href: "https://www.facebook.com/clickyse/", icon: <FaFacebookF />, label: "Facebook" },
     { href: "#", icon: <FaTwitter />, label: "Twitter" },
     { href: "#", icon: <FaInstagram />, label: "Instagram" },
     { href: "#", icon: <FaYoutube />, label: "YouTube" },

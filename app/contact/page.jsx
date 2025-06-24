@@ -71,7 +71,7 @@ export default function ContactPage() {
               </ul>
               <h3 className={styles.socialMediaTitle}>Connect on Social Media</h3>
               <div className={styles.socialMediaLinks}>
-                <a href="#" aria-label="Facebook" className={styles.socialLink}><FiFacebook /></a>
+                <a href="https://www.facebook.com/clickyse/" aria-label="Facebook" className={styles.socialLink}><FiFacebook /></a>
                 <a href="#" aria-label="Twitter" className={styles.socialLink}><FiTwitter /></a>
                 <a href="#" aria-label="Instagram" className={styles.socialLink}><FiInstagram /></a>
               </div>

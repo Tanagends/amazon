@@ -35,13 +35,13 @@ export default function AboutPage() {
           </div>
         </header>
 
-        {/* Main Content Section */}
+        {/* Main Content Section "https://placehold.co/700x500/2ECC71/FFFFFF?text=Our+Journey+Begins&font=Inter" */}
         <section className={`${styles.contentSection} container`}>
           {/* Our Story Section */}
           <div className={styles.storySection} data-aos="fade-up">
             <div className={styles.storyImageWrapper}>
               <Image
-                src="https://placehold.co/700x500/2ECC71/FFFFFF?text=Our+Journey+Begins&font=Inter" // Placeholder image
+                src="/images/aboutbg.jpg" // Placeholder image
                 alt="The AffiliateAura Team or Concept Art"
                 width={700}
                 height={500}
