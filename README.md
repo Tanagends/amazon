@@ -1,37 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-.
-## Getting Started
+# 📦 Project README
 
-First, run the development server:
+Welcome to **Clickys Website**! This README covers everything you need to know about the app—what it does, where it lives, and how it’s built.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 📋 1. Product Overview
+
+**ClickysWebApp** is a web application that provides users with:
+
+* A dynamic product catalog (powered by Prismic CMS)
+* An interactive guides section
+* Promotional deals and special offers
+* Contact and FAQ support
+
+---
+
+## 2. 😊 Client Info
+| Key              | Details |
+| -----------------| ------- |
+| **Full Name**    | ... |
+| **Company Name** | ... |
+| **Location**     | ... |
+| **Phone**        | ... |
+| **Email**        | ... |     
+
+---
+
+## 🌐 3 Hosting & Domain
+
+| Item              | Details            |
+| ----------------- | ------------------ |
+| **Hosting**       | Vercel             |
+| **Hosted By**     | Tanatswa Gendere   |
+| **Domain**        | [clickys.in](https://clickys.in)|
+| **Guthub Repo**   | [Tanagends/amazon](https://github.com/Tanagends/amazon)       |
+| **Domain Registrar**     | *None*             |
+| **Registered On** | *None*             |
+| **Expires On**    | *None*             |
+
+---
+
+## 📂 4. Project Structure
+
+```plaintext
+app
+├── ScrollToTopButton.js
+├── about
+│   └── page.jsx
+├── contact
+│   ├── faqSection.js
+│   └── page.jsx
+├── deals
+│   ├── DealsPage.jsx
+│   └── page.jsx
+├── favicon.ico
+├── globals.css
+├── guides
+│   ├── GuidesPage.jsx
+│   ├── [slug]
+│   │   └── page.jsx
+│   └── page.jsx
+├── layout.jsx
+├── not-found.jsx
+├── page.jsx
+└── products
+    ├── ProductsPage.jsx
+    ├── [slug]
+    │   ├── MoreInfo.jsx
+    │   ├── MoreInfo.tsx
+    │   └── page.jsx
+    └── page.jsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔑 5. Accounts & Credentials
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Service     | Account Email                                           | Notes                        |
+| ----------- | ------------------------------------------------------- | ---------------------------- |
+| **Prismic** | [tanatswagendere1@gmail.com](mailto:client@example.com)         | Content authoring & API      |
+| **Google**  | [pixelcraftewt@gmail.com](mailto:pixelcraftewt@gmail.com) | Sitemap hosting (via Vercel) |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 6. Data Sources
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Prismic CMS**: Holds product catalog and guides content, fetched at build time via REST API
+* **Local JSON**: Deals and promotions are maintained in `./components/products.js` and `./components/guides.js`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⚙️ 7. Postbuild Sitemap Script
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To ensure search engines always see the latest routes, we run `next-sitemap` after each build:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# amazon
+```jsonc
+// package.json
+{
+  "scripts": {
+    "build": "next build",
+    "postbuild": "next-sitemap"
+  }
+}
+```
+
+Running `npm run build` generates both the sitemap XML and `robots.txt`, keeping SEO in tip-top shape.
+
+---
