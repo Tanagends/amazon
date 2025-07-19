@@ -131,6 +131,7 @@
     color: var(--dark-gray);
     cursor: pointer;
     transition: var(--transition-fast);
+    border-radius: 10px;
 }
 .viewButton:first-child {
     border-left: none;

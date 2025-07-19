@@ -1,17 +1,17 @@
-/* styles/MarketingBanner.module.css */
+/* styles/MarketingBanner.module.css 
 
 :root {
   --brand-yellow: #FFC200;
   --brand-green: #2ECC71;
   --brand-black: #1A1A1A;
-  --background-light: #F8F9FA; /* A clean, off-white background */
+  --background-light: #F8F9FA;  A clean, off-white background 
   --text-primary: #333333;
   --text-light: #FFFFFF;
-}
+}*/
 
 .bannerSection {
   padding: 4rem 0;
-  background-color: var(--background-light);
+  background-color: #F8F9FA;
   overflow: hidden;
   margin: 2rem 0;
 }
@@ -34,19 +34,19 @@
 .title {
   font-size: clamp(2.8rem, 6vw, 4.2rem);
   font-weight: 800;
-  color: var(--brand-black);
+  color: #1A1A1A;
   line-height: 1.1;
   margin-bottom: 1.5rem;
 }
 
 /* Style for the colored word in the title */
 .titleAccent {
-  color: var(--brand-green);
+  color: #2ECC71;;
 }
 
 .subtitle {
   font-size: clamp(1rem, 2vw, 1.1rem);
-  color: var(--text-primary);
+  color: #333333;
   line-height: 1.7;
   margin-bottom: 2.5rem;
 }
@@ -55,8 +55,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background-color: var(--brand-black);
-  color: var(--text-light);
+  background-color: #1A1A1A;
+  color:  #FFFFFF;
   font-size: 1rem;
   font-weight: 600;
   padding: 0.9rem 1.8rem;
@@ -66,7 +66,7 @@
 }
 
 .ctaButton:hover {
-  background-color: var(--brand-green);
+  background-color: #2ECC71;
   transform: translateY(-3px);
 }
 
@@ -96,7 +96,7 @@
 }
 
 .shapeGreen {
-  background-color: var(--brand-green);
+  background-color: #2ECC71;
   width: 200px;
   height: 200px;
   top: 0;
@@ -106,7 +106,7 @@
 }
 
 .shapeYellow {
-  background-color: var(--brand-yellow);
+  background-color: #FFC200;
   width: 180px;
   height: 180px;
   bottom: 0;
@@ -116,7 +116,7 @@
 }
 
 .shapeBlack {
-  background-color: var(--brand-black);
+  background-color: #1A1A1A;
   opacity: 0.1;
   width: 150px;
   height: 150px;

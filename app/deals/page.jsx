@@ -1,6 +1,6 @@
 import DealsPage from "./DealsPage"
-import {products} from '../../components/products'
-//import { products } from '../../components/flipkartProducts'
+//import { products } from '../../components/products'
+import { products } from '../../components/flipkartProducts'
 // Metadata for the Deals page
 
 export const metadata = {
@@ -13,12 +13,12 @@ export const metadata = {
   },
 };
 
-const dealProducts = products.filter(product => product.isDeal);
+//const dealProducts = products.filter(product => product.isDeal);
 //const dealProducts = products;
 
 const page = () => {
   return (
-  <DealsPage products={ dealProducts }/>
+  <DealsPage products={ products }/>
   )
 }
 

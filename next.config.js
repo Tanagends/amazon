@@ -11,9 +11,11 @@ const nextConfig = {
         hostname:'unsplash.com'
       },{
         protocol: 'https',
-        hostname: 'rukminim2.flixcart.com'
+        hostname: 'rukminim2.flixcart.com',
+      },{
+        protocol: 'https',
+        hostname: 'asset22.ckassets.com' 
       },
-      
       //https://somethingsbrewing.in
       {
         protocol: 'https',
