@@ -60,6 +60,7 @@ const Navbar = () => {
             default: { duration: 1, ease: "easeInOut" } // Hover animation
           }}
         >
+       
           <Link href="/" className={styles.logo}>
             <Image
               src="/images/logosvg.svg" // <-- ‼️ REPLACE WITH YOUR FILE PATH ‼️
@@ -70,6 +71,7 @@ const Navbar = () => {
             />
           </Link>
         </motion.div>
+        <span>That brings value</span>
 
         {/* Desktop Navigation */}
         <motion.ul className={`${styles.navMenu} ${styles.desktopNav}`}>
