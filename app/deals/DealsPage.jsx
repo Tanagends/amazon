@@ -70,7 +70,7 @@ const currentDeals = useMemo(() => {
               <div className={styles.productGrid}>
                 {currentDeals.map(product => (
                   // Pass `isDeal={true}` to ProductCard to apply deal-specific styling if any
-                  <ProductCard key={product.id} product={product} isDeal={true} />
+                  <ProductCard key={product.name} product={product} isDeal={true} />
                 ))}
               </div>
             ) : (

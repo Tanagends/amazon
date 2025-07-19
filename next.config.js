@@ -9,7 +9,11 @@ const nextConfig = {
       },{
         protocol:'https',
         hostname:'unsplash.com'
+      },{
+        protocol: 'https',
+        hostname: 'rukminim2.flixcart.com'
       },
+      
       //https://somethingsbrewing.in
       {
         protocol: 'https',

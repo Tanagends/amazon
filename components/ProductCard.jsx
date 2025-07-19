@@ -17,7 +17,7 @@ const ProductCard = ({ product, isDeal = false }) => {
     id = 'default-id',
     name = 'Product Name Placeholder',
     category = 'Category',
-    price = '₹0.00', // Expecting a formatted string like "₹1,299.00"
+    price = 'On Sale', // Expecting a formatted string like "₹1,299.00"
     imageUrl = `https://placehold.co/600x400/2ECC71/1A1A1A?text=${encodeURIComponent(name)}&font=Inter`,
     amazonLink = '#',
     rating = 0,
@@ -70,7 +70,8 @@ const ProductCard = ({ product, isDeal = false }) => {
           </div>
           {/* --- THIS IS THE UPDATED PRICE SECTION --- */}
           <div className={styles.priceContainer}>
-            <span className={styles.currentPrice}>{price}</span>
+            { price != 0 && <span className={styles.currentPrice}>{price}</span> }
+            { price == 0 && <span className={styles.currentPrice}>On Sale</span> }
             {/* oldPrice can be added later if API provides it */}
           </div>
         </div>

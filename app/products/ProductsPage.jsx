@@ -153,7 +153,7 @@ export default function ProductsPage() {
         <header className={styles.pageHeader}>
           <div className="container">
             <FiBox className={styles.headerIcon} />
-            <h1 className={styles.pageTitle}>Explore All Products</h1>
+            <h1 className={styles.pageTitle}>Explore All Amazon Products</h1>
             <p className={styles.pageSubtitle}>Curated finds from Amazon.in, just for you.</p>
           </div>
         </header>

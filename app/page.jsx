@@ -36,8 +36,8 @@ const dealProducts = products.filter(product => product.isDeal); // Import from 
 
 
 const placeholderCategories = [
-  { id: 'cat1', name: 'Electronics', slug: 'electronics', imageUrl: 'https://unsplash.com/photos/a-group-of-cell-phones-sitting-next-to-each-other-veFKiXXK5bE', productCount: 150 },
-  { id: 'cat2', name: 'Fashion', slug: 'fashion', imageUrl: 'https://unsplash.com/photos/unpaired-off-white-x-nike-air-force-1-low-top-sneaker-PqbL_mxmaUE', productCount: 200 },
+  { id: 'cat1', name: 'Electronics', slug: 'electronics', imageUrl: 'https://rukminim2.flixcart.com/image/612/612/xif0q/speaker/tower-speaker/w/e/k/1008-btx9-original-imahdnm3suhqfr6h.jpeg?q=70', productCount: 150 },
+  { id: 'cat2', name: 'Fashion', slug: 'fashion', imageUrl: 'https://rukminim2.flixcart.com/image/612/612/xif0q/shopsy-t-shirt/k/e/c/l-tblhnful-spy-d144-tripr-original-imahcjtu6ghwgpk7.jpeg?q=70', productCount: 200 },
   { id: 'cat3', name: 'Kitchen', slug: 'kitchen', imageUrl: 'https://m.media-amazon.com/images/I/71cBDSM-UdL._AC_UL640_FMwebp_QL65_.jpg', productCount: 300 },
   { id: 'cat4', name: 'Health', slug: 'health', imageUrl: 'https://m.media-amazon.com/images/I/71VmFTE6CFL._AC_UL640_FMwebp_QL65_.jpg', productCount: 120 },
 ];
