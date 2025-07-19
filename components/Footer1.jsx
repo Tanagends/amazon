@@ -1,9 +1,9 @@
+// components/Footer.js
 "use client";
 
 import Link from 'next/link';
-import Image from 'next/image'; // 1. Imported next/image
-import styles from '../styles/Footer.module.css';
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaAmazon } from 'react-icons/fa';
+import styles from '../styles/Footer.module.css'; // Ensure this path is correct
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaAmazon } from 'react-icons/fa'; // Added FiZap, FiBookOpen
 import { FiZap, FiBookOpen } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
@@ -12,8 +12,8 @@ const Footer = () => {
 
   const socialLinks = [
     { href: "https://www.facebook.com/clickyse/", icon: <FaFacebookF />, label: "Facebook" },
-    { href: "https://x.com/TeamClickys", icon: <FaTwitter />, label: "X/(Twitter)" },
-    { href: "https://www.instagram.com/_clickyse?igsh=bjV3YnZ6OG80MHNq", icon: <FaInstagram />, label: "Instagram" },
+    { href: "#", icon: <FaTwitter />, label: "Twitter" },
+    { href: "#", icon: <FaInstagram />, label: "Instagram" },
     { href: "#", icon: <FaYoutube />, label: "YouTube" },
     { href: "#", icon: <FaAmazon />, label: "Amazon Store" },
   ];
@@ -22,13 +22,13 @@ const Footer = () => {
     {
       title: "Explore",
       links: [
-        { href: "/products", label: "Amazon Products" },
-        { href: "/deals", label: "FlipKart Deals" },
+        { href: "/products", label: "All Products" },
+        { href: "/deals", label: "Hot Deals" },
         { href: "/guides", label: "Buying Guides" },
       ]
     },
     {
-      title: "About Clickys",
+      title: "About AffiliateAura",
       links: [
         { href: "/about", label: "About Us" },
         { href: "/contact", label: "Contact" },
@@ -42,54 +42,41 @@ const Footer = () => {
     }
   ];
 
+
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.footerContainer}`}>
         <div className={styles.footerTop}>
             <div className={styles.footerBrand}>
-                {/* 2. Replaced text logo with an animated SVG logo */}
-                <motion.div
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 360 }}
-                  whileHover={{ rotate: 720 }} // Rotates another 360° on hover
-                  transition={{
-                    rotate: { duration: 1.5, ease: "easeOut" }, // Initial load animation
-                    default: { duration: 1, ease: "easeInOut" } // Hover animation
-                  }}
-                  style={{ display: 'inline-block' }} // Keeps layout consistent
-                >
-                  <Link href="/" className={styles.footerLogo}>
-                      <Image
-                        src="/images/logosvg.svg" // <-- ‼️ REPLACE WITH YOUR FILE PATH ‼️
-                        alt="AffiliateAura Logo"
-                        width={100} // Adjust width as needed
-                        height={50}  // Adjust height as needed
-                      />
-                  </Link>
-                </motion.div>
+                <Link href="/" className={styles.footerLogo}>
+                    Affiliate<span className={styles.logoAccent}>Aura</span>
+                </Link>
                 <p className={styles.footerTagline}>Your trusted guide to Amazon's best finds.</p>
                 <p className={styles.disclosure}>
                     As an Amazon Associate, we earn from qualifying purchases. All product recommendations are independently chosen by our editorial team.
                 </p>
             </div>
+            {/* Replaced Newsletter with Featured Content Snippet */}
             <div className={styles.footerFeaturedContent}>
                 <h4 className={styles.featuredContentTitle}>Don't Miss Out!</h4>
                 <div className={styles.featuredItem}>
+                    {/* Example: Link to a popular guide */}
                     <FiBookOpen className={styles.featuredIcon} />
                     <div>
-                        <Link href="/products" className={styles.featuredLink}>
-                            Our Amazing Amazon Products
+                        <Link href="/guides/best-noise-cancelling-headphones-2025" className={styles.featuredLink}>
+                            Our Top Headphone Picks for 2025
                         </Link>
-                        <p className={styles.featuredDescription}>Buy from Amazon today with fast shipping and secure checkout!</p>
+                        <p className={styles.featuredDescription}>Dive into crystal-clear audio with our expert guide.</p>
                     </div>
                 </div>
                 <div className={styles.featuredItem}>
-                    <FiZap className={styles.featuredIcon} />
+                    {/* Example: Link to deals page */}
+                    <FiZap className={styles.featuredIcon} /> {/* Using FiZap for deals */}
                     <div>
                         <Link href="/deals" className={styles.featuredLink}>
-                            Today's FlipKart Hottest Deals
+                            Today's Hottest Deals
                         </Link>
-                        <p className={styles.featuredDescription}>Grab it now on Flipkart limited stock with exclusive deals!</p>
+                        <p className={styles.featuredDescription}>Grab limited-time offers before they're gone!</p>
                     </div>
                 </div>
             </div>

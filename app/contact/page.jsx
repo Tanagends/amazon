@@ -7,10 +7,10 @@ import FAQSection from './faqSection'; // Importing the FAQSection component
 
 // Metadata for the Contact Us page
 export const metadata = {
-  title: 'Contact AffiliateAura - Get In Touch With Us',
+  title: 'Contact Clickys - Get In Touch With Us',
   description: 'Have questions, suggestions, or partnership inquiries? Contact the AffiliateAura team.',
   openGraph: {
-    title: 'Contact Us | AffiliateAura',
+    title: 'Contact Us | Clickys',
     description: 'Reach out to AffiliateAura for support, feedback, or collaborations.',
   },
 };
@@ -50,7 +50,7 @@ export default function ContactPage() {
                   <FiMail className={styles.contactIcon} />
                   <div>
                     <strong>Email Us:</strong>
-                    <a href="mailto:support@affiliateaura.com">affiliateaurateam@gmail.com</a>
+                    <a href="mailto:teamclickys@gmail.com">teamclickys@gmail.com</a>
                   </div>
                 </li>
                 <li>
@@ -58,7 +58,7 @@ export default function ContactPage() {
                   <div>
                     <strong>Call Us:</strong>
                     <span>(Mon-Fri, 9am-5pm IST)</span>
-                    <a href="tel:+910000000000">+91 (000) 000-0000</a>
+                    <a href="tel:+917396507539">+91 7396507539</a>
                   </div>
                 </li>
                 <li>
@@ -72,8 +72,8 @@ export default function ContactPage() {
               <h3 className={styles.socialMediaTitle}>Connect on Social Media</h3>
               <div className={styles.socialMediaLinks}>
                 <a href="https://www.facebook.com/clickyse/" aria-label="Facebook" className={styles.socialLink}><FiFacebook /></a>
-                <a href="#" aria-label="Twitter" className={styles.socialLink}><FiTwitter /></a>
-                <a href="#" aria-label="Instagram" className={styles.socialLink}><FiInstagram /></a>
+                <a href="#https://x.com/TeamClickys" aria-label="Twitter" className={styles.socialLink}><FiTwitter /></a>
+                <a href="https://www.instagram.com/_clickyse?igsh=bjV3YnZ6OG80MHNq" aria-label="Instagram" className={styles.socialLink}><FiInstagram /></a>
               </div>
             </aside>
           </div>

@@ -10,7 +10,6 @@ import {useMemo, useState } from 'react';
 
 
 export default function DealsPage({products}) {
-  // In a real app, you might fetch deals based on filters or pagination
   // For now, we'll display all placeholder deal products.
   const [filterTerm, setFilterTerm] = useState('all');
 
@@ -35,7 +34,7 @@ const currentDeals = useMemo(() => {
         <header className={styles.pageHeader} data-aos="fade-in" data-aos-duration="600">
           <div className="container">
             <FiTag className={styles.headerIcon} />
-            <h1 className={styles.pageTitle}>Today's Hottest Deals</h1>
+            <h1 className={styles.pageTitle}>Today's Hottest FlipKart Deals</h1>
             <p className={styles.pageSubtitle}>
               Exclusive discounts and special offers, updated regularly. Don't miss out on these amazing savings!
             </p>

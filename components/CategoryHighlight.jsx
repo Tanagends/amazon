@@ -24,7 +24,7 @@ const CategoryHighlight = ({ category, aosData = "zoom-in" }) => {
       whileHover={{ y: -10, boxShadow: "var(--shadow-xl)" }}
       transition={{ type: "spring", stiffness: 250, damping: 20 }}
     >
-      <Link href={`/categories/${slug}`} className={styles.categoryLink}> {/* Updated Link */}
+      <Link href='/deals' className={styles.categoryLink}> {/* Updated Link */}
         <div className={styles.imageContainer}>
           <Image
             src={imageUrl}
