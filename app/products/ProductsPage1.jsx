@@ -1,137 +1,192 @@
-
+// app/products/page.jsx (or wherever your ProductsPage.jsx is located)
 "use client";
-// This will be a Server Component by default.
 
-import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjust path as per your structure
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import AnimatedPageWrapper from '../../components/AnimatedPageWrapper';
 import ProductCard from '../../components/ProductCard';
-import CallToAction from '../../components/CallToAction';
-import styles from '../../styles/ProductsPage.module.css'; // Create this CSS Module
-import { FiBox, FiFilter, FiSearch, FiX } from 'react-icons/fi';
-import {useState, useMemo} from 'react';
-// Metadata for the Products page
+import styles from '../../styles/ProductsPage.module.css';
+import { FiBox, FiFilter, FiSearch, FiX, FiLoader } from 'react-icons/fi';
 
-export default function ProductsPage({products}) {
+export default function ProductsPage() {
+  // State for all fetched products and API status
+  const [allProducts, setAllProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   
-  const [sortOption, setSortOption] = useState('featured');
+  // State for search and UI pagination
   const [searchQuery, setSearchQuery] = useState('');
+  //Randomizing the search term
+  
+  const keywords = [
+  "Air Fryer",
+  "Blender Mixer Grinder",
+  "Electric Kettle",
+  "Kitchen Storage Containers",
+  "Knife Set",
+  "Non-stick Cookware Set",
+  "Kitchen Scale",
+  "Sandwich Maker",
+  "Hand Blender",
+  "Food Processor",
+  "Fitness Tracker",
+  "Digital Thermometer",
+  "BP Monitor",
+  "Glucometer",
+  "Resistance Bands",
+  "Yoga Mat",
+  "Protein Powder",
+  "Vitamin D Supplements",
+  "Massager Gun",
+  "Dumbbells Set",
+  "Smart Watch",
+  "Bluetooth Speaker",
+  "Wireless Earbuds",
+  "Smartphone Accessories",
+  "Power Bank",
+  "Laptop Stand",
+  "Gaming Mouse",
+  "Portable SSD",
+  "Smart Bulb",
+  "LED Ring Light",
+  "Men’s T-Shirts",
+  "Women’s Dresses",
+  "Sneakers",
+  "Casual Shoes",
+  "Sunglasses",
+  "Leather Wallet",
+  "Men’s Watch",
+  "Handbag",
+  "Trendy Tops",
+  "Ethnic Wear",
+  "Vitamin C Face Serum",
+  "Moisturizer",
+  "Face Wash",
+  "Sunscreen",
+  "Face Mask",
+  "Anti-Aging Cream",
+  "Acne Spot Treatment",
+  "Skin Brightening Cream",
+  "Night Cream",
+  "Aloe Vera Gel"
+];
+  const search = keywords[Math.floor(Math.random()*keywords.length)];
+
+  const [searchTerm, setSearchTerm] = useState(search); // Term that triggers fetch
+  const [displayPage, setDisplayPage] = useState(1);
+
+  // State for client-side category filtering
   const [showFilterMenu, setShowFilterMenu] = useState(false);
-  // unique categories for checkbox list
-  const allCategories = useMemo(
-    () => Array.from(new Set(products.map((p) => p.category))),
-    [products]
-  );
-  const [selectedCategories, setSelectedCategories] = useState([...allCategories]); // multi-select
+  const [allCategories, setAllCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const fetchProducts = useCallback(async (query) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`/api/search?keywords=${encodeURIComponent(query)}`);
       
-  const sortedProducts = useMemo(() => {
-    // Clone so we don’t mutate original
-    const items = [...products];
+      if (!response.ok) {
+        const contentType = response.headers.get("content-type");
+        let errorMessage = `An unexpected error occurred (HTTP ${response.status}).`;
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            const errData = await response.json();
+            errorMessage = errData.error || 'Failed to fetch products from the API.';
+        } else {
+            errorMessage = "The API returned an invalid response. This is often caused by incorrect API credentials in your .env.local file. Please check the server logs for more details.";
+        }
+        throw new Error(errorMessage);
+      }
 
-    switch (sortOption) {
-      case 'price_asc':
-        return items.sort(
-          (a, b) => parseFloat(a.price) - parseFloat(b.price)
-        );
+      const data = await response.json();
+      setAllProducts(data.products || []);
+      
+      const newCategories = Array.from(new Set((data.products || []).map(p => p.category)));
+      setAllCategories(newCategories);
+      setSelectedCategories(newCategories);
 
-      case 'price_desc':
-        return items.sort(
-          (a, b) => parseFloat(b.price) - parseFloat(a.price)
-        );
-
-      case 'rating':
-        return items.sort((a, b) => b.rating - a.rating);
-
-      case 'newest':
-        // Simply reverse the original insertion order so “newest” (last in array) ends up at the bottom
-        return items.reverse();
-
-      case 'featured':
-      default:
-        // Promotions first, then everything else (preserves relative order within each group)
-        const promos = items.filter(p => p.onPromotion);
-        const nonPromos = items.filter(p => !p.onPromotion);
-        return [...promos, ...nonPromos];
+    } catch (err) {
+      setError(err.message);
+      setAllProducts([]);
+    } finally {
+      setIsLoading(false);
     }
-  }, [sortOption, products]);
+  }, []);
 
-  // Filter products based on selected categories
+  // Effect to fetch data when the search term changes
+  useEffect(() => {
+    fetchProducts(searchTerm);
+  }, [searchTerm, fetchProducts]);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() === '') return;
+    setSearchTerm(searchQuery);
+    setDisplayPage(1); // Reset to first page on new search
+  };
+  
+  // Client-side filtering based on categories
   const filteredProducts = useMemo(() => {
-  if (!selectedCategories.length) return sortedProducts; // Return all if no filter terms
-  return sortedProducts.filter(p => selectedCategories.includes(p.category));
-}, [sortedProducts, selectedCategories]);
+    // When no categories are loaded yet, return an empty array
+    if (allCategories.length === 0) return [];
+    // If all categories are selected, no filtering is needed
+    if (selectedCategories.length === allCategories.length) return allProducts;
+    return allProducts.filter(p => selectedCategories.includes(p.category));
+  }, [allProducts, selectedCategories, allCategories]);
 
-// Handle search query on the filterd products
-  const productsToShow = useMemo(() => {
-    if (!searchQuery) return filteredProducts;
-    const q = searchQuery.toLowerCase();
-    return filteredProducts.filter(p => p.name.toLowerCase().includes(q));
-  }, [filteredProducts, searchQuery]);
+  // --- FIX: Reset page to 1 whenever filters change the product list ---
+  useEffect(() => {
+    setDisplayPage(1);
+  }, [filteredProducts.length]);
 
+
+  // --- UPDATED: Client-side pagination logic ---
+  const itemsPerPage = 10; // Changed from 10 to 8
+  const totalDisplayPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (displayPage - 1) * itemsPerPage;
+    return filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredProducts, displayPage, itemsPerPage]);
 
   return (
     <AnimatedPageWrapper>
       <div className={styles.productsPageContainer}>
-        {/* Page Header */}
-        <header className={styles.pageHeader} data-aos="fade-in" data-aos-duration="600">
+        <header className={styles.pageHeader}>
           <div className="container">
             <FiBox className={styles.headerIcon} />
-            <h1 className={styles.pageTitle}>Explore All Products</h1>
-            <p className={styles.pageSubtitle}>
-              Your one-stop destination for all our curated finds. Dive in and discover your next favorite item!
-            </p>
+            <h1 className={styles.pageTitle}>Explore All Amazon Products</h1>
+            <p className={styles.pageSubtitle}>Curated finds from Amazon.in, just for you.</p>
           </div>
         </header>
 
-        {/* Controls Bar (Search, Filter, Sort, View Toggle) */}
         <div className="container">
-        <div className={styles.controlsBar} data-aos="fade-in">
+          <form className={styles.controlsBar} onSubmit={handleSearchSubmit}>
             <div className={styles.searchAndFilter}>
                 <div className={styles.searchBox}>
                     <FiSearch className={styles.searchIcon} />
-                    <input type="text" placeholder="Search products..." className={styles.searchInput}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    <input 
+                      type="text" 
+                      placeholder="Search on Amazon.in..." 
+                      className={styles.searchInput}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
-                <button className={styles.controlButton}
-                onClick={() => setShowFilterMenu(true)}
-                >
+                 <button type="submit" className={styles.viewButton} disabled={isLoading}>
+                    {isLoading ? 'Searching...' : 'Search'}
+                </button>
+                <button type="button" className={styles.controlButton} onClick={() => setShowFilterMenu(true)} disabled={isLoading || error}>
                     <FiFilter style={{ marginRight: '0.5em' }} /> Filters
                 </button>
             </div>
-            <div className={styles.sortAndView}>
-                <select className={styles.sortDropdown} aria-label="Sort products" onChange={
-                  (e) => {
-                    console.log(e.target.value);
-                    setSortOption(e.target.value)
-                  }
-                  } 
-                  value={sortOption}>
-                    <option value="featured">Sort by: Featured</option>
-                    <option value="price_asc">Price: Low to High</option>
-                    <option value="price_desc">Price: High to Low</option>
-                    <option value="rating">Avg. Customer Review</option>
-                    <option value="newest">Newest Arrivals</option>
-                </select>
-                {/* <div className={styles.viewToggle}>
-                    <button className={`${styles.viewButton} ${styles.active}`} aria-label="Grid view">
-                        <FiGrid />
-                    </button>
-                    <button className={styles.viewButton} aria-label="List view">
-                        <FiList />
-                    </button>
-                </div> */}
-            </div>
-        </div>
+          </form>
         </div>
 
-        {/* FILTER MENU OVERLAY */}
         {showFilterMenu && (
           <div className={styles.filterOverlay}>
             <div className={styles.filterMenu}>
               <header className={styles.filterHeader}>
                 <h2>Filter by Category</h2>
-                <button onClick={() => setShowFilterMenu(false)}>
-                  <FiX size={20} />
-                </button>
+                <button onClick={() => setShowFilterMenu(false)}><FiX size={20} /></button>
               </header>
               <ul className={styles.categoryList}>
                 {allCategories.map((cat) => (
@@ -144,9 +199,7 @@ export default function ProductsPage({products}) {
                         onChange={(e) => {
                           const { checked, value } = e.target;
                           setSelectedCategories((prev) =>
-                            checked
-                              ? [...prev, value]
-                              : prev.filter((c) => c !== value)
+                            checked ? [...prev, value] : prev.filter((c) => c !== value)
                           );
                         }}
                       />
@@ -155,42 +208,57 @@ export default function ProductsPage({products}) {
                   </li>
                 ))}
               </ul>
-              <button
-                className={styles.applyFiltersButton}
-                onClick={() => setShowFilterMenu(false)}
-              >
-                Apply
-              </button>
             </div>
           </div>
         )}
 
-
-        {/* Products Grid Section */}
         <section className={styles.productsGridSection}>
           <div className="container">
-            {productsToShow.length > 0 ? (
+            {isLoading ? (
+              <div className={styles.loadingState}>
+                <FiLoader className={styles.loaderIcon} />
+                <p>Searching Amazon...</p>
+              </div>
+            ) : error ? (
+              <div className={styles.noProductsMessage}>
+                <h2>An Error Occurred</h2>
+                <p>{error}</p>
+              </div>
+            ) : paginatedProducts.length > 0 ? (
               <div className={styles.productGrid}>
-                {productsToShow.map(product => (
+                {paginatedProducts.map(product => (
                   <ProductCard key={product.id} product={product} isDeal={product.onPromotion} />
                 ))}
               </div>
             ) : (
-              <div className={styles.noProductsMessage} data-aos="fade-up">
+              <div className={styles.noProductsMessage}>
                 <h2>No Products Found</h2>
-                <p>We couldn't find any products matching your criteria. Try adjusting your filters or check back later!</p>
+                <p>We couldn't find any products matching your search or filters. Try another keyword!</p>
               </div>
             )}
           </div>
         </section>
 
-        {/* Pagination Placeholder - Would be a Client Component */}
-        <div className={styles.paginationControls} data-aos="fade-up">
-            <button className={styles.paginationButton} disabled>&laquo; Previous</button>
-            <span className={styles.pageInfo}>Page 1 of 5</span>
-            <button className={styles.paginationButton}>Next &raquo;</button>
+        {/* --- UPDATED: Pagination controls for display pages --- */}
+        <div className={styles.paginationControls}>
+            <button 
+              className={styles.paginationButton} 
+              onClick={() => setDisplayPage(p => Math.max(1, p - 1))}
+              disabled={displayPage <= 1 || isLoading}
+            >
+              &laquo; Previous
+            </button>
+            <span className={styles.pageInfo}>Page {displayPage} of {totalDisplayPages || 1}</span>
+            <button 
+              className={styles.paginationButton}
+              onClick={() => setDisplayPage(p => Math.min(totalDisplayPages, p + 1))}
+              disabled={displayPage >= totalDisplayPages || isLoading}
+            >
+              Next &raquo;
+            </button>
         </div>
       </div>
     </AnimatedPageWrapper>
   );
 }
+

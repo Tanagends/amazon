@@ -26,6 +26,29 @@
   align-items: center;
 }
 
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* or even 4px for a tighter layout */
+}
+
+.logo img {
+  display: block;
+  max-width: 90px;
+  height: auto;
+  margin: 0; /* ensure no default margin */
+}
+
+.motto {
+  font-style: italic;
+  color: var(--primary-green);
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0; /* removes unwanted top/bottom spacing */
+  line-height: 1; /* optional: keep it vertically centered */
+}
+
+
 .logo {
   font-size: 1.6rem; /* Adjusted logo size */
   font-weight: 800;
@@ -33,6 +56,7 @@
   text-decoration: none; /* Ensure no underline from Link */
   transition: color var(--transition-fast);
   letter-spacing: -0.5px;
+  /* display: inline-block; or flex, if you want more control */
 }
 .logo:hover {
   color: var(--primary-yellow);

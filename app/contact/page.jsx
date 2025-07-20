@@ -6,15 +6,33 @@ import faqData from '../../components/faq';
 import FAQSection from './faqSection'; // Importing the FAQSection component
 
 // Metadata for the Contact Us page
-export const metadata = {
-  title: 'Contact Clickys - Get In Touch With Us',
-  description: 'Have questions, suggestions, or partnership inquiries? Contact the AffiliateAura team.',
+export const contactUsMetadata = {
+  title: "Contact Us | Clickys.in Support",
+  description: "Get in touch with Clickys.in for queries about Amazon and Flipkart deals, product recommendations, or support. We're here to help you shop smarter!",
+  keywords: [
+    "Clickys.in contact",
+    "Amazon Flipkart deals support",
+    "online shopping help India",
+    "Clickys customer support",
+    "contact for affiliate deals",
+    "shopping query Clickys.in",
+    "get help with online purchases",
+    "Clickys.in customer care"
+  ],
   openGraph: {
-    title: 'Contact Us | Clickys',
-    description: 'Reach out to AffiliateAura for support, feedback, or collaborations.',
+    title: "Contact Clickys.in | Support for Deals & Queries",
+    description: "Reach out to Clickys.in for help with Amazon and Flipkart deals or shopping queries. Contact us for personalized support!",
+    url: "https://www.clickys.in/contact",
+    siteName: "Clickys.in",
+    type: "website",
+    locale: "en_IN"
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Clickys.in | Shopping Support",
+    description: "Have questions about deals on Clickys.in? Contact us for help with Amazon and Flipkart products!"
+  }
 };
-
 
 export default function ContactPage() {
   return (
@@ -57,7 +75,7 @@ export default function ContactPage() {
                   <FiPhone className={styles.contactIcon} />
                   <div>
                     <strong>Call Us:</strong>
-                    <span>(Mon-Fri, 9am-5pm IST)</span>
+                    <span>(Mon-Sun, 9am-5pm IST)</span>
                     <a href="tel:+917396507539">+91 7396507539</a>
                   </div>
                 </li>

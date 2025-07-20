@@ -54,24 +54,26 @@ const Navbar = () => {
         <motion.div
           initial={{ rotate: 0 }}
           animate={{ rotate: 360 }}
-          whileHover={{ rotate: 720 }} // Rotates another 360° on hover
+          whileHover={{ rotate: 360 }} // Rotates another 360° on hover
           transition={{
             rotate: { duration: 1.5, ease: "easeOut", delay: 0.5 }, // Initial load animation
             default: { duration: 1, ease: "easeInOut" } // Hover animation
           }}
+          className="flex items-center gap-2"
         >
-       
+         <div className={styles.logoWrapper}>
           <Link href="/" className={styles.logo}>
             <Image
               src="/images/logosvg.svg" // <-- ‼️ REPLACE WITH YOUR FILE PATH ‼️
-              alt="AffiliateAura Logo"
+              alt="Clickys Logo"
               width={90} // Adjust width as needed
               height={90}  // Adjust height as needed
               priority    // Helps load the logo faster
             />
           </Link>
+          <span className={styles.motto}>That brings value</span>
+         </div>
         </motion.div>
-        <span>That brings value</span>
 
         {/* Desktop Navigation */}
         <motion.ul className={`${styles.navMenu} ${styles.desktopNav}`}>

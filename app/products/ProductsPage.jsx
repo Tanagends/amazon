@@ -12,30 +12,23 @@ export default function ProductsPage() {
   const [allProducts, setAllProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   // State for search and UI pagination
   const [searchQuery, setSearchQuery] = useState('');
-  //Randomizing the search term
   
+  // Randomizing the search term for initial load
   const keywords = [
   "Air Fryer",
   "Blender Mixer Grinder",
   "Electric Kettle",
-  "Kitchen Storage Containers",
   "Knife Set",
-  "Non-stick Cookware Set",
-  "Kitchen Scale",
   "Sandwich Maker",
   "Hand Blender",
   "Food Processor",
   "Fitness Tracker",
-  "Digital Thermometer",
-  "BP Monitor",
-  "Glucometer",
-  "Resistance Bands",
   "Yoga Mat",
   "Protein Powder",
-  "Vitamin D Supplements",
+  "Supplements",
   "Massager Gun",
   "Dumbbells Set",
   "Smart Watch",
@@ -46,7 +39,6 @@ export default function ProductsPage() {
   "Laptop Stand",
   "Gaming Mouse",
   "Portable SSD",
-  "Smart Bulb",
   "LED Ring Light",
   "Men’s T-Shirts",
   "Women’s Dresses",
@@ -61,15 +53,46 @@ export default function ProductsPage() {
   "Vitamin C Face Serum",
   "Moisturizer",
   "Face Wash",
-  "Sunscreen",
   "Face Mask",
-  "Anti-Aging Cream",
-  "Acne Spot Treatment",
   "Skin Brightening Cream",
   "Night Cream",
-  "Aloe Vera Gel"
+  "Aloe Vera Gel",
+  "Desktop Keypad",
+  "School Bag",
+  "Study Table",
+  "Summer Hats",
+  "Men Caps",
+  "Adidas Shoes",
+  "Reebok Shoes",
+  "Asus Laptops",
+  "Laptop Batteries",
+  "Soldering Station",
+  "Oil Express Machine",
+  "Induction Cooktop",
+  "Nike Shoes",
+  "Women Formal Shoes",
+  "Tomatoes",
+  "Vegetables",
+  "Bed Sheets",
+  "Camera Lens",
+  "Jackets",
+  "Graphics Card",
+  "Socks",
+  "Boxer Shorts",
+  "Trolley Bags",
+  "Electronic Components",
+  "Men Underwear",
+  "Diving Deep Panties",
+  "Cookware Set",
+  "Digital Camera",
+  "Trimmers",
+  "Gum Set",
+  "Trifold Barber Mirror",
+  "Body Lotion",
+  "Water Bottles"
 ];
-  const search = keywords[Math.floor(Math.random()*keywords.length)];
+
+  const search = keywords[Math.floor(Math.random() * keywords.length)];
 
   const [searchTerm, setSearchTerm] = useState(search); // Term that triggers fetch
   const [displayPage, setDisplayPage] = useState(1);
@@ -114,7 +137,9 @@ export default function ProductsPage() {
 
   // Effect to fetch data when the search term changes
   useEffect(() => {
-    fetchProducts(searchTerm);
+    if (searchTerm) {
+      fetchProducts(searchTerm);
+    }
   }, [searchTerm, fetchProducts]);
 
   const handleSearchSubmit = (e) => {
@@ -126,26 +151,27 @@ export default function ProductsPage() {
   
   // Client-side filtering based on categories
   const filteredProducts = useMemo(() => {
-    // When no categories are loaded yet, return an empty array
     if (allCategories.length === 0) return [];
-    // If all categories are selected, no filtering is needed
     if (selectedCategories.length === allCategories.length) return allProducts;
     return allProducts.filter(p => selectedCategories.includes(p.category));
   }, [allProducts, selectedCategories, allCategories]);
 
-  // --- FIX: Reset page to 1 whenever filters change the product list ---
+  // Reset page to 1 whenever filters change the product list
   useEffect(() => {
     setDisplayPage(1);
   }, [filteredProducts.length]);
 
-
-  // --- UPDATED: Client-side pagination logic ---
-  const itemsPerPage = 10; // Changed from 10 to 8
+  // Client-side pagination logic
+  const itemsPerPage = 12;
   const totalDisplayPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const paginatedProducts = useMemo(() => {
     const startIndex = (displayPage - 1) * itemsPerPage;
     return filteredProducts.slice(startIndex, startIndex + itemsPerPage);
   }, [filteredProducts, displayPage, itemsPerPage]);
+
+  // Handlers for the new filter menu actions
+  const handleSelectAll = () => setSelectedCategories(allCategories);
+  const handleDeselectAll = () => setSelectedCategories([]);
 
   return (
     <AnimatedPageWrapper>
@@ -161,39 +187,45 @@ export default function ProductsPage() {
         <div className="container">
           <form className={styles.controlsBar} onSubmit={handleSearchSubmit}>
             <div className={styles.searchAndFilter}>
+                {/* --- UPDATED: Integrated Search Bar --- */}
                 <div className={styles.searchBox}>
-                    <FiSearch className={styles.searchIcon} />
                     <input 
                       type="text" 
-                      placeholder="Search on Amazon.in..." 
+                      placeholder={`Try searching "${search}"...`}
                       className={styles.searchInput}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
+                    <button type="submit" className={styles.searchButton} disabled={isLoading}>
+                        {isLoading ? <FiLoader className={styles.spinningIcon} /> : <FiSearch />}
+                    </button>
                 </div>
-                 <button type="submit" className={styles.viewButton} disabled={isLoading}>
-                    {isLoading ? 'Searching...' : 'Search'}
-                </button>
                 <button type="button" className={styles.controlButton} onClick={() => setShowFilterMenu(true)} disabled={isLoading || error}>
-                    <FiFilter style={{ marginRight: '0.5em' }} /> Filters
+                    <FiFilter style={{ marginRight: '0.5em' }} /> Filters ({selectedCategories.length}/{allCategories.length})
                 </button>
             </div>
           </form>
         </div>
 
+        {/* --- UPDATED: Redesigned Filter Menu --- */}
         {showFilterMenu && (
-          <div className={styles.filterOverlay}>
-            <div className={styles.filterMenu}>
+          <div className={styles.filterOverlay} onClick={() => setShowFilterMenu(false)}>
+            <div className={styles.filterMenu} onClick={(e) => e.stopPropagation()}>
               <header className={styles.filterHeader}>
-                <h2>Filter by Category</h2>
-                <button onClick={() => setShowFilterMenu(false)}><FiX size={20} /></button>
+                <h2><FiFilter /> Filter by Category</h2>
+                <button onClick={() => setShowFilterMenu(false)} className={styles.closeFilterButton}><FiX /></button>
               </header>
+              <div className={styles.filterActions}>
+                <button onClick={handleSelectAll}>Select All</button>
+                <button onClick={handleDeselectAll}>Deselect All</button>
+              </div>
               <ul className={styles.categoryList}>
                 {allCategories.map((cat) => (
                   <li key={cat}>
-                    <label>
+                    <label className={styles.categoryLabel}>
                       <input
                         type="checkbox"
+                        className={styles.categoryCheckbox}
                         value={cat}
                         checked={selectedCategories.includes(cat)}
                         onChange={(e) => {
@@ -203,11 +235,17 @@ export default function ProductsPage() {
                           );
                         }}
                       />
+                      <span className={styles.customCheckbox}></span>
                       {cat}
                     </label>
                   </li>
                 ))}
               </ul>
+              <footer className={styles.filterFooter}>
+                <button className={styles.showResultsButton} onClick={() => setShowFilterMenu(false)}>
+                  Show {filteredProducts.length} Results
+                </button>
+              </footer>
             </div>
           </div>
         )}
@@ -227,7 +265,7 @@ export default function ProductsPage() {
             ) : paginatedProducts.length > 0 ? (
               <div className={styles.productGrid}>
                 {paginatedProducts.map(product => (
-                  <ProductCard key={product.id} product={product} isDeal={product.onPromotion} />
+                  <ProductCard key={product.id || product.asin} product={product} isDeal={product.onPromotion} />
                 ))}
               </div>
             ) : (
@@ -239,26 +277,26 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* --- UPDATED: Pagination controls for display pages --- */}
-        <div className={styles.paginationControls}>
-            <button 
-              className={styles.paginationButton} 
-              onClick={() => setDisplayPage(p => Math.max(1, p - 1))}
-              disabled={displayPage <= 1 || isLoading}
-            >
-              &laquo; Previous
-            </button>
-            <span className={styles.pageInfo}>Page {displayPage} of {totalDisplayPages || 1}</span>
-            <button 
-              className={styles.paginationButton}
-              onClick={() => setDisplayPage(p => Math.min(totalDisplayPages, p + 1))}
-              disabled={displayPage >= totalDisplayPages || isLoading}
-            >
-              Next &raquo;
-            </button>
-        </div>
+        {totalDisplayPages > 1 && (
+            <div className={styles.paginationControls}>
+                <button 
+                  className={styles.paginationButton} 
+                  onClick={() => setDisplayPage(p => Math.max(1, p - 1))}
+                  disabled={displayPage <= 1 || isLoading}
+                >
+                  &laquo; Previous
+                </button>
+                <span className={styles.pageInfo}>Page {displayPage} of {totalDisplayPages || 1}</span>
+                <button 
+                  className={styles.paginationButton}
+                  onClick={() => setDisplayPage(p => Math.min(totalDisplayPages, p + 1))}
+                  disabled={displayPage >= totalDisplayPages || isLoading}
+                >
+                  Next &raquo;
+                </button>
+            </div>
+        )}
       </div>
     </AnimatedPageWrapper>
   );
 }
-

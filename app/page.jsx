@@ -18,16 +18,38 @@ import {allGuides} from '../components/guides';
 import axios from 'axios';
 
 // Page-specific metadata
-export const metadata = {
-  title: 'Clickys - Discover Top Amazon Picks & Deals',
-  description: 'Welcome to Clickys! Your ultimate guide to the best products, exclusive deals, and honest reviews for Amazon shopping.',
+export const homeMetadata = {
+  title: "Clickys.in | Trending Tech & Home Essentials in India",
+  description: "Discover the best Amazon and Flipkart deals on tech, home essentials, and grooming products. Shop curated combos, smartwatches, kitchen tools, and more at Clickys.in!",
+  keywords: [
+    "trending tech and home essentials",
+    "top picks for kitchen and grooming",
+    "stylish gadgets under budget",
+    "buy household deals online India",
+    "smartwatch and grooming sets online",
+    "healthy living essentials 2025",
+    "popular online buys this week",
+    "curated Flipkart & Amazon combos",
+    "online shopping hub for daily deals",
+    "smart choices for home and health",
+    "home and electronics saver packs",
+    "best combo product picks in India",
+    "online store for wellness and style"
+  ],
   openGraph: {
-    title: 'Clickys - Discover Top Amazon Picks & Deals',
-    description: 'Your ultimate guide to the best products, exclusive deals, and honest reviews for Amazon shopping.',
-    images: ['/og-images/homepage-affiliateaura.jpg'], // Ensure you have this image in /public/og-images/
+    title: "Clickys.in | Best Tech & Home Deals in India",
+    description: "Shop trending gadgets, kitchen essentials, and grooming combos at Clickys.in. Find top Amazon and Flipkart offers for smart living!",
+    url: "https://www.clickys.in/",
+    siteName: "Clickys.in",
+    type: "website",
+    locale: "en_IN"
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Clickys.in | Trending Tech & Home Deals",
+    description: "Explore curated Amazon and Flipkart deals on smartwatches, kitchen tools, and grooming essentials at Clickys.in!"
+  }
 };
-
 // Placeholder Data (Prismic will manage this later)
 //const placeholderProducts = products.filter(product => product.onPromotion); // Import from products.js
 
@@ -46,8 +68,7 @@ const placeholderGuides = allGuides.slice(0, 3)
 
 export default async function HomePage() {
     try {
-      console.log("in try");
-      const response = await fetch('http://localhost:3000/api/daily/');
+      const response = await fetch('www.clickys.in/api/daily/');
       
       if (!response.ok) {
         const contentType = response.headers.get("content-type");

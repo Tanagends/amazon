@@ -11,15 +11,32 @@ import { FiUsers, FiTarget, FiHeart, FiAward, FiMessageCircle, FiEye } from 'rea
 
 // Metadata for the About Us page
 export const metadata = {
-  title: 'About AffiliateAura - Our Mission, Values, and Team',
-  description: 'Learn more about AffiliateAura, our commitment to providing honest Amazon product recommendations, and the values that drive our expert team.',
+  title: "About Us | Clickys.in - Your Shopping Partner",
+  description: "Learn about Clickys.in, your trusted affiliate marketing platform for curated Amazon and Flipkart deals on tech, home, and grooming essentials in India.",
+  keywords: [
+    "about Clickys.in",
+    "Amazon Flipkart affiliate India",
+    "Clickys.in shopping platform",
+    "online deals platform India",
+    "curated shopping Clickys.in",
+    "tech and home deals India",
+    "Clickys.in mission and vision",
+    "trusted affiliate marketing India"
+  ],
   openGraph: {
-    title: 'About AffiliateAura | Our Story',
-    description: 'Discover the mission and passion behind AffiliateAura, your trusted source for curated Amazon finds.',
-    // images: ['/og-images/about-us.jpg'], // Create an OG image for this page
+    title: "About Clickys.in | Your Shopping Partner in India",
+    description: "Clickys.in brings you curated Amazon and Flipkart deals on tech, grooming, and home essentials. Learn about our mission to simplify shopping!",
+    url: "https://www.clickys.in/about",
+    siteName: "Clickys.in",
+    type: "website",
+    locale: "en_IN"
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Clickys.in | Shopping Made Easy",
+    description: "Discover Clickys.in, your go-to platform for curated Amazon and Flipkart deals on tech, home, and grooming products!"
+  }
 };
-
 export default function AboutPage() {
   return (
     <AnimatedPageWrapper>

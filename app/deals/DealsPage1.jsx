@@ -5,45 +5,27 @@ import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjus
 import ProductCard from '../../components/ProductCard';
 import CallToAction from '../../components/CallToAction';
 import styles from '../../styles/DealsPage.module.css'; // Create this CSS Module
-import { FiTag, FiFilter, FiArrowRight, FiAlertCircle, FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Icons for the page
-import { useMemo, useState, useEffect } from 'react';
+import { FiTag, FiFilter, FiArrowRight, FiAlertCircle } from 'react-icons/fi'; // Icons for the page
+import {useMemo, useState } from 'react';
 
 
 export default function DealsPage({products}) {
+  // For now, we'll display all placeholder deal products.
   const [filterTerm, setFilterTerm] = useState('all');
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
 
-  // Memoize the list of all unique categories
   const allCategories = useMemo(
       () => Array.from(new Set(products.map((p) => p.category))),
       [products]
     );
     
-  // Memoize the list of deals based on the current filter
-  const currentDeals = useMemo(() => {
-    if (filterTerm === 'all') {
-      return products;
-    }
-    return products.filter(product => product.category === filterTerm);
-  }, [filterTerm, products]);
+const currentDeals = useMemo(() => {
+  if (filterTerm === 'all') {
+    return products;
+  }
+  return products.filter(product => product.category === filterTerm);
+}
+, [filterTerm, products]);
 
-  // Reset to page 1 whenever the filter changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filterTerm]);
-  
-  // Calculate total pages and the deals for the current page
-  const totalPages = Math.ceil(currentDeals.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const paginatedDeals = currentDeals.slice(indexOfFirstItem, indexOfLastItem);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    // Optional: scroll to top of deals grid on page change
-    document.querySelector(`.${styles.dealsGridSection}`).scrollIntoView({ behavior: 'smooth' });
-  };
     
   return (
     <AnimatedPageWrapper>
@@ -65,6 +47,7 @@ export default function DealsPage({products}) {
                 <div className={styles.filterControls}>
                     <h3 className={styles.filterTitle}><FiFilter /> Filter Deals By:</h3>
                     <div className={styles.filterButtons}>
+                        {/* These would typically be interactive buttons */}
                         <button className={`${styles.filterButton} ${filterTerm === 'all' ?  styles.active : ''} `} onClick={() => setFilterTerm('all')} id="all-deals-button">
                         All Deals</button>
                         {allCategories.map((category) => (
@@ -80,13 +63,13 @@ export default function DealsPage({products}) {
                 </div>
             </div>
         </section>
-
         {/* Deals Grid Section */}
         <section className={styles.dealsGridSection}>
           <div className="container">
-            {paginatedDeals.length > 0 ? (
+            {currentDeals.length > 0 ? (
               <div className={styles.productGrid}>
-                {paginatedDeals.map(product => (
+                {currentDeals.map(product => (
+                  // Pass `isDeal={true}` to ProductCard to apply deal-specific styling if any
                   <ProductCard key={product.name} product={product} isDeal={true} />
                 ))}
               </div>
@@ -101,38 +84,10 @@ export default function DealsPage({products}) {
           </div>
         </section>
 
-       {/* Pagination Controls */}
-       {totalPages > 1 && (
-        <section className={styles.paginationSection}>
-          <div className={styles.paginationControls}>
-            <button 
-              onClick={() => handlePageChange(currentPage - 1)} 
-              disabled={currentPage === 1}
-              className={styles.pageButton}
-            >
-              <FiChevronLeft /> Prev
-            </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
-              <button 
-                key={number} 
-                onClick={() => handlePageChange(number)}
-                className={`${styles.pageButton} ${currentPage === number ? styles.active : ''}`}
-              >
-                {number}
-              </button>
-            ))}
-            <button 
-              onClick={() => handlePageChange(currentPage + 1)} 
-              disabled={currentPage === totalPages}
-              className={styles.pageButton}
-            >
-              Next <FiChevronRight />
-            </button>
-          </div>
-        </section>
-       )}
+       {/* Pagination cntrols */ }
         
         {/* Optional: Call to action for newsletter or other pages */}
+
       </div>
     </AnimatedPageWrapper>
   );

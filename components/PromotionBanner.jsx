@@ -58,7 +58,7 @@ const MarketingBanner = () => {
           </motion.p>
 
           <motion.div variants={textItemVariants}>
-            <Link href="/deals" className={styles.ctaButton}>
+            <Link href="https://fktr.in/eAR2iJM" className={styles.ctaButton}>
               Explore Our Flipkart Store
               <FiArrowRight />
             </Link>

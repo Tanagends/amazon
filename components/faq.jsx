@@ -1,34 +1,34 @@
-export const faqData = [
+const faq = [
   {
     id: 'faq1',
     question: 'How do I find products on your site?',
-    answer: 'You can use the search bar at the top of the page to look for specific items, or browse through our categories. The "All Products" page also features filters to help you narrow down your search.',
+    answer: 'Use the search bar or browse categories. Our Amazon and Flipkart pages also have filters to help you find items easily.'
   },
   {
     id: 'faq2',
     question: 'Are the prices on your site up-to-date?',
-    answer: 'We strive to keep product information, including prices, as current as possible. However, prices on Amazon can change frequently. Always verify the final price on Amazon.com before making a purchase.',
+    answer: 'Amazon prices update automatically. Flipkart prices are updated manually. Please confirm final prices on their official sites.'
   },
   {
     id: 'faq3',
-    question: 'How does your site work with Amazon?',
-    answer: 'Our site is an Amazon affiliate. When you click on a product link and make a purchase on Amazon, we may earn a small commission at no extra cost to you. This helps support our site.',
+    question: 'How does your site work?',
+    answer: 'We link to Amazon and Flipkart products. When you buy through our links, we may earn a small commission at no extra cost.'
   },
   {
     id: 'faq4',
-    question: 'Do you sell products directly?',
-    answer: 'No, we do not sell products directly. We provide information and links to products available on Amazon. All purchases are made through Amazon\'s secure platform.',
+    question: 'Do you sell products?',
+    answer: 'No, we only share links to Amazon and Flipkart. Purchases happen securely on their platforms.'
   },
   {
     id: 'faq5',
-    question: 'How can I find out about new deals or guides?',
-    answer: 'You can check our "Hot Deals" page for current promotions. For guides, visit our "Guides" section. We regularly update both sections with new content.',
+    question: 'What if a product link is broken?',
+    answer: 'Let us know if a link is broken or incorrect. We’ll fix it quickly. Use the Contact Us section to report issues.'
   },
   {
     id: 'faq6',
-    question: 'What if a product link is broken or leads to the wrong item?',
-    answer: 'We apologize for any inconvenience. Please let us know if you encounter a broken link or incorrect product information, and we will do our best to correct it promptly. (Note: Since the contact form is being removed, you might consider adding a general feedback email or link here if you still want users to report issues).',
-  },
+    question: 'What are the benefits of using your site?',
+    answer: 'You find great deals faster, discover top products, and shop smarter through trusted platforms  all in one place.'
+  }
 ];
 
-export default faqData;
+export default faq;

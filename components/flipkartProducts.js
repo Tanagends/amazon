@@ -9,7 +9,7 @@ const products = [
   },
   {
     name: 'inbase buds mini pro noise cancelling earpods',
-    category: 'Fashion',
+    category: 'Electronics',
     imageUrl: 'https://rukminim2.flixcart.com/image/612/612/xif0q/headphone/e/v/f/-original-imahbzmfcrpac9xr.jpeg?q=70',
     amazonLink: 'https://fktr.in/tAcuqcG',
     rating: 4.7,
@@ -483,7 +483,7 @@ const products = [
     name: 'Best Personal care',
     category: 'Health',
     imageUrl: 'https://asset22.ckassets.com/resources/image/staticpage_images/22-1729577240.jpg',
-    amazonLink: 'https://fktr.in/el8l2Nd',
+    amazonLink: 'https://fktr.in/EAVbW5M',
     rating: 4.7,
     reviewCount: 2349
   },
@@ -491,7 +491,7 @@ const products = [
     name: 'Top Beauty and grooming',
     category: 'Health',
     imageUrl: 'https://asset22.ckassets.com/resources/image/staticpage_images/26-1698302010.jpg',
-    amazonLink: 'https://fktr.in/4Qq5Qcg',
+    amazonLink: 'https://fktr.in/zgmTFmM',
     rating: 4.5,
     reviewCount: 1823
   },
@@ -499,7 +499,7 @@ const products = [
     name: 'Mobile Accessories',
     category: 'Electronics',
     imageUrl: 'https://asset22.ckassets.com/resources/image/staticpage_images/MicrosoftTeams-image%20(58)-1692257870.png',
-    amazonLink: 'https://fktr.in/fn4Wqhe',
+    amazonLink: 'https://fktr.in/lgbXbvZ',
     rating: 4.5,
     reviewCount: 1748
   },
@@ -563,7 +563,7 @@ const products = [
     name: 'Smart Tizen TV',
     category: 'Electronics',
     imageUrl: 'https://asset22.ckassets.com/resources/image/staticpage_images/Samsung%20HD%20Ready%20LED%20Smart%20Tizen%20TV-1752491152.png',
-    amazonLink: 'https://fktr.in/5t7ekFR',
+    amazonLink: 'https://fktr.in/owcyP3f',
     rating: 4.7,
     reviewCount: 2756
   },

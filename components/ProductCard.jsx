@@ -84,7 +84,7 @@ const ProductCard = ({ product, isDeal = false }) => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        {isDeal ? "Grab Deal" : "View on Amazon"} <FiShoppingCart style={{ marginLeft: '0.5em' }} />
+        {isDeal ? "Buy on FlipKart" : "Buy on Amazon"} <FiShoppingCart style={{ marginLeft: '0.5em' }} />
       </motion.a>
     </motion.div>
   );
