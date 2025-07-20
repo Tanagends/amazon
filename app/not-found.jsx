@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FiAlertTriangle, FiHome, FiShoppingBag } from 'react-icons/fi';
 import AnimatedPageWrapper from '../components/AnimatedPageWrapper';

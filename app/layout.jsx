@@ -38,8 +38,8 @@ export const metadata = {
   
   // Icons
   icons: {
-    icon: '/favicons/favicon.ico',
-    apple: '/favicons/apple-touch-icon.png',
+    icon: '/click.svg',
+    apple: '/click.svg',
   },
   
   // Open Graph metadata
