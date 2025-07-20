@@ -6,7 +6,7 @@ import faqData from '../../components/faq';
 import FAQSection from './faqSection'; // Importing the FAQSection component
 
 // Metadata for the Contact Us page
-export const contactUsMetadata = {
+export const metadata = {
   title: "Contact Us | Clickys.in Support",
   description: "Get in touch with Clickys.in for queries about Amazon and Flipkart deals, product recommendations, or support. We're here to help you shop smarter!",
   keywords: [

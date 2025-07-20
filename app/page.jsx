@@ -18,7 +18,7 @@ import {allGuides} from '../components/guides';
 import axios from 'axios';
 
 // Page-specific metadata
-export const homeMetadata = {
+export const metadata = {
   title: "Clickys.in | Trending Tech & Home Essentials in India",
   description: "Discover the best Amazon and Flipkart deals on tech, home essentials, and grooming products. Shop curated combos, smartwatches, kitchen tools, and more at Clickys.in!",
   keywords: [
@@ -68,7 +68,7 @@ const placeholderGuides = allGuides.slice(0, 3)
 
 export default async function HomePage() {
     try {
-      const response = await fetch('www.clickys.in/api/daily/');
+      const response = await fetch('https://www.clickys.in/api/daily/');
       
       if (!response.ok) {
         const contentType = response.headers.get("content-type");
