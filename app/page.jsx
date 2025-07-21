@@ -1,9 +1,7 @@
 export const dynamic = 'force-dynamic';
 // app/page.js (Homepage)
 // This is a Server Component by default.
-// It will use Client Components like AnimatedPageWrapper and CallToAction.
 
-// Import necessary components
 import AnimatedPageWrapper from '../components/AnimatedPageWrapper';
 import CallToAction from '../components/CallToAction';
 import ProductCard from '../components/ProductCard';         // From nextjs_app_router_presentational_comps_v2
@@ -15,7 +13,6 @@ import Image from 'next/image'; // For Buying Guides section images
 import Link from 'next/link'; // For guide card links
 import {products} from '../components/products';
 import {allGuides} from '../components/guides';
-import axios from 'axios';
 
 // Page-specific metadata
 export const metadata = {
@@ -85,7 +82,6 @@ export default async function HomePage() {
 
       const data = await response.json();
       if (data.products) {
-        console.log("yes data");
         placeholderProducts = data.products;
         if (placeholderProducts.length < 8) {
             const size = placeholderProducts.length;
@@ -97,13 +93,11 @@ export default async function HomePage() {
         }
 
       } else {
-        console.log("yes data");
         placeholderProducts = products.filter(product => product.onPromotion);
       }
 
       
     } catch (err) {
-        console.log(`error: ${err}`);
         placeholderProducts = products.filter(product => product.onPromotion);
     }
 
@@ -188,7 +182,7 @@ export default async function HomePage() {
           </p>
           <div className={styles.productGrid}>
             {placeholderProducts.slice(4, 8).map((product) => (
-              <ProductCard key={product.id} product={product} isDeal={true} />
+              <ProductCard key={product.id} product={product} isDeal={false} />
             ))}
           </div>
           <div className={styles.viewMoreLink} data-aos="fade-up" data-aos-delay="200">

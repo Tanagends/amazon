@@ -111,7 +111,7 @@ const Footer = () => {
         </div>
 
         <div className={styles.footerBottom}>
-          <p className={styles.copyright}>&copy; {currentYear} AffiliateAura. All Rights Reserved.
+          <p className={styles.copyright}>&copy; {currentYear} Clickys. All Rights Reserved.
                            Made with ❤️ by <Link href="https://www.pixelcrafte.co.zw/">PixelCrafte</Link></p>
           <div className={styles.socialIcons}>
             {socialLinks.map(social => (
