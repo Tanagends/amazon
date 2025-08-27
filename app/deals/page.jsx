@@ -1,6 +1,7 @@
-import DealsPage from "./DealsPage"
+import DealsPage from "./DealsPage2"
 //import { products } from '../../components/products'
 import { products } from '../../components/flipkartProducts'
+//import { createClient } from '@/prismicio';
 // Metadata for the Deals page
 
 export const metadata = {
@@ -38,7 +39,10 @@ export const metadata = {
 //const dealProducts = products.filter(product => product.isDeal);
 //const dealProducts = products;
 
-const page = () => {
+const page = async () => {
+    //const client = createClient();
+    //const data = client.getAllByType('products');
+
   return (
   <DealsPage products={ products }/>
   )

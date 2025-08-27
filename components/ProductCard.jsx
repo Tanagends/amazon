@@ -6,8 +6,64 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from '../styles/ProductCard.module.css';
 import { FiShoppingCart, FiHeart, FiStar } from 'react-icons/fi';
+import { PrismicNextImage } from "@prismicio/next";
 
 const ProductCard = ({ product, isDeal = false }) => {
+   
+  const affiliateColors = {
+  Amazon: "#FF9900",
+  Clickbank: "#B22234",
+  Cj: "#0A9C55",
+  Rakuten: "#BF0030",
+  Shareasale: "#003595",
+  Impact: "#FF2234",
+  Awin: "#F37324",
+  Fiverr: "#1DBF73",
+  Booking: "#003580",
+  Bluehost: "#0059B3",
+  Amazonin: "#FF9900",
+  Flipkart: "#FFD600",
+  Vcommission: "#34A853",
+  Cuelinks: "#2B84EA",
+  Admitad: "#3056D3",
+  Involveasia: "#F24B6A",
+  Optimise: "#F58023",
+  Makemytrip: "#008CFF",
+  Nykaa: "#E80071",
+  Myntra: "#FF3F6C",
+  Meesho: "#E72E77",
+  Ajio: "#2C4152",
+  Blinkit: "#FFD600",
+  Shopsy: "#0C3C60",
+  Topsy: "#6C63FF",
+  Jumia: "#F68B1E",
+  Travelstart: "#0098DA",
+  Yellowcard: "#FFD600",
+  Luno: "#1736E4",
+  Alison: "#283891",
+  Takealot: "#0057B8",
+  Superbalist: "#000000",
+  Loot: "#E87722",
+  Bidorbuy: "#FFD500",
+  Travelstartsa: "#0098DA",
+  Konga: "#D6006D",
+  Wakanow: "#F37021",
+  Binance: "#F3BA2F",
+  Deriv: "#FF444F",
+  Maxbounty: "#E1261C",
+  Hostinger: "#673DE6",
+  Coursera: "#2A73CC",
+  Udemy: "#A435F0",
+  Etsy: "#F1641E",
+  Aliexpress: "#FF4747",
+  Samsung: "#1428A0",
+  Acer: "#83B81A",
+  Addidas: "#000",
+  Nike: "#111",
+  Reebok: "#00539F"
+};
+
+
   if (!product) {
     return <div className={styles.cardSkeleton}>Loading...</div>;
   }
@@ -22,8 +78,10 @@ const ProductCard = ({ product, isDeal = false }) => {
     amazonLink = '#',
     rating = 0,
     reviewCount = 0,
+    platform = 'Amazon',
+    discount = false,
   } = product;
-
+  console.log(platform);
   const cardVariants = {
     rest: { y: 0, boxShadow: "var(--shadow-md)" },
     hover: { y: -6, scale: 1.03, boxShadow: "var(--shadow-lg)", transition: { type: "spring", stiffness: 300, damping: 15 } }
@@ -33,6 +91,7 @@ const ProductCard = ({ product, isDeal = false }) => {
     rest: { scale: 1 },
     hover: { scale: 1.08 }
   };
+  console.log(platform);
 
   return (
     <motion.div
@@ -45,7 +104,7 @@ const ProductCard = ({ product, isDeal = false }) => {
       {/* The product card is not a link itself anymore to allow the Amazon button to work easily */}
       <div className={styles.cardLinkWrapper}>
         <motion.div className={styles.imageWrapper} variants={imageVariants}>
-          <Image
+        {!isDeal && <Image
             src={imageUrl}
             alt={name}
             width={400}
@@ -53,11 +112,12 @@ const ProductCard = ({ product, isDeal = false }) => {
             style={{ objectFit: 'cover' }}
             className={styles.productImage}
             onError={(e) => e.currentTarget.src = `https://placehold.co/600x400/CCCCCC/1A1A1A?text=Error&font=Inter`}
-          />
-          {isDeal && <span className={styles.dealTag}>DEAL!</span>}
-          <div className={styles.quickActions}>
-            <button aria-label="Add to wishlist" className={styles.actionButton}><FiHeart /></button>
-          </div>
+          />}
+        {isDeal && <PrismicNextImage field={imageUrl} className={styles.productImage} />}
+          {isDeal && <span className={styles.dealTag}>{platform}</span>}
+          { discount && <div className={styles.quickActions}>
+             <button aria-label="Add to wishlist" className={styles.actionButton}>{discount}% Off</button>
+          </div>}
         </motion.div>
         <div className={styles.cardContent}>
           <p className={styles.productCategory}>{category}</p>
@@ -70,7 +130,7 @@ const ProductCard = ({ product, isDeal = false }) => {
           </div>
           {/* --- THIS IS THE UPDATED PRICE SECTION --- */}
           <div className={styles.priceContainer}>
-            { price != 0 && <span className={styles.currentPrice}>{price}</span> }
+            { price != 0 && <span className={styles.currentPrice}>₹{price}</span> }
             { price == 0 && <span className={styles.currentPrice}>On Sale</span> }
             {/* oldPrice can be added later if API provides it */}
           </div>
@@ -84,7 +144,7 @@ const ProductCard = ({ product, isDeal = false }) => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        {isDeal ? "Buy on FlipKart" : "Buy on Amazon"} <FiShoppingCart style={{ marginLeft: '0.5em' }} />
+        {isDeal ? `Buy on ${platform}`  : "Buy on Amazon"} <FiShoppingCart style={{ marginLeft: '0.5em' }} />
       </motion.a>
     </motion.div>
   );

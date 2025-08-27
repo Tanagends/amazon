@@ -116,7 +116,7 @@ export default async function HomePage() {
             Your trusted source for curated Amazon finds. We do the research, you save time and get the best value.
           </p>
           <div className={styles.heroActions} data-aos="fade-up" data-aos-delay="600">
-            <CallToAction text="Explore Flipkart Deals" link="/deals" type="secondary" className={styles.heroCtaButton} icon={<FiZap />} iconPosition="left" />
+            <CallToAction text="Explore All Products" link="/deals" type="secondary" className={styles.heroCtaButton} icon={<FiZap />} iconPosition="left" />
             <CallToAction text="Browse Amazon Products" link="/products" type="primary" className={`${styles.heroCtaButton} ${styles.heroCtaOutline}`} icon={<FiShoppingCart />} iconPosition="left" />
           </div>
           <p

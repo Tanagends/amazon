@@ -72,7 +72,6 @@ export default function ProductsPage() {
   "Nike Shoes",
   "Women Formal Shoes",
   "Tomatoes",
-  "Vegetables",
   "Bed Sheets",
   "Camera Lens",
   "Jackets",

@@ -50,7 +50,7 @@ const MarketingBanner = () => {
           viewport={{ once: true, amount: 0.5 }}
         >
           <motion.h1 className={styles.title} variants={textItemVariants}>
-            Shop Great At <span className={styles.titleAccent}>FlipKart</span>.
+            Shop Great At <span className={styles.titleAccent}>Clickys</span>.
           </motion.h1>
 
           <motion.p className={styles.subtitle} variants={textItemVariants}>
@@ -59,7 +59,7 @@ const MarketingBanner = () => {
 
           <motion.div variants={textItemVariants}>
             <Link href="https://fktr.in/eAR2iJM" className={styles.ctaButton}>
-              Explore Our Flipkart Store
+              Explore All Our Products
               <FiArrowRight />
             </Link>
           </motion.div>

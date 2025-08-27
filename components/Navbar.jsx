@@ -35,8 +35,8 @@ const Navbar = () => {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/products", label: "Amazon Products" },
-    { href: "/deals", label: "FlipKart Deals" },
-    { href: "/guides", label: "Guides" },
+    { href: "/deals", label: "All Products" },
+    { href: "/guides", label: "What's New" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
   ];

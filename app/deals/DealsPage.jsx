@@ -4,10 +4,9 @@
 import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjust path if your components folder is elsewhere
 import ProductCard from '../../components/ProductCard';
 import CallToAction from '../../components/CallToAction';
-import styles from '../../styles/DealsPage.module.css'; // Create this CSS Module
+import styles from '../../styles/DealsPage.module.css';
 import { FiTag, FiFilter, FiArrowRight, FiAlertCircle, FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Icons for the page
 import { useMemo, useState, useEffect } from 'react';
-
 
 export default function DealsPage({products}) {
   const [filterTerm, setFilterTerm] = useState('all');
@@ -44,7 +43,117 @@ export default function DealsPage({products}) {
     // Optional: scroll to top of deals grid on page change
     document.querySelector(`.${styles.dealsGridSection}`).scrollIntoView({ behavior: 'smooth' });
   };
-    
+
+  /* 
+   * 
+   * The search logic: replace Amazon with prismic search using a prismic client  and predicates to use searchterm and filter by category, optional sorting eg, price high to low, et cetera for a comprehensive search, filter, and sort functionality that depends on prismic
+     // State for client-side category filtering
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
+  const [allCategories, setAllCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const fetchProducts = useCallback(async (query) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`/api/search?keywords=${encodeURIComponent(query)}`);
+      
+      if (!response.ok) {
+        const contentType = response.headers.get("content-type");
+        let errorMessage = `An unexpected error occurred (HTTP ${response.status}).`;
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            const errData = await response.json();
+            errorMessage = errData.error || 'Failed to fetch products from the API.';
+        } else {
+            errorMessage = "The API returned an invalid response. This is often caused by incorrect API credentials in your .env.local file. Please check the server logs for more details.";
+        }
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      setAllProducts(data.products || []);
+      
+      const newCategories = Array.from(new Set((data.products || []).map(p => p.category)));
+      setAllCategories(newCategories);
+      setSelectedCategories(newCategories);
+
+    } catch (err) {
+      setError(err.message);
+      setAllProducts([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Effect to fetch data when the search term changes
+  useEffect(() => {
+    if (searchTerm) {
+      fetchProducts(searchTerm);
+    }
+  }, [searchTerm, fetchProducts]);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() === '') return;
+    setSearchTerm(searchQuery);
+    setDisplayPage(1); // Reset to first page on new search
+  */
+
+  /* Some groundwork on the search and filter, add sort too (eg low to high price) and make all compatible with prismic predicates and a well rounded search functionality. insert a fully furnished section into the return jsx at its appropriate place
+   *
+   *
+   * <div className="container">
+          <form className={styles.controlsBar} onSubmit={handleSearchSubmit}>
+            <div className={styles.searchAndFilter}>
+                {/* --- UPDATED: Integrated Search Bar --- */}
+                <div className={styles.searchBox}>
+                    <input 
+                      type="text" 
+                      placeholder={`Try searching "${search}"...`}
+                      className={styles.searchInput}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <button type="submit" className={styles.searchButton} disabled={isLoading}>
+                        {isLoading ? <FiLoader className={styles.spinningIcon} /> : <FiSearch />}
+                    </button>
+                </div>
+                <button type="button" className={styles.controlButton} onClick={() => setShowFilterMenu(true)} disabled={isLoading || error}>
+                    <FiFilter style={{ marginRight: '0.5em' }} /> Filters ({selectedCategories.length}/{allCategories.length})
+                </button>
+            </div>
+          </form>
+        </div>
+
+        {/* --- UPDATED: Redesigned Filter Menu --- */}
+        {showFilterMenu && (
+          <div className={styles.filterOverlay} onClick={() => setShowFilterMenu(false)}>
+            <div className={styles.filterMenu} onClick={(e) => e.stopPropagation()}>
+              <header className={styles.filterHeader}>
+                <h2><FiFilter /> Filter by Category</h2>
+                <button onClick={() => setShowFilterMenu(false)} className={styles.closeFilterButton}><FiX /></button>
+              </header>
+              <div className={styles.filterActions}>
+                <button onClick={handleSelectAll}>Select All</button>
+                <button onClick={handleDeselectAll}>Deselect All</button>
+              </div>
+              <ul className={styles.categoryList}>
+                {allCategories.map((cat) => (
+                  <li key={cat}>
+                    <label className={styles.categoryLabel}>
+                      <input
+                        type="checkbox"
+                        className={styles.categoryCheckbox}
+                        value={cat}
+                        checked={selectedCategories.includes(cat)}
+                        onChange={(e) => {
+                          const { checked, value } = e.target;
+                          setSelectedCategories((prev) =>
+                            checked ? [...prev, value] : prev.filter((c) => c !== value)
+                          );
+                        }}
+    */  
+
   return (
     <AnimatedPageWrapper>
       <div className={styles.dealsPageContainer}>
