@@ -1,0 +1,328 @@
+/* styles/GuideDetailPage.module.css */
+/* Ensure this file is in your styles directory and the import path is correct. */
+
+.guideDetailPageContainer {
+  padding-bottom: 3rem;
+}
+
+/* Guide Hero/Banner Image */
+.guideHeroImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust height as needed, or use aspect-ratio */
+  max-height: 60vh;
+  background-color: var(--light-gray); /* Fallback */
+  margin-bottom: 2.5rem;
+}
+.guideHeroImageWrapper img { /* For Next.js Image */
+  /* object-fit: cover; Handled by style prop */
+}
+.heroOverlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+}
+.heroContent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0; /* Make container take full width for padding */
+    z-index: 2;
+    padding: 2rem; /* Padding for content within hero */
+    color: var(--neutral-white);
+}
+.heroCategoryTag {
+    display: inline-block;
+    background-color: var(--primary-yellow);
+    color: var(--neutral-black);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--rounded-md);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+}
+.heroCategoryTag:hover {
+    background-color: var(--secondary-yellow);
+}
+
+.guideTitleHero {
+  font-size: 2.4rem; /* Large title for hero */
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+.guideMetaHero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem; /* Row and column gap */
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+.guideMetaHero span {
+    display: inline-flex;
+    align-items: center;
+}
+.metaIcon { /* For FiUser, FiCalendar in hero */
+    margin-right: 0.4em;
+    font-size: 1em;
+}
+
+
+/* Main Content Layout */
+.guideContentWrapper {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 2.5rem;
+}
+@media (min-width: 992px) { /* Two columns on larger screens */
+    .guideContentWrapper {
+        grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr); /* Main content and sidebar */
+    }
+}
+
+.mainContentColumn {
+    /* Styles for the main article content area */
+}
+
+.breadcrumbs {
+    font-size: 0.85rem;
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+.breadcrumbs a {
+    color: var(--primary-green);
+    text-decoration: none;
+}
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+.breadcrumbs span { /* For current page title */
+    color: var(--neutral-black);
+    font-weight: 500;
+}
+
+
+/* Article Body Styling (for dangerouslySetInnerHTML) */
+.articleBody {
+  line-height: 1.75;
+  font-size: 1.05rem; /* Slightly larger for readability */
+  color: var(--neutral-black); /* Main text color */
+}
+.articleBody p {
+  margin-bottom: 1.5rem;
+}
+.articleBody h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-green);
+  color: var(--neutral-black);
+}
+.articleBody h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--neutral-black);
+}
+.articleBody ul, .articleBody ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.8rem; /* Indent lists */
+  list-style: revert; /* Use browser default list styles */
+}
+.articleBody li {
+  margin-bottom: 0.5rem;
+}
+.articleBody a { /* Links within article content */
+  color: var(--primary-green);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.articleBody a:hover {
+  color: var(--secondary-green);
+}
+.articleBody blockquote {
+  border-left: 4px solid var(--primary-yellow);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--dark-gray);
+}
+.articleBody img { /* Images within content */
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--rounded-md);
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-md);
+}
+
+/* Tags Section */
+.tagsSection {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--medium-gray);
+}
+.tagsTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--neutral-black);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.tagsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+.tagLink {
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--rounded-full);
+    font-size: 0.8rem;
+    text-decoration: none;
+    border: 1px solid var(--medium-gray);
+    transition: var(--transition-fast);
+}
+.tagLink:hover {
+    background-color: var(--primary-green);
+    color: var(--neutral-white);
+    border-color: var(--primary-green);
+    text-decoration: none;
+}
+
+/* Author Bio Section */
+.authorBioSection {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: var(--light-gray);
+    border-radius: var(--rounded-lg);
+    display: flex;
+    align-items: flex-start; /* Align image and text block */
+    gap: 1.5rem;
+    border: 1px solid var(--medium-gray);
+}
+.authorImage {
+    border-radius: 50%; /* Circular author image */
+    object-fit: cover;
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+.authorName {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--neutral-black);
+    margin-bottom: 0.25rem;
+}
+.authorDescription {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+/* Article Actions (Share, Print) */
+.articleActions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--medium-gray);
+    display: flex;
+    gap: 1rem;
+}
+.actionButton { /* Reusable style for share/print */
+    background-color: var(--neutral-white);
+    color: var(--neutral-black);
+    border: 1px solid var(--medium-gray);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--rounded-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.actionButton:hover {
+    background-color: var(--primary-green);
+    color: var(--neutral-white);
+    border-color: var(--primary-green);
+}
+
+
+/* Sidebar Column */
+.sidebarColumn {
+    /* Styles for the sidebar area */
+    padding-top: 1rem; /* Align with content after breadcrumbs */
+}
+.sidebarWidget {
+    background-color: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: var(--rounded-lg);
+    margin-bottom: 2rem;
+    border: 1px solid var(--medium-gray);
+}
+.sidebarTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--neutral-black);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-yellow);
+}
+.tocList {
+    list-style: none;
+    padding-left: 0;
+}
+.tocList li a {
+    display: block;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--medium-gray);
+    transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+.tocList li:last-child a {
+    border-bottom: none;
+}
+.tocList li a:hover {
+    color: var(--primary-green);
+    padding-left: 0.5rem;
+}
+.relatedProductsGrid { /* For ProductCard in sidebar */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.relatedProductsGrid .card { /* Assuming ProductCard has a root class 'card' */
+    /* Potentially more compact styling for sidebar products */
+    /* e.g., smaller font sizes, less padding if a 'isCompact' prop is used */
+}
+.sidebarCta { /* For CallToAction in sidebar */
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .guideHeroImageWrapper { height: 300px; }
+  .guideTitleHero { font-size: 1.8rem; }
+  .guideMetaHero { font-size: 0.8rem; }
+  .articleBody { font-size: 1rem; }
+  .articleBody h2 { font-size: 1.5rem; }
+  .articleBody h3 { font-size: 1.3rem; }
+  .authorBioSection { flex-direction: column; align-items: center; text-align: center; }
+}
+

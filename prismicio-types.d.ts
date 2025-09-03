@@ -69,121 +69,196 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type BannerDocumentDataSlicesSlice = never;
-
 /**
- * Content for Banner documents
+ * Item in *Guide → Comparisons*
  */
-interface BannerDocumentData {
+export interface GuideDocumentDataComparisonsItem {
   /**
-   * Name field in *Banner*
+   * Rank1 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Rank
+   * - **API ID Path**: guide.comparisons[].rank1
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  rank1: prismic.KeyTextField;
+
+  /**
+   * Rank2 field in *Guide → Comparisons*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: banner.name
-   * - **Tab**: Main
+   * - **API ID Path**: guide.comparisons[].rank2
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  name: prismic.KeyTextField;
+  rank2: prismic.KeyTextField;
 
   /**
-   * Description field in *Banner*
+   * Rank3 field in *Guide → Comparisons*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: banner.description
-   * - **Tab**: Main
+   * - **API ID Path**: guide.comparisons[].rank3
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  description: prismic.KeyTextField;
+  rank3: prismic.KeyTextField;
 
   /**
-   * Validity field in *Banner*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner.validity
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  validity: prismic.KeyTextField;
-
-  /**
-   * Link field in *Banner*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner.link
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-
-  /**
-   * Shop field in *Banner*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner.shop
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  shop: prismic.KeyTextField;
-
-  /**
-   * Slice Zone field in *Banner*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
-   */
-  slices: prismic.SliceZone<BannerDocumentDataSlicesSlice> /**
-   * Meta Title field in *Banner*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: banner.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *Banner*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: banner.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Banner*
+   * Image1 field in *Guide → Comparisons*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: banner.meta_image
-   * - **Tab**: SEO & Metadata
+   * - **API ID Path**: guide.comparisons[].image1
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  meta_image: prismic.ImageField<never>;
-}
+  image1: prismic.ImageField<never>;
 
-/**
- * Banner document from Prismic
- *
- * - **API ID**: `banner`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type BannerDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<BannerDocumentData>, "banner", Lang>;
+  /**
+   * Image2 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].image2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image2: prismic.ImageField<never>;
+
+  /**
+   * Image3 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].image3
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image3: prismic.ImageField<never>;
+
+  /**
+   * Title1 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].title1
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title1: prismic.KeyTextField;
+
+  /**
+   * Title2 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].title2
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title2: prismic.KeyTextField;
+
+  /**
+   * Title3 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].title3
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title3: prismic.KeyTextField;
+
+  /**
+   * Name1 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].name1
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  name1: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Name2 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].name2
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  name2: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Name3 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].name3
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  name3: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Paragraph1 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].paragraph1
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  paragraph1: prismic.KeyTextField;
+
+  /**
+   * Paragraph2 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].paragraph2
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  paragraph2: prismic.KeyTextField;
+
+  /**
+   * Paragraph3 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].paragraph3
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  paragraph3: prismic.KeyTextField;
+
+  /**
+   * Link1 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].link1
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link1: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * Link2 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].link2
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link2: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * Link3 field in *Guide → Comparisons*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[].link3
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link3: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
 
 type GuideDocumentDataSlicesSlice = never;
 
@@ -247,6 +322,41 @@ interface GuideDocumentData {
   guide: prismic.RichTextField;
 
   /**
+   * Comparisons field in *Guide*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.comparisons[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  comparisons: prismic.GroupField<Simplify<GuideDocumentDataComparisonsItem>>;
+
+  /**
+   * EndGuide field in *Guide*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.endguide
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  endguide: prismic.RichTextField;
+
+  /**
+   * Links field in *Guide*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: guide.links
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  links: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
    * Slice Zone field in *Guide*
    *
    * - **Field Type**: Slice Zone
@@ -300,6 +410,82 @@ interface GuideDocumentData {
  */
 export type GuideDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<GuideDocumentData>, "guide", Lang>;
+
+/**
+ * Content for MarketingBanner documents
+ */
+interface MarketingbannerDocumentData {
+  /**
+   * Image field in *MarketingBanner*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: marketingbanner.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *MarketingBanner*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: marketingbanner.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Short Paragraph field in *MarketingBanner*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: marketingbanner.short_paragraph
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  short_paragraph: prismic.KeyTextField;
+
+  /**
+   * Link field in *MarketingBanner*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link
+   * - **API ID Path**: marketingbanner.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Offer field in *MarketingBanner*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: marketingbanner.offer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  offer: prismic.KeyTextField;
+}
+
+/**
+ * MarketingBanner document from Prismic
+ *
+ * - **API ID**: `marketingbanner`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MarketingbannerDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<MarketingbannerDocumentData>,
+    "marketingbanner",
+    Lang
+  >;
 
 /**
  * Content for Product documents
@@ -410,7 +596,10 @@ export type ProductDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = BannerDocument | GuideDocument | ProductDocument;
+export type AllDocumentTypes =
+  | GuideDocument
+  | MarketingbannerDocument
+  | ProductDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -433,12 +622,12 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      BannerDocument,
-      BannerDocumentData,
-      BannerDocumentDataSlicesSlice,
       GuideDocument,
       GuideDocumentData,
+      GuideDocumentDataComparisonsItem,
       GuideDocumentDataSlicesSlice,
+      MarketingbannerDocument,
+      MarketingbannerDocumentData,
       ProductDocument,
       ProductDocumentData,
       AllDocumentTypes,

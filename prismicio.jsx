@@ -18,6 +18,7 @@ const routes = [
   // Examples:
   // { type: "homepage", path: "/" },
   // { type: "page", path: "/:uid" },
+     { type: "guide", path: "/guides/:uid" }, 
 ];
 
 /**
