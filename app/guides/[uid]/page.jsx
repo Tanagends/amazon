@@ -23,8 +23,6 @@ export default async function Page({ params }) {
   const client = createClient();
   const page = await client.getByUID("guide", uid).catch(() => notFound());
   const { data } = page;
-  console.log("Here it is: ");
-  console.log(page.data.comparisons[0].name1);
  
 
   // Format the date

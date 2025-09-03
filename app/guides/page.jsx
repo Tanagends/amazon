@@ -1,5 +1,7 @@
 import {allGuides} from "../../components/guides"
 import GuidesPage from "./GuidesPage"
+import { createClient } from "@/prismicio";
+
 
 export const metadata = {
   title: "Shopping Guides | Clickys.in Tips & Tricks",
@@ -29,8 +31,11 @@ export const metadata = {
     description: "Get expert tips on buying smartwatches, kitchen tools, and more with Clickys.in’s Amazon and Flipkart guides!"
   }
 };
-const page = () => {
+const page = async () => {
   return (
+    const client = createClient();
+    const guides = await client.getAllByType('guide');
+
     <GuidesPage guides={allGuides} />
   )
 }
