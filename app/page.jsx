@@ -13,6 +13,7 @@ import Image from 'next/image'; // For Buying Guides section images
 import Link from 'next/link'; // For guide card links
 import {products} from '../components/products';
 import {allGuides} from '../components/guides';
+import { createClient } from "../prismicio";
 
 // Page-specific metadata
 export const metadata = {
@@ -100,6 +101,11 @@ export default async function HomePage() {
     } catch (err) {
         placeholderProducts = products.filter(product => product.onPromotion);
     }
+  
+
+    const client = createClient();
+    const banner =  await client.getAllByType("marketingbanner");
+    console.log(banner);
 
   return (
     <AnimatedPageWrapper>
@@ -144,15 +150,17 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      
 
-      {/* Promotion Banner Section */}
+      <PromotionBanner slice={banner[0]} />
+      {/* Promotion Banner Section 
       <div className="container" data-aos="zoom-in-up" data-aos-duration="600">
         <PromotionBanner
             alignText="center" // Can be 'left', 'center', or 'right'
             overlayOpacity={0.55}
             buttonType="primary" // Green button for this banner
         />
-      </div>
+      </div> */}
 
       {/* Category Highlights Section */}
       <section className={`${styles.section} ${styles.categorySection}`}>
@@ -161,7 +169,7 @@ export default async function HomePage() {
             Explore by Category
           </h2>
           <p className={styles.sectionSubtitle} data-aos="fade-up" data-aos-delay="100">
-            Find exactly what you're looking for in our curated product categories.
+            Find exactly what you&#39;re looking for in our curated product categories.
           </p>
           <div className={styles.categoryGrid}>
             {placeholderCategories.map(category => (
@@ -175,10 +183,10 @@ export default async function HomePage() {
       <section className={`${styles.section} ${styles.dealsSection}`}>
         <div className="container">
           <h2 className={styles.sectionTitle} data-aos="fade-up">
-            <FiGift className={styles.titleIcon} /> Amazon's Top Deals
+            <FiGift className={styles.titleIcon} /> Amazon&#39;s Top Deals
           </h2>
           <p className={styles.sectionSubtitle} data-aos="fade-up" data-aos-delay="100">
-            Limited-time offers on fantastic products. Grab them before they're gone!
+            Limited-time offers on fantastic products. Grab them before they&#39;re gone!
           </p>
           <div className={styles.productGrid}>
             {placeholderProducts.slice(4, 8).map((product) => (
@@ -227,7 +235,7 @@ export default async function HomePage() {
         <div className="container">
           <h2 className={styles.sectionTitle} data-aos="fade-up">Why Trust Clickys?</h2>
           <p className={styles.sectionSubtitle} data-aos="fade-up" data-aos-delay="100">
-            We're committed to providing you with the best, most reliable shopping advice.
+            We&#39;re committed to providing you with the best, most reliable shopping advice.
           </p>
           <div className={styles.trustElementsGrid}>
             <div className={styles.trustElement} data-aos="fade-up" data-aos-delay="150">
@@ -238,7 +246,7 @@ export default async function HomePage() {
             <div className={styles.trustElement} data-aos="fade-up" data-aos-delay="250">
               <FiCheckCircle className={styles.trustIcon} />
               <h4 className={styles.trustTitle}>Expertly Curated Selection</h4>
-              <p className={styles.trustText}>We handpick the best products, so you don't have to sift through endless options online.</p>
+              <p className={styles.trustText}>We handpick the best products, so you don&#39;t have to sift through endless options online.</p>
             </div>
             <div className={styles.trustElement} data-aos="fade-up" data-aos-delay="350">
               <FiAward className={styles.trustIcon} />

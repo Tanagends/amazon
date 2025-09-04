@@ -1,84 +1,98 @@
 "use client";
-// app/guides/page.js
-// This will be a Server Component by default.
 
 import Link from 'next/link';
-import Image from 'next/image';
-import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjust path
-import styles from '../../styles/GuidesPage.module.css'; // Create this CSS Module
+import { PrismicNextImage } from '@prismicio/next';
 import { FiMessageSquare, FiFilter, FiSearch, FiArrowRight, FiCalendar, FiUser, FiX } from 'react-icons/fi';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import AnimatedPageWrapper from '../../components/AnimatedPageWrapper'; // Adjust path if needed
+import styles from '../../styles/GuidesPage.module.css'; // Adjust path if needed
 
-export default function GuidesPage({guides}) {
-
+export default function GuidesPageClient({ guides }) {
+  // --- STATE MANAGEMENT ---
   const [sortOption, setSortOption] = useState("recent");
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // --- DERIVED STATE & MEMOIZATION ---
   const allCategories = useMemo(
     () => Array.from(new Set(guides.map((g) => g.category))),
     [guides]
   );
   
-  // Set all categories as selected by default on first load
-  useState(() => {
-    setSelectedCategories(allCategories);
+  // Effect to set all categories as selected by default on initial component load
+  useEffect(() => {
+    if (allCategories.length > 0) {
+        setSelectedCategories(allCategories);
+    }
   }, [allCategories]);
 
+  // Memoized logic for sorting guides based on the selected option
   const sortedGuides = useMemo(() => {
-    // Clone the array to avoid mutating the original prop
     let sortableGuides = [...guides];
     switch (sortOption) {
-      case "popular":
-        return sortableGuides.sort((a, b) => (b.views || 0) - (a.views || 0));
+      // Note: "popular" sort option is removed as this data is not available from Prismic.
       case "title_asc":
         return sortableGuides.sort((a, b) => a.title.localeCompare(b.title));
       case "title_desc":
         return sortableGuides.sort((a, b) => b.title.localeCompare(a.title));
       case "recent":
       default:
-        return sortableGuides.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Ensure date objects are valid before comparing
+        return sortableGuides.sort((a, b) => {
+            const dateA = a.date ? new Date(a.date) : 0;
+            const dateB = b.date ? new Date(b.date) : 0;
+            return dateB - dateA;
+        });
     }
   }, [guides, sortOption]);
 
+  // Memoized logic for filtering guides by selected categories
   const filteredGuides = useMemo(() => {
+    // If all categories are selected, no filtering is needed
     if (selectedCategories.length === allCategories.length) return sortedGuides;
     if (selectedCategories.length === 0) return [];
     return sortedGuides.filter((g) => selectedCategories.includes(g.category));
   }, [sortedGuides, selectedCategories, allCategories]);
 
+  // Memoized logic for searching within the filtered guides
   const guidesToShow = useMemo(() => {
     if (!searchQuery) return filteredGuides;
     const q = searchQuery.toLowerCase();
     return filteredGuides.filter(g => g.title.toLowerCase().includes(q) || g.excerpt.toLowerCase().includes(q));
   }, [filteredGuides, searchQuery]);
 
-  // --- NEW: Handlers for filter actions ---
+  // --- EVENT HANDLERS ---
   const handleSelectAll = () => setSelectedCategories(allCategories);
   const handleDeselectAll = () => setSelectedCategories([]);
+  const formatDate = (dateString) => {
+    if (!dateString) return null;
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+  };
 
+  // --- RENDER ---
   return (
     <AnimatedPageWrapper>
       <div className={styles.guidesPageContainer}>
-        <header className={styles.pageHeader} data-aos="fade-in">
+        <header className={styles.pageHeader}>
           <div className="container">
             <FiMessageSquare className={styles.headerIcon} />
-            <h1 className={styles.pageTitle}>Expert Buying Guides</h1>
+            <h1 className={styles.pageTitle}>Discover Trending Products</h1>
             <p className={styles.pageSubtitle}>
-              In-depth reviews, comparisons, and tips to help you choose the best products for your needs.
+              In-depth reviews, comparisons, and tips to help you choose the best products.
             </p>
           </div>
         </header>
 
         <div className="container">
-          <div className={styles.controlsBar} data-aos="fade-in">
+          <div className={styles.controlsBar}>
               <div className={styles.searchAndFilter}>
-                  {/* --- UPDATED: Integrated Search Bar --- */}
                   <div className={styles.searchBox}>
                       <input 
                         type="text" 
-                        placeholder="Search guides by title..." 
+                        placeholder="Search guides..." 
                         className={styles.searchInput}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -94,7 +108,6 @@ export default function GuidesPage({guides}) {
               <div className={styles.sortAndView}>
                   <select className={styles.sortDropdown} aria-label="Sort guides" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
                       <option value="recent">Sort by: Most Recent</option>
-                      <option value="popular">Most Popular</option>
                       <option value="title_asc">Title: A-Z</option>
                       <option value="title_desc">Title: Z-A</option>
                   </select>
@@ -102,7 +115,6 @@ export default function GuidesPage({guides}) {
           </div>        
         </div>
 
-        {/* --- UPDATED: Redesigned Filter Menu --- */}
         {showFilterMenu && (
           <div className={styles.filterOverlay} onClick={() => setShowFilterMenu(false)}>
             <div className={styles.filterMenu} onClick={(e) => e.stopPropagation()}>
@@ -136,7 +148,7 @@ export default function GuidesPage({guides}) {
               </ul>
               <footer className={styles.filterFooter}>
                 <button className={styles.showResultsButton} onClick={() => setShowFilterMenu(false)}>
-                  Show {filteredGuides.length} Guides
+                  Show {guidesToShow.length} Guides
                 </button>
               </footer>
             </div>
@@ -148,17 +160,17 @@ export default function GuidesPage({guides}) {
             {guidesToShow.length > 0 ? (
               <div className={styles.guidesGrid}>
                 {guidesToShow.map(guide => (
-                  <article key={guide.id} className={styles.guideCard} data-aos="fade-up">
+                  <article key={guide.id} className={styles.guideCard}>
                     <Link href={`/guides/${guide.slug}`} className={styles.guideLink}>
                         <div className={styles.guideImageWrapper}>
-                            <Image src={guide.imageUrl} alt={guide.title} fill style={{ objectFit: 'cover' }} />
+                            <PrismicNextImage field={guide.imageField} fill className={styles.guideImage} />
                             {guide.category && <span className={styles.guideCategoryTag}>{guide.category}</span>}
                         </div>
                         <div className={styles.guideContent}>
                             <h3 className={styles.guideTitle}>{guide.title}</h3>
                             <div className={styles.guideMeta}>
                                 {guide.author && <span><FiUser className={styles.metaIcon}/> {guide.author}</span>}
-                                {guide.date && <span><FiCalendar className={styles.metaIcon}/> {guide.date}</span>}
+                                {guide.date && <span><FiCalendar className={styles.metaIcon}/> {formatDate(guide.date)}</span>}
                             </div>
                             <p className={styles.guideExcerpt}>{guide.excerpt}</p>
                             <span className={styles.guideReadMore}>
@@ -170,17 +182,16 @@ export default function GuidesPage({guides}) {
                 ))}
               </div>
             ) : (
-              <div className={styles.noGuidesMessage} data-aos="fade-up">
+              <div className={styles.noGuidesMessage}>
                 <h2>No Guides Found</h2>
-                <p>We couldn't find any guides matching your search or filter criteria.</p>
+                <p>We couldn&#39;t find any guides matching your current search or filter criteria.</p>
               </div>
             )}
           </div>
         </section>
-
-        {/* You can implement a proper pagination component here */}
-        
       </div>
     </AnimatedPageWrapper>
   );
 }
+
+

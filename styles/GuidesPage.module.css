@@ -1,12 +1,12 @@
 /* styles/GuidesPage.module.css */
-/* Ensure this file is in your styles directory and the import path is correct. */
+/* This file contains the necessary styles for the guides page. */
 
 .guidesPageContainer {
   padding-bottom: 3rem;
 }
 
 .pageHeader {
-  background: linear-gradient(120deg, var(--primary-blue, #3498DB) 0%, var(--secondary-blue, #2980B9) 100%);
+  background: linear-gradient(120deg, var(--primary-green, #2ECC71) 0%, var(--secondary-green, #27ae60) 100%);
   color: var(--neutral-white);
   padding: 3rem 1rem;
   text-align: center;
@@ -16,7 +16,6 @@
 .pageTitle { font-size: 2.6rem; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
 .pageSubtitle { font-size: 1.1rem; max-width: 650px; margin: 0 auto; opacity: 0.9; }
 
-/* --- UPDATED: Controls Bar & Search --- */
 .controlsBar {
     display: flex;
     flex-wrap: wrap;
@@ -40,6 +39,7 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
+    min-width: 250px;
 }
 .searchInput {
     width: 100%;
@@ -52,14 +52,14 @@
 }
 .searchInput:focus {
     outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
     z-index: 2;
 }
 .searchButton {
-    background-color: var(--primary-blue);
+    background-color: var(--primary-green);
     color: var(--neutral-white);
-    border: 1px solid var(--primary-blue);
+    border: 1px solid var(--primary-green);
     padding: 0.8rem 1.2rem;
     border-radius: 0 var(--rounded-md) var(--rounded-md) 0;
     cursor: pointer;
@@ -70,7 +70,7 @@
     transition: background-color 0.2s ease-in-out;
 }
 .searchButton:hover {
-    background-color: var(--secondary-blue);
+    background-color: var(--secondary-green);
 }
 .controlButton {
     background-color: var(--neutral-white);
@@ -83,12 +83,12 @@
     transition: var(--transition-fast);
     display: flex;
     align-items: center;
-    box-shadow: var(--shadow-xs);
+    box-shadow: var(--shadow-sm);
     white-space: nowrap;
 }
 .controlButton:hover {
-    border-color: var(--primary-blue);
-    color: var(--primary-blue);
+    border-color: var(--primary-green);
+    color: var(--primary-green);
 }
 .sortAndView { display: flex; align-items: center; }
 .sortDropdown {
@@ -98,6 +98,7 @@
     font-size: 0.9rem;
     min-width: 180px;
     cursor: pointer;
+    background-color: white;
 }
 
 /* --- Guides Grid Layout --- */
@@ -106,9 +107,8 @@
 }
 .guidesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 320px);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
-  justify-content: center;
 }
 
 /* --- Card Styles --- */
@@ -125,26 +125,30 @@
 .guideCard:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--primary-blue);
+  border-color: var(--primary-green);
 }
 .guideLink { text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
 .guideImageWrapper {
   aspect-ratio: 16 / 9; position: relative;
   overflow: hidden; background-color: var(--light-gray);
 }
-.guideImageWrapper img { transition: transform 0.4s ease-out; }
-.guideCard:hover .guideImageWrapper img { transform: scale(1.05); }
+.guideImage { 
+    object-fit: cover;
+    transition: transform 0.4s ease-out; 
+}
+.guideCard:hover .guideImage { transform: scale(1.05); }
 .guideCategoryTag {
     position: absolute; top: 12px; left: 12px;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    color: var(--neutral-white); padding: 0.3rem 0.7rem;
+    background-color: var(--primary-yellow);
+    color: var(--neutral-black); 
+    padding: 0.3rem 0.7rem;
     border-radius: var(--rounded-full); font-size: 0.75rem;
-    font-weight: 500; z-index: 1; text-transform: uppercase;
+    font-weight: 600; z-index: 1;
 }
 .guideContent { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
 .guideTitle {
   font-size: 1.3rem; font-weight: 600;
+  color: var(--neutral-black);
   margin-bottom: 0.75rem; line-height: 1.4;
   display: -webkit-box; -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; overflow: hidden;
@@ -153,7 +157,7 @@
 .guideMeta {
     display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem;
     font-size: 0.8rem; color: var(--dark-gray);
-    margin-bottom: 1rem; opacity: 0.9;
+    margin-bottom: 1rem;
 }
 .guideMeta span { display: inline-flex; align-items: center; }
 .metaIcon { margin-right: 0.4em; }
@@ -165,16 +169,16 @@
   overflow: hidden;
 }
 .guideReadMore {
-  font-size: 0.9rem; font-weight: 600; color: var(--primary-blue);
+  font-size: 0.9rem; font-weight: 600; color: var(--primary-green);
   display: inline-flex; align-items: center; gap: 0.3rem;
   margin-top: auto; transition: color 0.2s ease;
 }
-.guideReadMore:hover { color: var(--secondary-blue); text-decoration: underline; }
+.guideReadMore:hover { color: var(--secondary-green); text-decoration: underline; }
 .readMoreIcon { transition: transform 0.2s ease; }
 .guideReadMore:hover .readMoreIcon { transform: translateX(3px); }
 
 
-/* --- CORRECTED & COMPLETE: Redesigned Filter Menu --- */
+/* --- Filter Menu --- */
 .filterOverlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
@@ -182,7 +186,7 @@
 }
 .filterMenu {
   background: white; width: 90%; max-width: 380px;
-  border-radius: var(--rounded-lg); box-shadow: var(--shadow-xl);
+  border-radius: var(--rounded-lg); box-shadow: var(--shadow-lg);
   display: flex; flex-direction: column; overflow: hidden;
   animation: slideIn 0.3s ease-out;
 }
@@ -212,11 +216,11 @@
 }
 .filterActions button {
   font-size: 0.8rem; padding: 0.3rem 0.7rem; border-radius: var(--rounded-full);
-  cursor: pointer; border: 1px solid var(--primary-blue);
-  background: var(--neutral-white); color: var(--primary-blue);
+  cursor: pointer; border: 1px solid var(--primary-green);
+  background: var(--neutral-white); color: var(--primary-green);
   transition: var(--transition-fast);
 }
-.filterActions button:hover { background: var(--primary-blue); color: var(--neutral-white); }
+.filterActions button:hover { background: var(--primary-green); color: var(--neutral-white); }
 .categoryList { list-style: none; padding: 0.5rem 0; margin: 0; overflow-y: auto; max-height: 50vh; }
 .categoryLabel {
   display: flex; align-items: center; cursor: pointer;
@@ -224,29 +228,24 @@
   font-size: 0.95rem;
 }
 .categoryLabel:hover { background-color: #f8f9fa; }
-
-/* These are the crucial styles that were missing */
 .categoryCheckbox { 
-  display: none; /* Hide the default browser checkbox */
+  display: none;
 }
 .customCheckbox {
   width: 18px; height: 18px; border: 2px solid var(--medium-gray);
-  border-radius: var(--rounded-sm); margin-right: 0.8rem;
+  border-radius: var(--rounded-md); margin-right: 0.8rem;
   display: inline-block; position: relative; transition: all 0.2s ease;
 }
-/* Style the custom checkbox when the hidden one is checked */
 .categoryCheckbox:checked + .customCheckbox { 
-  background-color: var(--primary-blue); 
-  border-color: var(--primary-blue); 
+  background-color: var(--primary-green); 
+  border-color: var(--primary-green); 
 }
-/* Create the checkmark using a pseudo-element */
 .customCheckbox::after {
-  content: ''; position: absolute; display: none; /* Hidden by default */
+  content: ''; position: absolute; display: none;
   left: 5px; top: 1px; width: 5px; height: 10px; 
   border: solid white; border-width: 0 2px 2px 0; 
   transform: rotate(45deg);
 }
-/* Display the checkmark when the hidden checkbox is checked */
 .categoryCheckbox:checked + .customCheckbox::after { 
   display: block; 
 }
@@ -256,12 +255,12 @@
   border-top: 1px solid var(--medium-gray); 
 }
 .showResultsButton {
-  width: 100%; padding: 0.8rem; background: var(--primary-blue);
+  width: 100%; padding: 0.8rem; background: var(--primary-green);
   color: white; border: none; cursor: pointer;
   border-radius: var(--rounded-md); font-size: 1rem;
   font-weight: 600; transition: var(--transition-fast);
 }
-.showResultsButton:hover { background: var(--secondary-blue); }
+.showResultsButton:hover { background: var(--secondary-green); }
 
 
 .noGuidesMessage {
@@ -269,7 +268,7 @@
   background-color: var(--light-gray);
   border-radius: var(--rounded-lg); margin-top: 2rem;
 }
-.noGuidesMessage h2 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+.noGuidesMessage h2 { font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--neutral-black);}
 .noGuidesMessage p { font-size: 1rem; color: var(--dark-gray); }
 
 /* Responsive adjustments */
@@ -281,10 +280,13 @@
 @media (max-width: 768px) {
   .pageHeader { padding: 2.5rem 1rem; }
   .pageTitle { font-size: 2.2rem; }
-  .guidesGrid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; justify-content: center; }
-  .searchAndFilter, .sortAndView { flex-direction: column; gap: 0.8rem; }
+  .guidesGrid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .searchAndFilter { flex-direction: column; gap: 0.8rem; }
+  .sortAndView { align-items: stretch; }
   .searchInput, .sortDropdown, .controlButton { width: 100%; }
 }
 @media (max-width: 480px) {
     .guidesGrid { grid-template-columns: 1fr; }
 }
+
+

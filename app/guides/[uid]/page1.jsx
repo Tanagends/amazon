@@ -1,79 +1,379 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { asImageSrc } from "@prismicio/client";
-import { SliceZone } from "@prismicio/react";
+import { asImageSrc, asText } from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicRichText } from "@prismicio/react";
+import { 
+  FiCalendar, 
+  FiUser, 
+  FiClock,
+  FiChevronsRight, 
+  FiExternalLink,
+  FiTag
+} from "react-icons/fi";
 
-import { createClient } from "@/prismicio";
-import { components } from "@/slices";
-import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText, type SliceComponentProps } from "@prismicio/react";
+import { createClient } from "../../../prismicio";
+import styles from "../../../styles/GuideDetailPage.module.css";
+import { GuideClientComponents } from "./GuideClientComponents";
+import { RichTextComponents } from "../../../components/RichTextComponents";
 
-type Params = { uid: string };
+// Helper function to calculate reading time
+const calculateReadingTime = (text) => {
+  const wordsPerMinute = 200;
+  const wordCount = text.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / wordsPerMinute);
+  return readingTime;
+};
 
-export default async function Page({ params }: { params: Promise<Params> }) {
+// Helper component for rendering comparison links
+const ComparisonLink = ({ link, text, prisLink }) => (
+  <PrismicNextLink field={prisLink} className={styles.comparisonButton}>
+    {text || "View Deal"} <FiExternalLink />
+  </PrismicNextLink>
+);
+
+export default async function Page({ params }) {
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("guide", uid).catch(() => notFound());
-  // Access the fields using page.data.field throughout the entire blog from start to the end incorporating styles
-  // Also make the blog have the the title below the image rather than on the image (style)
+  const { data } = page;
 
-  /*
-   * Image - data.image   i.e access as page.data.image and uses prismicnextimage
-   * Title - data.title  i.e text
-   * Author - data.author i.e text
-   * Date - data.date i.e a prismic date field
-   * Guide - data.guide i.e PrismicRichText (Content creaters can compose any of the following html elements: h1 to h6, p for paragraph, ul, ol, embed for youtube videos mainly, Image)
-   * Comparisons - data.comparisons i.e an array of comparisons, each just a two or three card side by side comparisons of items in the blog. Each of the comparisons in the array needs to be displayed in this sectioneg a 2 phones array comparison, a 3 watch comparison thereafter... Till all array elements are shown.... 
-   - Now onto each comparison array element content model:
-     Rank1 - item.rank1 i.e top left of product/card 1 eg labelling Top Pick
-     Rank2 - item.rank2 i.e top left of product/card 2 eg labelling Upgrade Pick
-     Rank3 - item.rank3 i.e top left of product/card 3 eg labelling Budget Pick
-    Image1 - item.image1 i.e card image of product 1
-    Image2 - item.image2 i.e card image of product 2
-    Image3 - item.image3 i.e card image of product 3
-    Title1 - item.title1 i.e Title of product/card 1 eg The best Android smartphone
-    Title2 - item.title2 i.e Title of product/card 2 eg A larger, higher-end Android phone
-    Title3 - item.title3 i.e Title of product/card 3 eg Nearly the best for less
-    Name1 - item.name1 i.e the name of the product 1 eg Google Pixel 10  (but it will be a link to the purchasing site)
-    Name2 - item.name2 i.e the name of the product 2 eg Google Pixel 10 Pro XL (but it will be a link to the purchasing site  )
-    Name3 - item.name3 i.e the name of the product 3 eg Google Pixel 9a  (but it will be a link to the purchasing site  )
-    Paragraph1 - item.paragraph1 i.e product/card 1 descriptive text 
-    Paragraph2 - item.paragraph2 i.e product/card 2 descriptive text
-    Paragraph3 - item.paragraph3 i.e product/card 3 descriptive text
-    Link1 - item.link1 i.e an array of links of product 1 with descriptive text can be 0 or 1,2, or more
-    Link2 - item.link2 i.e an array of links of product 2 with descriptive text
-    Link3 - item.link3 i.e an array of links of product 3 with descriptive text
-   *
-   * To check if it is a Two card or Three card comparison, you check if the title of 3 is there or not. If there, its 3 cards/products, else 2 card comparison.
-   * Furthermore, to even decide if I need to write a comparisons section, check if page.data.comparisons returns a non-empty array. A modern, latest comparison section architecture converts clients
-   *
-   * After comparisons section:
-   * 
-   * EndGuide - data.endguide i.e another PrismicRichText section allowing the continuation of blog writing till the end
-   * Links - data.links i.e  an array of links at the end of the guide with descriptive text
-   *
-   *
-   */
+  // Format the date
+  const publicationDate = data.date
+    ? new Date(data.date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
 
- 
-    
-  return (/* Curate the guide here */);
+  // Calculate reading time
+  const allText = asText(data.guide) + (data.endguide ? asText(data.endguide) : '');
+  const readingTime = calculateReadingTime(allText);
+
+  return (
+    <article className={styles.guideDetailPageContainer}>
+      {/* Hero Section with Image */}
+      {data.image && (
+        <div className={styles.heroSection}>
+          <div className={styles.heroImageWrapper}>
+            <PrismicNextImage
+              field={data.image}
+              alt={data.image.alt || data.title || ""}
+              fill
+              sizes="100vw"
+              priority
+              className={styles.heroImage}
+            />
+            <div className={styles.heroOverlay} />
+          </div>
+          <div className={styles.heroContent}>
+            <div className="container">
+              {/* Breadcrumbs */}
+              <nav aria-label="breadcrumb" className={styles.breadcrumbs}>
+                <PrismicNextLink href="/" className={styles.breadcrumbLink}>
+                  Home
+                </PrismicNextLink>
+                <FiChevronsRight className={styles.breadcrumbSeparator} />
+                <PrismicNextLink href="/guides" className={styles.breadcrumbLink}>
+                  Guides
+                </PrismicNextLink>
+                <FiChevronsRight className={styles.breadcrumbSeparator} />
+                <span className={styles.breadcrumbCurrent}>{data.title}</span>
+              </nav>
+
+              {/* Header Section */}
+              <header className={styles.guideHeader}>
+                <h1 className={styles.guideTitle}>{data.title}</h1>
+                <div className={styles.guideMeta}>
+                  {data.author && (
+                    <span className={styles.metaItem}>
+                      <FiUser className={styles.metaIcon} />
+                      By <strong>{data.author}</strong>
+                    </span>
+                  )}
+                  {publicationDate && (
+                    <span className={styles.metaItem}>
+                      <FiCalendar className={styles.metaIcon} />
+                      {publicationDate}
+                    </span>
+                  )}
+                  <span className={styles.metaItem}>
+                    <FiClock className={styles.metaIcon} />
+                    {readingTime} min read
+                  </span>
+                </div>
+              </header>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="container">
+        <div className={styles.contentWrapper}>
+          {/* Sticky Sidebar - Client Component */}
+          <GuideClientComponents.Sidebar 
+            content={data.guide}
+            title={data.title}
+          />
+
+          {/* Main Content */}
+          <div className={styles.mainContent}>
+            {/* Main Guide Content */}
+            <div className={styles.articleBody}>
+              <PrismicRichText 
+                field={data.guide} 
+                components={RichTextComponents}
+              />
+            </div>
+
+            {/* Comparisons Section */}
+            {data.comparisons && data.comparisons.length > 0 && (
+              <section className={styles.comparisonsSection}>
+                <h2 className={styles.sectionTitle}>
+                  <span className={styles.sectionTitleText}>Our Top Picks Compared</span>
+                  <span className={styles.sectionTitleLine}></span>
+                </h2>
+                <div className={styles.comparisonsGrid}>
+                  {data.comparisons.map((item, index) => {
+                    const isThreeCard = item.title3 && item.name3;
+                    return (
+                      <div 
+                        key={index} 
+                        className={`${styles.comparisonBlock} ${
+                          isThreeCard ? styles.threeCard : styles.twoCard
+                        }`}
+                      >
+                        {/* Card 1 */}
+                        <div className={styles.comparisonCard}>
+                          {item.rank1 && (
+                            <div className={styles.rankBadge}>
+                              <span className={styles.rankNumber}>{item.rank1}</span>
+                              <span className={styles.rankLabel}>Choice</span>
+                            </div>
+                          )}
+                          <div className={styles.cardImageWrapper}>
+                            <PrismicNextImage 
+                              field={item.image1} 
+                              className={styles.cardImage} 
+                              alt={item.image1.alt || ""}
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                            />
+                          </div>
+                          <div className={styles.cardContent}>
+                            <span className={styles.cardCategory}>{item.title1}</span>
+                            <PrismicNextLink 
+                              field={item.name1} 
+                              className={styles.productNameLink}
+                            >
+                              <h3 className={styles.productName}>{asText(item.name1)}</h3>
+                            </PrismicNextLink>
+                            <div className={styles.cardParagraph}>
+                              {item.paragraph1 && typeof item.paragraph1 === 'object' ? (
+                                <PrismicRichText field={item.paragraph1} components={RichTextComponents} />
+                              ) : (
+                                <p>{item.paragraph1}</p>
+                              )}
+                            </div>
+                            <div className={styles.cardLinks}>
+                              {item.link1?.map((linkItem, linkIndex) => (
+                                <ComparisonLink 
+                                  key={linkIndex} 
+                                  link={linkItem.url} 
+                                  text={linkItem.text} 
+                                  prisLink={linkItem}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card 2 */}
+                        <div className={styles.comparisonCard}>
+                          {item.rank2 && (
+                            <div className={styles.rankBadge}>
+                              <span className={styles.rankNumber}>{item.rank2}</span>
+                              <span className={styles.rankLabel}>Choice</span>
+                            </div>
+                          )}
+                          <div className={styles.cardImageWrapper}>
+                            <PrismicNextImage 
+                              field={item.image2} 
+                              className={styles.cardImage} 
+                              alt={item.image2.alt || ""}
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                            />
+                          </div>
+                          <div className={styles.cardContent}>
+                            <span className={styles.cardCategory}>{item.title2}</span>
+                            <PrismicNextLink 
+                              field={item.name2} 
+                              className={styles.productNameLink}
+                            >
+                              <h3 className={styles.productName}>{asText(item.name2)}</h3>
+                            </PrismicNextLink>
+                            <div className={styles.cardParagraph}>
+                              {item.paragraph2 && typeof item.paragraph2 === 'object' ? (
+                                <PrismicRichText field={item.paragraph2} components={RichTextComponents} />
+                              ) : (
+                                <p>{item.paragraph2}</p>
+                              )}
+                            </div>
+                            <div className={styles.cardLinks}>
+                              {item.link2?.map((linkItem, linkIndex) => (
+                                <ComparisonLink 
+                                  key={linkIndex} 
+                                  link={linkItem.url} 
+                                  text={linkItem.text} 
+                                  prisLink={linkItem}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card 3 (Conditional) */}
+                        {isThreeCard && (
+                          <div className={styles.comparisonCard}>
+                            {item.rank3 && (
+                              <div className={styles.rankBadge}>
+                                <span className={styles.rankNumber}>{item.rank3}</span>
+                                <span className={styles.rankLabel}>Choice</span>
+                              </div>
+                            )}
+                            <div className={styles.cardImageWrapper}>
+                              <PrismicNextImage 
+                                field={item.image3} 
+                                className={styles.cardImage} 
+                                alt={item.image3.alt || ""}
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                              />
+                            </div>
+                            <div className={styles.cardContent}>
+                              <span className={styles.cardCategory}>{item.title3}</span>
+                              <PrismicNextLink 
+                                field={item.name3} 
+                                className={styles.productNameLink}
+                              >
+                                <h3 className={styles.productName}>{asText(item.name3)}</h3>
+                              </PrismicNextLink>
+                              <div className={styles.cardParagraph}>
+                                {item.paragraph3 && typeof item.paragraph3 === 'object' ? (
+                                  <PrismicRichText field={item.paragraph3} components={RichTextComponents} />
+                                ) : (
+                                  <p>{item.paragraph3}</p>
+                                )}
+                              </div>
+                              <div className={styles.cardLinks}>
+                                {item.link3?.map((linkItem, linkIndex) => (
+                                  <ComparisonLink 
+                                    key={linkIndex} 
+                                    link={linkItem.url} 
+                                    text={linkItem.text} 
+                                    prisLink={linkItem}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
+            {/* End of Guide Content */}
+            {data.endguide && asText(data.endguide) && (
+              <div className={styles.articleBody}>
+                <PrismicRichText 
+                  field={data.endguide} 
+                  components={RichTextComponents}
+                />
+              </div>
+            )}
+
+            {/* Final Links Section */}
+            {data.links && data.links.length > 0 && (
+              <section className={styles.finalLinksSection}>
+                <h3 className={styles.sectionTitle}>
+                  <span className={styles.sectionTitleText}>Further Reading & Sources</span>
+                  <span className={styles.sectionTitleLine}></span>
+                </h3>
+                <ul className={styles.finalLinksList}>
+                  {data.links.map((linkItem, index) => (
+                    <li key={index}>
+                      <PrismicNextLink 
+                        field={linkItem} 
+                        className={styles.finalLink}
+                      >
+                        <span className={styles.finalLinkText}>
+                          {linkItem.text || linkItem.url}
+                        </span>
+                        <FiExternalLink className={styles.finalLinkIcon} />
+                      </PrismicNextLink>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {/* Tags Section */}
+            {data.tags && data.tags.length > 0 && (
+              <div className={styles.tagsSection}>
+                <h4 className={styles.tagsTitle}>
+                  <FiTag /> Related Topics
+                </h4>
+                <div className={styles.tagsList}>
+                  {data.tags.map(tag => (
+                    <PrismicNextLink 
+                      key={tag.id || tag} 
+                      href={`/tags/${tag.uid || tag}`}
+                      className={styles.tagLink}
+                    >
+                      {tag.data?.name || tag}
+                    </PrismicNextLink>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Right Sidebar (if needed) */}
+          <aside className={styles.sidebarRight}>
+            {/* Additional widgets can go here */}
+          </aside>
+        </div>
+      </div>
+    </article>
+  );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }) {
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("guide", uid).catch(() => notFound());
 
   return {
-    title: page.data.meta_title,
+    title: page.data.meta_title || page.data.title,
     description: page.data.meta_description,
     openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
+      title: page.data.meta_title || page.data.title,
+      description: page.data.meta_description,
+      images: [{ url: asImageSrc(page.data.meta_image || page.data.image) ?? "" }],
+      type: 'article',
+      article: {
+        publishedTime: page.data.date,
+        author: page.data.author,
+        tags: page.data.tags?.map(tag => tag.data?.name || tag),
+      },
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.data.meta_title || page.data.title,
+      description: page.data.meta_description,
+      images: [asImageSrc(page.data.meta_image || page.data.image) ?? ""],
     },
   };
 }

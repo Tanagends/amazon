@@ -5,27 +5,47 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import { FiCalendar, FiUser, FiTag, FiChevronsRight, FiExternalLink } from "react-icons/fi";
 
-import { createClient } from "../../../prismicio";
-import styles from "../../../styles/GuideDetailPage.module.css";
-//type Params = { uid: string };
+import { createClient } from "../../../prismicio"; // Adjust this path if needed
+import styles from "../../../styles/GuideDetailPage.module.css"; // Adjust this path if needed
 
-// Helper component for rendering comparison links
-const ComparisonLink = ({ link, text, prisLink }) => (
+// --- Rich Text Components for Custom Styling ---
+const richTextComponents = {
+  paragraph: ({ children }) => <p className={styles.paragraph}>{children}</p>,
+  list: ({ children }) => <ul className={styles.list}>{children}</ul>,
+  oList: ({ children }) => <ol className={styles.oList}>{children}</ol>,
+  image: ({ node }) => (
+    <figure className={styles.richImageWrapper}>
+      <PrismicNextImage field={node} className={styles.richImage} />
+      {node.alt && <figcaption className={styles.richImageCaption}>{node.alt}</figcaption>}
+    </figure>
+  ),
+  embed: ({ node }) => (
+    <div
+      data-oembed={node.oembed.embed_url}
+      data-oembed-type={node.oembed.type}
+      data-oembed-provider={node.oembed.provider_name}
+      className={styles.embedWrapper}
+      dangerouslySetInnerHTML={{ __html: node.oembed.html ?? "" }}
+    />
+  ),
+};
+
+
+// --- Helper component for rendering comparison links ---
+const ComparisonLink = ({ prisLink }) => (
   <PrismicNextLink field={prisLink} className={styles.comparisonButton}>
-    {text || "View Deal"} <FiExternalLink />
+    {prisLink.text || "View Deal"} <FiExternalLink />
   </PrismicNextLink>
 );
 
-//type Params = { uid: string };
-
+// --- Main Page Component ---
 export default async function Page({ params }) {
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("guide", uid).catch(() => notFound());
   const { data } = page;
- 
+  //console.log(data.comparisons[0].link1);
 
-  // Format the date
   const publicationDate = data.date
     ? new Date(data.date).toLocaleDateString("en-US", {
         year: "numeric",
@@ -36,28 +56,29 @@ export default async function Page({ params }) {
 
   return (
     <article className={styles.guideDetailPageContainer}>
-      {/* Main Guide Image */}
-      {data.image && (
-        <div className={styles.guideHeaderImageWrapper}>
+      {data.image && data.image.url && (
+        <figure className={styles.guideHeaderImageWrapper}>
           <PrismicNextImage
             field={data.image}
-            alt={data.image.alt || data.title || ""}
             fill
-            style={{ objectFit: 'cover' }}
+            className={styles.guideHeaderImage}
             priority
           />
-        </div>
+          {data.image.alt && (
+            <figcaption className={styles.headerImageCaption}>
+              {data.image.alt}
+            </figcaption>
+          )}
+        </figure>
       )}
 
       <div className="container">
-        {/* Breadcrumbs */}
         <nav aria-label="breadcrumb" className={styles.breadcrumbs}>
             <a href="/">Home</a> <FiChevronsRight size={12} />
             <a href="/guides">Guides</a> <FiChevronsRight size={12} />
             <span>{data.title}</span>
         </nav>
 
-        {/* Header Section: Title, Author, Date */}
         <header className={styles.guideHeader}>
           <h1 className={styles.guideTitle}>{data.title}</h1>
           <div className={styles.guideMeta}>
@@ -66,120 +87,46 @@ export default async function Page({ params }) {
           </div>
         </header>
 
-        {/* Main Guide Content */}
         <div className={styles.articleBody}>
-          <PrismicRichText field={data.guide} />
+          <PrismicRichText field={data.guide} components={richTextComponents} />
         </div>
 
-        {/* Comparisons Section */}
         {data.comparisons && data.comparisons.length > 0 && (
           <section className={styles.comparisonsSection}>
             <h2 className={styles.sectionTitle}>Our Top Picks Compared</h2>
             {data.comparisons.map((item, index) => {
-              const isThreeCard = item.title3 && item.title3;
+              const isThreeCard = item.title3;
               return (
                 <div key={index} className={`${styles.comparisonBlock} ${isThreeCard ? styles.threeCard : styles.twoCard}`}>
-                  {/* Card 1 */}
-                  <div className={styles.comparisonCard}>
-                    {item.rank1 && <div className={styles.rankBadge}>{item.rank1}</div>}
-                    <div className={styles.cardImageWrapper}>
-                        <PrismicNextImage field={item.image1} className={styles.cardImage} alt={item.image1.alt || ""} />
-                    </div>
-                    <div className={styles.cardContent}>
-                        <h3 className={styles.cardTitle}>{item.title1}</h3>
-                        <PrismicNextLink field={item.name1} className={styles.productNameLink}>
-                            <h4>{item.name1.text}</h4>
-                        </PrismicNextLink>
-                        <div className={styles.cardParagraph}>
-                            {/*<PrismicRichText field={item.paragraph1} />*/}
-                            {item.paragraph1}
-                        </div>
-                        <div className={styles.cardLinks}>
-                            {item.link1.map((linkItem, linkIndex) => (
-                                <ComparisonLink key={linkIndex} link={linkItem.url} text={linkItem.text} prisLink={linkItem}/>
-                            ))}
-                        </div>
-                    </div>
-                  </div>
-
-                  {/* Card 2 */}
-                  <div className={styles.comparisonCard}>
-                    {item.rank2 && <div className={styles.rankBadge}>{item.rank2}</div>}
-                    <div className={styles.cardImageWrapper}>
-                        <PrismicNextImage field={item.image2} className={styles.cardImage} alt={item.image2.alt || ""} />
-                    </div>
-                    <div className={styles.cardContent}>
-                        <h3 className={styles.cardTitle}>{item.title2}</h3>
-                        <PrismicNextLink field={item.name2} className={styles.productNameLink}>
-                            <h4>{item.name2.text}</h4>
-                        </PrismicNextLink>
-                        <div className={styles.cardParagraph}>
-                            {/*<PrismicRichText field={item.paragraph2} />*/}
-                            {item.paragraph2}
-                        </div>
-                        <div className={styles.cardLinks}>
-                            {item.link2.map((linkItem, linkIndex) => (
-                                <ComparisonLink key={linkIndex} link={linkItem.url} text={linkItem.text} prisLink={linkItem}/>
-                            ))}
-                        </div>
-                    </div>
-                  </div>
-
-                  {/* Card 3 (Conditional) */}
-                  {isThreeCard && (
-                    <div className={styles.comparisonCard}>
-                        {item.rank3 && <div className={styles.rankBadge}>{item.rank3}</div>}
-                        <div className={styles.cardImageWrapper}>
-                            <PrismicNextImage field={item.image3} className={styles.cardImage} alt={item.image3.alt || ""} />
-                        </div>
-                        <div className={styles.cardContent}>
-                            <h3 className={styles.cardTitle}>{item.title3}</h3>
-                            <PrismicNextLink field={item.name3} className={styles.productNameLink}>
-                                <h4>{item.name3.text}</h4>
-                            </PrismicNextLink>
-                            <div className={styles.cardParagraph}>
-                                {/*<PrismicRichText field={item.paragraph3} />*/}
-                                {item.paragraph3}
-                            </div>
-                            <div className={styles.cardLinks}>
-                                {item.link3.map((linkItem, linkIndex) => (
-                                    <ComparisonLink key={linkIndex} link={linkItem.url} text={linkItem.text} prisLink={linkItem}/>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                  )}
+                  <ComparisonCard item={item} cardNumber={1} />
+                  <ComparisonCard item={item} cardNumber={2} />
+                  {isThreeCard && <ComparisonCard item={item} cardNumber={3} />}
                 </div>
               );
             })}
           </section>
         )}
 
-        {/* End of Guide Content */}
-        {data.endguide && asText(data.endguide) && (
+        {data.endguide && (
              <div className={styles.articleBody}>
-                <PrismicRichText field={data.endguide} />
+                <PrismicRichText field={data.endguide} components={richTextComponents} />
              </div>
         )}
 
-        {/* Final Links Section */}
         {data.links && data.links.length > 0 && (
             <div className={styles.finalLinksSection}>
                 <h3 className={styles.sectionTitle}>Further Reading & Sources</h3>
-                <ul className={styles.finalLinksList}>
+                <div className={styles.finalLinksGrid}>
                     {data.links.map((linkItem, index) => (
-                        <li key={index}>
-                            <PrismicNextLink field={linkItem} className={styles.comparisonButton}>
-                                {linkItem.text || linkItem.url}
-                                <FiExternalLink />
-                            </PrismicNextLink>
-                        </li>
+                        <PrismicNextLink key={index} field={linkItem} className={styles.finalLinkButton}>
+                            <span>{linkItem.text || "View more"}</span>
+                            <FiExternalLink />
+                        </PrismicNextLink>
                     ))}
-                </ul>
+                </div>
             </div>
         )}
 
-        {/* Tags Section 
         {page.tags && page.tags.length > 0 && (
             <div className={styles.tagsSection}>
                 <h4 className={styles.tagsTitle}><FiTag /> Tags:</h4>
@@ -191,14 +138,53 @@ export default async function Page({ params }) {
                 ))}
                 </div>
             </div>
-        )}*/}
-
+        )}
       </div>
     </article>
   );
 }
 
+// --- Comparison Card Sub-component ---
+const ComparisonCard = ({ item, cardNumber }) => {
+    const rank = item[`rank${cardNumber}`];
+    const image = item[`image${cardNumber}`];
+    const title = item[`title${cardNumber}`];
+    const nameLink = item[`name${cardNumber}`];
+    //const nameText = item[`name${cardNumber}Text`];
+    const paragraph = item[`paragraph${cardNumber}`];
+    const links = item[`link${cardNumber}`];
+    console.log("NameLink:", nameLink);
+    console.log("Links:", links);
 
+    if (!title) return null;
+
+    return (
+        <div className={styles.comparisonCard}>
+            {rank && <div className={styles.rankBadge}>{rank}</div>}
+            <div className={styles.cardImageWrapper}>
+                <PrismicNextImage field={image} className={styles.cardImage} />
+            </div>
+            <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>{title}</h3>
+                {nameLink && nameLink.link_type !== 'Any' &&
+                    <PrismicNextLink field={nameLink} className={styles.productNameLink}>
+                        <h4>{nameLink.text || 'Learn More'}</h4>
+                    </PrismicNextLink>
+                }
+                <div className={styles.cardParagraph}>
+                    {paragraph}
+                </div>
+                <div className={styles.cardLinks}>
+                    {links && links.map((linkItem, linkIndex) => (
+                        <ComparisonLink key={linkIndex} prisLink={linkItem} />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// --- Metadata Functions ---
 export async function generateMetadata({ params }) {
   const { uid } = await params;
   const client = createClient();
@@ -219,4 +205,5 @@ export async function generateStaticParams() {
 
   return pages.map((page) => ({ uid: page.uid }));
 }
+
 

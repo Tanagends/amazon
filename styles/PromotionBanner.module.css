@@ -1,84 +1,135 @@
 /* styles/PromotionBanner.module.css */
-.bannerContainer {
-  position: relative;
-  width: 100%;
-  min-height: 300px; /* Adjusted min-height */
-  max-height: 450px;
-  display: flex;
+
+/* --- Banner Wrapper & Marquee --- */
+.bannerWrapper {
+  position: relative; /* Crucial for absolute positioning of offerStrip */
+  margin: 2rem 0;
+  width: 100%; /* Ensure bannerWrapper spans full width */
+}
+
+.offerStrip {
+  position: absolute; /* Positioned relative to bannerWrapper */
+  top: 0;
+  left: 0;
+  width: 100%; /* Spans the entire width of bannerWrapper */
+  background-color: #ffd700; /* A vibrant offer color */
+  color: #111;
+  padding: 0.5rem 0;
   overflow: hidden;
-  background-color: var(--dark-gray); /* Fallback */
-  border-radius: var(--rounded-lg); /* Optional rounded corners for the banner */
-  margin: 2rem 0; /* Space around the banner */
+  white-space: nowrap;
+  border-bottom: 2px solid #111;
+  z-index: 10; /* Ensure marquee is on top of everything */
 }
 
-.bannerImageWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.bannerImage { /* For Next.js Image */
-  transition: transform 0.7s ease-out;
-}
-.bannerContainer:hover .bannerImage {
-  transform: scale(1.03); /* Subtle zoom on hover */
+.offerText {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  animation: marquee 40s linear infinite;
 }
 
-.bannerOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  /* background-color set dynamically */
+.offerText span {
+  padding: 0 2rem;
 }
 
-.bannerContent {
-  position: relative;
-  z-index: 3;
-  padding: 2.5rem; /* Increased padding */
-  width: 100%;
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Main Two-Column Banner --- */
+.bannerContainer {
+  display: flex;
+  min-height: 400px; /* Slightly reduced min-height for better balance */
+  border-radius: var(--rounded-lg);
+  overflow: hidden;
+  background-color: var(--primary-yellow);
+  margin-top: 2rem; /* Give space for the absolutely positioned offerStrip */
+}
+
+/* --- Left Column (Text) --- */
+.textColumn {
+  flex: 1;
+  padding: 3rem 4rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: var(--primary-yellow);
 }
 
-.align-left { align-items: flex-start; text-align: left; }
-.align-center { align-items: center; text-align: center; }
-.align-right { align-items: flex-end; text-align: right; }
-
-.align-left .bannerButton, .align-right .bannerButton { /* Ensure button aligns with text */
-  align-self: auto; /* Reset if CallToAction has its own alignment */
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--dark-gray, #1a1a1a);
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
 }
-.align-left > div > .btn { align-self: flex-start; } /* Target CallToAction's button */
-.align-right > div > .btn { align-self: flex-end; }
-.align-center > div > .btn { align-self: center; }
 
-
-.bannerTitle {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 0.7rem;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-  line-height: 1.25;
-}
-.bannerSubtitle {
+.paragraph {
   font-size: 1.1rem;
-  margin-bottom: 1.8rem;
-  line-height: 1.6;
-  max-width: 600px; /* Limit subtitle width */
-  opacity: 0.9;
-}
-.bannerButton { /* Specific overrides for CallToAction used in banner */
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
+  color: var(--dark-gray, #1a1a1a);
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+  max-width: 500px;
 }
 
-@media (max-width: 768px) {
-  .bannerContainer { min-height: 280px; }
-  .bannerTitle { font-size: 1.8rem; }
-  .bannerSubtitle { font-size: 1rem; margin-bottom: 1.5rem; }
-  .bannerContent { padding: 2rem; }
+.bannerButton {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  font-size: 1rem;
+  background-color: var(--primary-green);
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bannerButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* --- Right Column (Image) --- */
+.imageColumn {
+  flex: 1;
+  display: flex; /* Use flex to center/contain the image if needed */
+  min-width: 50%;
+  position: relative; /* For the image to fill it */
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is key: image covers the column without distortion */
+  display: block; /* Removes any extra space below image */
+}
+
+
+/* --- Responsive Stacking for Mobile --- */
+@media (max-width: 820px) {
+  .bannerContainer {
+    flex-direction: column-reverse;
+    min-height: auto;
+  }
+  .textColumn {
+    padding: 2.5rem;
+    align-items: center;
+    text-align: center;
+  }
+  .imageColumn {
+    min-height: 250px;
+  }
+  .bannerContainer {
+    margin-top: 1.5rem; /* Adjust top margin for smaller screens */
+  }
 }

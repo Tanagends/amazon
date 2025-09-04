@@ -1,88 +1,66 @@
-// components/MarketingBanner.jsx
+// components/PromotionBanner.jsx
 "use client";
 
-import Link from 'next/link';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { motion } from 'framer-motion';
-import styles from '../styles/MarketingBanner.module.css';
-import { FiArrowRight } from 'react-icons/fi';
+import styles from '../styles/PromotionBanner.module.css';
 
-const MarketingBanner = () => {
-
-  // Staggered animation for the text content
-  const textContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
-
-  const textItemVariants = {
-    hidden: { x: -20, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { type: 'spring', stiffness: 100 },
-    },
-  };
+/**
+ * @typedef {import("@prismicio/client").Content.PromotionBannerSlice} PromotionBannerSlice
+ * @typedef {import("@prismicio/react").SliceComponentProps<PromotionBannerSlice>} PromotionBannerProps
+ * @param {PromotionBannerProps}
+ */
+const PromotionBanner = ({ slice }) => {
+  const { image, title, short_paragraph, link, offer } = slice.data;
   
-  // Animation for the graphic shapes
-  const graphicItemVariants = {
-     hidden: { scale: 0.5, opacity: 0, rotate: -30 },
-     visible: {
-      scale: 1,
-      opacity: 1,
-      rotate: 0,
-      transition: { type: 'spring', stiffness: 80, damping: 10, delay: 0.3 },
-    },
-  }
+  const buttonText = link.text || 'Explore Now';
 
   return (
-    <section className={styles.bannerSection}>
-      <div className={`container ${styles.bannerLayout}`}>
-        
-        {/* --- Left Column: Text Content --- */}
-        <motion.div 
-          className={styles.textContainer}
-          variants={textContainerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          <motion.h1 className={styles.title} variants={textItemVariants}>
-            Shop Great At <span className={styles.titleAccent}>Clickys</span>.
-          </motion.h1>
+    <div className={styles.bannerWrapper}>
+      {/* 1. Offer Marquee (No changes to JSX here) */}
+      {offer && (
+        <div className={styles.offerStrip}>
+          <div className={styles.offerText}>
+            <span>{offer}</span>
+            <span>{offer}</span>
+            <span>{offer}</span>
+            <span>{offer}</span>
+          </div>
+        </div>
+      )}
 
-          <motion.p className={styles.subtitle} variants={textItemVariants}>
-            Discover unbeatable deals and endless variety from your favorite brands. Quality, value, and convenience—all in one place.
-          </motion.p>
-
-          <motion.div variants={textItemVariants}>
-            <Link href="https://fktr.in/eAR2iJM" className={styles.ctaButton}>
-              Explore All Our Products
-              <FiArrowRight />
-            </Link>
+      {/* 2. Main Two-Column Banner */}
+      <section className={styles.bannerContainer}>
+        {/* Left Column: Text Content */}
+        <div className={styles.textColumn}>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            {title && <h1 className={styles.title}>{title}</h1>}
+            {short_paragraph && <p className={styles.paragraph}>{short_paragraph}</p>}
+            
+            <PrismicNextLink field={link} className={styles.bannerButton}>
+              {buttonText}
+            </PrismicNextLink>
           </motion.div>
-        </motion.div>
-
-        {/* --- Right Column: Geometric Visual --- */}
-        <div className={styles.graphicContainer}>
-           <motion.div 
-              className={styles.graphicComposition}
-              variants={graphicItemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
-            >
-              <div className={`${styles.shape} ${styles.shapeGreen}`}></div>
-              <div className={`${styles.shape} ${styles.shapeYellow}`}></div>
-              <div className={`${styles.shape} ${styles.shapeBlack}`}></div>
-           </motion.div>
         </div>
 
-      </div>
-    </section>
+        {/* Right Column: Image */}
+        <div className={styles.imageColumn}>
+            <PrismicNextImage 
+              field={image} 
+              className={styles.bannerImage} 
+              alt={image.alt || ''}
+              width={800} // These are max intrinsic dimensions, CSS will control visual size
+              height={800}
+            />
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default MarketingBanner;
+export default PromotionBanner;

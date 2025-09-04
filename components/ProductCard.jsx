@@ -91,7 +91,6 @@ const ProductCard = ({ product, isDeal = false }) => {
     rest: { scale: 1 },
     hover: { scale: 1.08 }
   };
-  console.log(platform);
 
   return (
     <motion.div
@@ -130,7 +129,7 @@ const ProductCard = ({ product, isDeal = false }) => {
           </div>
           {/* --- THIS IS THE UPDATED PRICE SECTION --- */}
           <div className={styles.priceContainer}>
-            { price != 0 && <span className={styles.currentPrice}>₹{price}</span> }
+            { price != 0 && <span className={styles.currentPrice}>{isDeal && '₹'}{price}</span> }
             { price == 0 && <span className={styles.currentPrice}>On Sale</span> }
             {/* oldPrice can be added later if API provides it */}
           </div>
