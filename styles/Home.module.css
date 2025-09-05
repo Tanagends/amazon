@@ -172,9 +172,10 @@
 }
 .guidesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 321px));
   gap: 2rem;
 }
+
 .guideCard {
   background-color: var(--neutral-white);
   border-radius: var(--rounded-lg);
@@ -185,6 +186,7 @@
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
   border: 1px solid var(--medium-gray);
 }
+
 .guideCard:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);

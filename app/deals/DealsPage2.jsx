@@ -101,7 +101,6 @@ export default function DealsPage() {
           reviewCount: 0,
           discount: p.data.discount,
       }));
-       console.log(normalizedProducts[0].platform);
 
       setProducts(normalizedProducts);
       setTotalPages(response.total_pages);
@@ -183,6 +182,7 @@ export default function DealsPage() {
             <p className={styles.pageSubtitle}>
               Search top products from Amazon, Flipkart, and more—all in one place, handpicked by experts.
             </p>
+            <p className={styles.disclaimer}>We might earn commission on qualifying purchases at no extra cost to you.</p>
           </div>
         </header>
 
@@ -278,7 +278,7 @@ export default function DealsPage() {
             ) : error ? (
               <div className={styles.noDealsMessage}>
                 <FiAlertCircle className={styles.noDealsIcon} />
-                <h2>Oops! Something went wrong.</h2>
+                <h2>No deals available at the moment. Check again soon!!.</h2>
                 <p>{error}</p>
               </div>
             ) : products.length > 0 ? (
@@ -288,11 +288,11 @@ export default function DealsPage() {
                 ))}
               </div>
             ) : (
-              <div className={styles.noDealsMessage} data-aos="fade-up">
+              <div className={styles.noDealsMessage} >
                 <FiAlertCircle className={styles.noDealsIcon} />
                 <h2>No Deals Found</h2>
                 <p>We couldn't find any deals matching your criteria. Try adjusting your search or filters!</p>
-                <CallToAction text="Explore All Products" link="/products" type="primary" icon={<FiArrowRight />} />
+                <CallToAction text="Explore All Products" link="/deals" type="primary" icon={<FiArrowRight />} />
               </div>
             )}
           </div>

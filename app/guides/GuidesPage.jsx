@@ -83,6 +83,7 @@ export default function GuidesPageClient({ guides }) {
             <p className={styles.pageSubtitle}>
               In-depth reviews, comparisons, and tips to help you choose the best products.
             </p>
+            <p className={styles.disclaimer}>We might earn commission on qualifying purchases at no extra cost to you.</p>
           </div>
         </header>
 

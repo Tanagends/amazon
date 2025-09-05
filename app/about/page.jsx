@@ -58,7 +58,7 @@ export default function AboutPage() {
           <div className={styles.storySection} data-aos="fade-up">
             <div className={styles.storyImageWrapper}>
               <Image
-                src="/images/aboutbg.jpg" // Placeholder image
+                src="/images/clickysAbout.jpg" // Placeholder image
                 alt="The AffiliateAura Team or Concept Art"
                 width={700}
                 height={500}

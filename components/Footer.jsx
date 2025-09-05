@@ -14,8 +14,8 @@ const Footer = () => {
     { href: "https://www.facebook.com/clickyse/", icon: <FaFacebookF />, label: "Facebook" },
     { href: "https://x.com/TeamClickys", icon: <FaTwitter />, label: "X/(Twitter)" },
     { href: "https://www.instagram.com/_clickyse?igsh=bjV3YnZ6OG80MHNq", icon: <FaInstagram />, label: "Instagram" },
-    { href: "#", icon: <FaYoutube />, label: "YouTube" },
-    { href: "#", icon: <FaAmazon />, label: "Amazon Store" },
+    { href: "https://www.youtube.com/channel/UCHEEoI2IKwg6mcRNLmKtXnw", icon: <FaYoutube />, label: "YouTube" },
+    { href: "https://www.amazon.in/shop/clickyse", icon: <FaAmazon />, label: "Amazon Store" },
   ];
 
   const footerSections = [
@@ -23,8 +23,8 @@ const Footer = () => {
       title: "Explore",
       links: [
         { href: "/products", label: "Amazon Products" },
-        { href: "/deals", label: "FlipKart Deals" },
-        { href: "/guides", label: "Buying Guides" },
+        { href: "/deals", label: "All Products" },
+        { href: "/guides", label: "What is new?" },
       ]
     },
     {
@@ -73,7 +73,7 @@ const Footer = () => {
                 </p>
             </div>
             <div className={styles.footerFeaturedContent}>
-                <h4 className={styles.featuredContentTitle}>Don't Miss Out!</h4>
+                <h4 className={styles.featuredContentTitle}>Don&#39;t Miss Out!</h4>
                 <div className={styles.featuredItem}>
                     <FiBookOpen className={styles.featuredIcon} />
                     <div>
@@ -87,9 +87,9 @@ const Footer = () => {
                     <FiZap className={styles.featuredIcon} />
                     <div>
                         <Link href="/deals" className={styles.featuredLink}>
-                            Today's FlipKart Hottest Deals
+                            Browse all our expertly chosen products.
                         </Link>
-                        <p className={styles.featuredDescription}>Grab it now on Flipkart limited stock with exclusive deals!</p>
+                        <p className={styles.featuredDescription}>Grab expert product picks and limited stock with exclusive deals!</p>
                     </div>
                 </div>
             </div>

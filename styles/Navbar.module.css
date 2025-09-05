@@ -39,14 +39,14 @@
   margin: 0; /* ensure no default margin */
 }
 
-.motto {
+/*.motto {
   font-style: italic;
   color: var(--primary-green);
   font-size: 0.8rem;
   font-weight: 400;
-  margin: 0; /* removes unwanted top/bottom spacing */
-  line-height: 1; /* optional: keep it vertically centered */
-}
+  margin: 0;  removes unwanted top/bottom spacing */
+/*  line-height: 1; optional: keep it vertically centered 
+}*/
 
 
 .logo {
@@ -206,4 +206,61 @@
         padding-left: 0.8rem; /* Reduce padding on small screens */
         padding-right: 0.8rem;
     }
+}
+
+.motto {
+    /* Typography */
+    font-style: normal; /* Remove italic for cleaner look */
+    font-size: 0.875rem; /* Slightly larger for better readability */
+    font-weight: 300; /* Light weight for elegance */
+    letter-spacing: 0.02em; /* Subtle spacing for sophistication */
+    text-transform: uppercase; /* Optional: gives professional feel */
+
+    /* Color & Effects */
+    color: var(--primary-green);
+    opacity: 0.9; /* Slightly subdued for hierarchy */
+
+    /* Layout */
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap; /* Prevents wrapping */
+
+    /* Optional: Subtle divider */
+    padding-left: 1rem;
+    margin-left: 1rem;
+    border-left: 1px solid rgba(var(--primary-green-rgb), 0.3);
+
+    /* Smooth transitions */
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for interactivity */
+.motto:hover {
+    opacity: 1;
+    color: var(--primary-green-dark); /* Assuming you have a darker variant */
+}
+
+/* Alternative: More minimal approach */
+.mottoMinimal {
+    font-size: 0.813rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--primary-green);
+    opacity: 0.75;
+    margin: 0;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* Alternative: Premium serif style */
+.mottoPremium {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.3px;
+    color: var(--primary-green);
+    margin: 0;
+    line-height: 1.4;
+    opacity: 0.85;
 }

@@ -81,7 +81,7 @@ const ProductCard = ({ product, isDeal = false }) => {
     platform = 'Amazon',
     discount = false,
   } = product;
-  console.log(platform);
+
   const cardVariants = {
     rest: { y: 0, boxShadow: "var(--shadow-md)" },
     hover: { y: -6, scale: 1.03, boxShadow: "var(--shadow-lg)", transition: { type: "spring", stiffness: 300, damping: 15 } }
@@ -95,6 +95,7 @@ const ProductCard = ({ product, isDeal = false }) => {
   return (
     <motion.div
       className={`${styles.card} ${isDeal ? styles.dealCard : ''}`}
+      style = {{ "--affcolor": affiliateColors[platform] }}
       variants={cardVariants}
       initial="rest"
       whileHover="hover"

@@ -13,7 +13,7 @@
   border-color: var(--primary-green);
 }
 .dealCard {
-  border-color: var(--primary-yellow);
+  border-color: var(--affcolor);
 }
 .dealCard:hover {
   border-color: var(--secondary-yellow);
@@ -55,8 +55,8 @@
   color: var(--neutral-white);
   box-shadow: var(--shadow-sm);
 }
-.dealTag { background-color: var(--secondary-yellow); color: var(--neutral-black); }
-.promoTag { background-color: var(--primary-green); }
+.dealTag { background-color: var(--affcolor); color: var(--neutral-black); }
+.promoTag { background-color: var(--affcolor); }
 
 .quickActions {
   position: absolute;
@@ -143,7 +143,7 @@
   font-weight: 700;
   color: var(--primary-green);
 }
-.dealCard .currentPrice { color: var(--secondary-yellow); }
+.dealCard .currentPrice { color: var(--affcolor); }
 .oldPrice {
   text-decoration: line-through;
   color: #999;
@@ -156,6 +156,8 @@
   display: flex; /* For icon alignment */
   align-items: center;
   justify-content: center;
+  background-color: var(--affcolor);
+  color: white;
 }
 .cardSkeleton {
   height: 380px; background-color: var(--light-gray); border-radius: var(--rounded-lg);

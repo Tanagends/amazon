@@ -36,7 +36,7 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/products", label: "Amazon Products" },
     { href: "/deals", label: "All Products" },
-    { href: "/guides", label: "What's New" },
+    { href: "/guides", label: "What is New" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
   ];
@@ -71,7 +71,7 @@ const Navbar = () => {
               priority    // Helps load the logo faster
             />
           </Link>
-          <span className={styles.motto}>That brings value</span>
+          <span className={styles.mottoPremium}>The crafted finds</span>
          </div>
         </motion.div>
 

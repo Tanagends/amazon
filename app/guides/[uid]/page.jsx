@@ -91,7 +91,7 @@ export default async function Page({ params }) {
           <PrismicRichText field={data.guide} components={richTextComponents} />
         </div>
 
-        {data.comparisons && data.comparisons.length > 0 && (
+        {data.comparisons && data.comparisons.length > 0 && data.comparisons.title1 && (
           <section className={styles.comparisonsSection}>
             <h2 className={styles.sectionTitle}>Our Top Picks Compared</h2>
             {data.comparisons.map((item, index) => {
@@ -115,7 +115,7 @@ export default async function Page({ params }) {
 
         {data.links && data.links.length > 0 && (
             <div className={styles.finalLinksSection}>
-                <h3 className={styles.sectionTitle}>Further Reading & Sources</h3>
+            {/*<h3 className={styles.sectionTitle}>Further Reading & Sources</h3>*/}
                 <div className={styles.finalLinksGrid}>
                     {data.links.map((linkItem, index) => (
                         <PrismicNextLink key={index} field={linkItem} className={styles.finalLinkButton}>
@@ -153,8 +153,6 @@ const ComparisonCard = ({ item, cardNumber }) => {
     //const nameText = item[`name${cardNumber}Text`];
     const paragraph = item[`paragraph${cardNumber}`];
     const links = item[`link${cardNumber}`];
-    console.log("NameLink:", nameLink);
-    console.log("Links:", links);
 
     if (!title) return null;
 

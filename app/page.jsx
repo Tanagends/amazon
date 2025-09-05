@@ -14,6 +14,9 @@ import Link from 'next/link'; // For guide card links
 import {products} from '../components/products';
 import {allGuides} from '../components/guides';
 import { createClient } from "../prismicio";
+import { asText } from "@prismicio/client";
+import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText } from "@prismicio/react";
 
 // Page-specific metadata
 export const metadata = {
@@ -103,9 +106,52 @@ export default async function HomePage() {
     }
   
 
-    const client = createClient();
-    const banner =  await client.getAllByType("marketingbanner");
-    console.log(banner);
+  const client = createClient();
+  const banner =  await client.getAllByType("marketingbanner");
+  
+  // Fetch all documents of the "guide" custom type from your Prismic repository
+  const guidesResponse = await client.getAllByType("guide", {
+    // Order the guides by their publication date, newest first
+    orderings: {
+      field: 'my.guide.date',
+      direction: 'desc'
+    },
+    // Fetch only the specific fields needed for the guides listing page
+    // to keep the payload small and fast.
+    fetch: [
+      'guide.title',
+      'guide.image',
+      'guide.author',
+      'guide.date',
+      'guide.guide' // Fetched to generate a short excerpt
+    ],
+    limit: 3,
+  });
+
+  //console.log(guidesResponse[0].data.guide);
+  // Map the raw Prismic data to a cleaner, more usable format for our client component
+  const guides = guidesResponse.map(doc => {
+    // Find the first paragraph in the 'guide' Rich Text field to use as an excerpt
+    const firstParagraph = doc.data.guide?.filter(slice => slice.type === 'paragraph' && slice.text !=='');
+
+    console.log(firstParagraph);
+    const excerpt = firstParagraph 
+      ? asText([firstParagraph[0]]).substring(0, 150) + '...' // Create a 150-char excerpt
+      : 'No excerpt available.';
+
+    return {
+      id: doc.id,
+      slug: doc.uid, // The URL-friendly identifier for the guide
+      title: doc.data.title,
+      imageField: doc.data.image, // Pass the whole image field to PrismicNextImage
+      // Use the first Prismic tag as the category, with a fallback
+      category: doc.tags[0] || 'General', 
+      author: doc.data.author,
+      date: doc.data.date,
+      excerpt: excerpt,
+    };
+  });
+
 
   return (
     <AnimatedPageWrapper>
@@ -200,7 +246,37 @@ export default async function HomePage() {
       </section>
 
       {/* Expert Buying Guides Section */}
-      <section className={`${styles.section} ${styles.guidesSection}`}>
+      {guides.length > 0 && <section className={`${styles.section} ${styles.guidesSection}`}>
+        <div className="container">
+            <h2 className={styles.sectionTitle} data-aos="fade-up">
+                <FiMessageSquare className={styles.titleIcon} /> Expert Buying Guides
+            </h2>
+            <p className={styles.sectionSubtitle} data-aos="fade-up" data-aos-delay="100">
+                Make informed decisions with our comprehensive reviews and shopping guides.
+            </p>
+            <div className={styles.guidesGrid}>
+                {guides.map((guide, index) => (
+                    <div key={guide.id} className={styles.guideCard} data-aos="fade-up" data-aos-delay={150 * index}>
+                        <Link href={`/guides/${guide.slug}`} className={styles.guideLink}>
+                            <div className={styles.guideImageWrapper}>
+                                <PrismicNextImage field={guide.imageField} style={{objectFit: 'cover', borderRadius: 'var(--rounded-md) var(--rounded-md) 0 0'}} />
+                            </div>
+                            <div className={styles.guideContent}>
+                                <h3 className={styles.guideTitle}>{guide.title}</h3>
+                                <p className={styles.guideExcerpt}>{guide.excerpt}</p>
+                                <span className={styles.guideReadMore}>Read Full Guide <FiArrowRight /></span>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+            </div>
+            <div className={styles.viewMoreLink} data-aos="fade-up" data-aos-delay="200">
+                <CallToAction text="Explore All Guides" link="/guides" type="outline-dark" icon={<FiArrowRight />} />
+            </div>
+        </div>
+      </section>}
+      
+      {guides.length <=0 && <section className={`${styles.section} ${styles.guidesSection}`}>
         <div className="container">
             <h2 className={styles.sectionTitle} data-aos="fade-up">
                 <FiMessageSquare className={styles.titleIcon} /> Expert Buying Guides
@@ -228,7 +304,7 @@ export default async function HomePage() {
                 <CallToAction text="Explore All Guides" link="/guides" type="outline-dark" icon={<FiArrowRight />} />
             </div>
         </div>
-      </section>
+      </section>}
 
       {/* Trust Signals Section */}
       <section className={`${styles.section} ${styles.trustSection}`}>
@@ -260,3 +336,4 @@ export default async function HomePage() {
     </AnimatedPageWrapper>
   );
 }
+

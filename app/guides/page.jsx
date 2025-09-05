@@ -32,9 +32,10 @@ export default async function GuidesPage() {
   // Map the raw Prismic data to a cleaner, more usable format for our client component
   const guides = guidesResponse.map(doc => {
     // Find the first paragraph in the 'guide' Rich Text field to use as an excerpt
-    const firstParagraph = doc.data.guide.slice(1)?.find(slice => slice.type === 'paragraph');
+    //const firstParagraph = doc.data.guide.slice(1)?.find(slice => slice.type === 'paragraph');
+    const firstParagraph = doc.data.guide?.filter(slice => slice.type === 'paragraph' && slice.text !=='');
     const excerpt = firstParagraph 
-      ? asText([firstParagraph]).substring(0, 150) + '...' // Create a 150-char excerpt
+      ? asText([firstParagraph[0]]).substring(0, 150) + '...' // Create a 150-char excerpt
       : 'No excerpt available.';
 
     return {
