@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import AppProviders from '../components/AppProviders'; // For client-side logic like AnimatePresence & AOS
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ['latin'],
