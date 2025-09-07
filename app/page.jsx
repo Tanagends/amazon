@@ -104,53 +104,57 @@ export default async function HomePage() {
     } catch (err) {
         placeholderProducts = products.filter(product => product.onPromotion);
     }
-  
 
-  const client = createClient();
-  const banner =  await client.getAllByType("marketingbanner");
-  
-  // Fetch all documents of the "guide" custom type from your Prismic repository
-  const guidesResponse = await client.getAllByType("guide", {
-    // Order the guides by their publication date, newest first
-    orderings: {
-      field: 'my.guide.date',
-      direction: 'desc'
-    },
-    // Fetch only the specific fields needed for the guides listing page
-    // to keep the payload small and fast.
-    fetch: [
-      'guide.title',
-      'guide.image',
-      'guide.author',
-      'guide.date',
-      'guide.guide' // Fetched to generate a short excerpt
-    ],
-    limit: 3,
-  });
 
-  //console.log(guidesResponse[0].data.guide);
-  // Map the raw Prismic data to a cleaner, more usable format for our client component
-  const guides = guidesResponse.map(doc => {
-    // Find the first paragraph in the 'guide' Rich Text field to use as an excerpt
-    const firstParagraph = doc.data.guide?.filter(slice => slice.type === 'paragraph' && slice.text !=='');
+    const client = createClient();
+    const banner =  await client.getAllByType("marketingbanner");
+    let guides;
+    try {
+      
+      // Fetch all documents of the "guide" custom type from your Prismic repository
+      const guidesResponse = await client.getAllByType("guide", {
+        // Order the guides by their publication date, newest first
+        orderings: {
+          field: 'my.guide.date',
+          direction: 'desc'
+        },
+        // Fetch only the specific fields needed for the guides listing page
+        // to keep the payload small and fast.
+        fetch: [
+          'guide.title',
+          'guide.image',
+          'guide.author',
+          'guide.date',
+          'guide.guide' // Fetched to generate a short excerpt
+        ],
+        limit: 3,
+      });
 
-    console.log(firstParagraph);
-    const excerpt = firstParagraph 
-      ? asText([firstParagraph[0]]).substring(0, 150) + '...' // Create a 150-char excerpt
-      : 'No excerpt available.';
+      //console.log(guidesResponse[0].data.guide);
+      // Map the raw Prismic data to a cleaner, more usable format for our client component
+      guides = guidesResponse.map(doc => {
+        // Find the first paragraph in the 'guide' Rich Text field to use as an excerpt
+        const firstParagraph = doc.data.guide?.filter(slice => slice.type === 'paragraph' && slice.text !=='');
 
-    return {
-      id: doc.id,
-      slug: doc.uid, // The URL-friendly identifier for the guide
-      title: doc.data.title,
-      imageField: doc.data.image, // Pass the whole image field to PrismicNextImage
-      // Use the first Prismic tag as the category, with a fallback
-      category: doc.tags[0] || 'General', 
-      author: doc.data.author,
-      date: doc.data.date,
-      excerpt: excerpt,
-    };
-  });
+        const excerpt = firstParagraph 
+          ? asText([firstParagraph[0]]).substring(0, 150) + '...' // Create a 150-char excerpt
+          : 'No excerpt available.';
+        
+        return {
+          id: doc.id,
+          slug: doc.uid, // The URL-friendly identifier for the guide
+          title: doc.data.title,
+          imageField: doc.data.image, // Pass the whole image field to PrismicNextImage
+          // Use the first Prismic tag as the category, with a fallback
+          category: doc.tags[0] || 'General', 
+          author: doc.data.author,
+          date: doc.data.date,
+          excerpt: excerpt,
+        };
+      });
+      } catch(err) {
+        guides = [];
+      }
 
 
   return (

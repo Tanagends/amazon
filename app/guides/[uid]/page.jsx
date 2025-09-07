@@ -91,7 +91,7 @@ export default async function Page({ params }) {
           <PrismicRichText field={data.guide} components={richTextComponents} />
         </div>
 
-        {data.comparisons && data.comparisons.length > 0 && data.comparisons.title1 && (
+        {data.comparisons && data.comparisons.length > 0 && data.comparisons[0].title1 && (
           <section className={styles.comparisonsSection}>
             <h2 className={styles.sectionTitle}>Our Top Picks Compared</h2>
             {data.comparisons.map((item, index) => {
@@ -161,7 +161,7 @@ const ComparisonCard = ({ item, cardNumber }) => {
             {rank && <div className={styles.rankBadge}>{rank}</div>}
             <div className={styles.cardImageWrapper}>
                 <PrismicNextImage field={image} className={styles.cardImage} />
-            </div>
+            </div>i
             <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{title}</h3>
                 {nameLink && nameLink.link_type !== 'Any' &&
@@ -169,14 +169,20 @@ const ComparisonCard = ({ item, cardNumber }) => {
                         <h4>{nameLink.text || 'Learn More'}</h4>
                     </PrismicNextLink>
                 }
-                <div className={styles.cardParagraph}>
-                    {paragraph}
-                </div>
                 <div className={styles.cardLinks}>
                     {links && links.map((linkItem, linkIndex) => (
                         <ComparisonLink key={linkIndex} prisLink={linkItem} />
                     ))}
                 </div>
+
+                <div className={styles.cardParagraph}>
+                    {paragraph}
+                </div>
+                {/*<div className={styles.cardLinks}>
+                    {links && links.map((linkItem, linkIndex) => (
+                        <ComparisonLink key={linkIndex} prisLink={linkItem} />
+                    ))}
+                </div>*/}
             </div>
         </div>
     );

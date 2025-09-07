@@ -36,7 +36,7 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/products", label: "Amazon Products" },
     { href: "/deals", label: "All Products" },
-    { href: "/guides", label: "What is New" },
+    { href: "/guides", label: "What's New?" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
   ];

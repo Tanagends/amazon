@@ -12,7 +12,7 @@ const Footer = () => {
 
   const socialLinks = [
     { href: "https://www.facebook.com/clickyse/", icon: <FaFacebookF />, label: "Facebook" },
-    { href: "https://x.com/TeamClickys", icon: <FaTwitter />, label: "X/(Twitter)" },
+    { href: "https://x.com/clickys25", icon: <FaTwitter />, label: "X/(Twitter)" },
     { href: "https://www.instagram.com/_clickyse?igsh=bjV3YnZ6OG80MHNq", icon: <FaInstagram />, label: "Instagram" },
     { href: "https://www.youtube.com/channel/UCHEEoI2IKwg6mcRNLmKtXnw", icon: <FaYoutube />, label: "YouTube" },
     { href: "https://www.amazon.in/shop/clickyse", icon: <FaAmazon />, label: "Amazon Store" },
