@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 // import products from './components/products';
 // import allGuides from './components/guides';
-import { createClient } from "../../prismicio"; // Please ensure this path points to your Prismic client setup
+import { createClient } from "./prismicio.js"; // Please ensure this path points to your Prismic client setup
 
 
 
