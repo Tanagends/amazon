@@ -1,8 +1,9 @@
 /** @type {import('next-sitemap').IConfig} */
-const {products} = require('./components/products');
-const {allGuides} = require('./components/guides');
 // import products from './components/products';
 // import allGuides from './components/guides';
+import { createClient } from "./prismicio.js"; // Please ensure this path points to your Prismic client setup
+
+
 
 module.exports = {
   siteUrl: process.env.SITE_URL || 'https://clickys.in',
@@ -13,59 +14,36 @@ module.exports = {
   autoLastmod: true,
   trailingSlash: false,
 
-  transform: async (config, path) => {
-    // Product pages
-    if (path.startsWith('/products/')) {
-      return {
-        loc: path,
-        changefreq: 'weekly',
-        priority: 0.9,
-        lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-      };
-    }
-
-    // Guide pages
-    if (path.startsWith('/guides/')) {
-      return {
-        loc: path,
-        changefreq: 'daily',
-        priority: 0.8,
-        lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-      };
-    }
-
-    // Default for other routes
-    return {
-      loc: path,
-      changefreq: config.changefreq,
-      priority: config.priority,
-      lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-    };
-  },
-
   additionalPaths: async (config) => {
-    const paths = [];
+  const client = createClient();
+  const paths = [];
 
-    // Map product slugs
-    products.forEach((prod) => {
-      paths.push({
-        loc: `/products/${prod.slug}`,
-        changefreq: 'weekly',
-        priority: 0.9,
-        lastmod: prod.updatedAt || new Date().toISOString(),
-      });
+  // Fetch all documents of the "guide" custom type from your Prismic repository
+  const guidesResponse = await client.getAllByType("guide", {
+    // Order the guides by their publication date, newest first
+    orderings: {
+      field: 'my.guide.date',
+      direction: 'desc'
+    },
+    // Fetch only the specific fields needed for the guides listing page
+    // to keep the payload small and fast.
+    fetch: [
+      'guide.title',
+      'guide.image',
+      'guide.author',
+      'guide.date',
+      'guide.guide' // Fetched to generate a short excerpt
+    ]
+  });
+
+  guidesResponse.forEach(guide => {
+    paths.push({
+      loc: `/guides/${guide.uid}`, // Construct the URL for each guide
+      lastmod: guide.last_publication_date, // Use the last publication date from Prismic
+      changefreq: 'monthly', // You can adjust this based on your content update frequency
+      priority: 0.8, // Higher priority for individual guide pages
     });
-
-    // Map guide slugs
-    allGuides.forEach((guide) => {
-      paths.push({
-        loc: `/guides/${guide.slug}`,
-        changefreq: 'daily',
-        priority: 0.8,
-        lastmod: guide.updatedAt || new Date().toISOString(),
-      });
-    });
-
-    return paths;
-  },
+  });
+  return paths
+}   
 };
