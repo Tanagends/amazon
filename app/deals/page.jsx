@@ -4,7 +4,7 @@ import { products } from '../../components/flipkartProducts'
 //import { createClient } from '@/prismicio';
 // Metadata for the Deals page
 
-export const metadata = {
+/*export const metadata = {
   title: "Flipkart Deals | Best Offers on Clickys.in",
   description: "Shop the best Flipkart deals on smartwatches, cookware, grooming kits, and more. Find affordable combos and daily essentials at Clickys.in!",
   keywords: [
@@ -35,6 +35,12 @@ export const metadata = {
     title: "Flipkart Deals | Clickys.in Offers",
     description: "Get Flipkart’s top deals on smartwatches, cookware, and grooming products at Clickys.in. Shop affordable combos today!"
   }
+};*/
+
+export const metadata = {
+  title: 'Clickys – All Products | Amazon, Flipkart & More',
+  description: 'Shop Amazon, Flipkart, Myntra, Meesho, Ajio & Blinkit deals. Explore trending products, compare offers, and save big with Clickys.',
+  keywords: 'all products, Amazon deals, Flipkart offers, Myntra sale, Meesho products, Ajio discounts, Blinkit shopping, trending products, save big',
 };
 //const dealProducts = products.filter(product => product.isDeal);
 //const dealProducts = products;

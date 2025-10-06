@@ -18,7 +18,7 @@ import { asText } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 
-// Page-specific metadata
+/* Page-specific metadata
 export const metadata = {
   title: "Clickys.in | Trending Tech & Home Essentials in India",
   description: "Discover the best Amazon and Flipkart deals on tech, home essentials, and grooming products. Shop curated combos, smartwatches, kitchen tools, and more at Clickys.in!",
@@ -50,7 +50,14 @@ export const metadata = {
     title: "Clickys.in | Trending Tech & Home Deals",
     description: "Explore curated Amazon and Flipkart deals on smartwatches, kitchen tools, and grooming essentials at Clickys.in!"
   }
+};*/
+
+export const metadata = {
+  title: 'Clickys – Global Affiliate Hub, Smart Shopping Honest recommendations & Product Reviews',
+  description: 'Clickys brings trusted reviews, smart shopping tips, affiliate deals, honest recommendations, and advertising services with top brands like Amazon, Flipkart.',
+  keywords: 'Clickys, affiliate hub, product reviews, Amazon deals, Flipkart offers, Myntra discounts, Meesho shopping, Ajio deals, Blinkit offers, advertising services',
 };
+
 // Placeholder Data (Prismic will manage this later)
 //const placeholderProducts = products.filter(product => product.onPromotion); // Import from products.js
 

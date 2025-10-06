@@ -5,7 +5,7 @@ import { FiMessageSquare, FiMapPin, FiPhone, FiMail, FiFacebook, FiTwitter, FiIn
 import faqData from '../../components/faq';
 import FAQSection from './faqSection'; // Importing the FAQSection component
 
-// Metadata for the Contact Us page
+/* Metadata for the Contact Us page
 export const metadata = {
   title: "Contact Us | Clickys.in Support",
   description: "Get in touch with Clickys.in for queries about Amazon and Flipkart deals, product recommendations, or support. We're here to help you shop smarter!",
@@ -32,6 +32,12 @@ export const metadata = {
     title: "Contact Clickys.in | Shopping Support",
     description: "Have questions about deals on Clickys.in? Contact us for help with Amazon and Flipkart products!"
   }
+};*/
+
+export const metadata = {
+  title: 'Contact Clickys – Support & Partnerships',
+  description: 'Get in touch with Clickys for support, product queries, partnerships, and advertising. We’re here to help you shop smarter.',
+  keywords: 'Contact Clickys, support Clickys, partnership Clickys, product queries, Amazon support, Flipkart help, Myntra support, Meesho contact, Ajio help',
 };
 
 export default function ContactPage() {

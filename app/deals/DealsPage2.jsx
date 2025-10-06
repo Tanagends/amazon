@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 // --- Prismic Client Imports ---
-// 1. Import the createClient function from your prismic.ts/js file
+// 1. Import the createClient function from prismic.ts/js file
 import { createClient } from '../../prismicio'; 
 // 2. Import the prismic client for building queries
 import * as prismic from '@prismicio/client';
@@ -50,20 +50,20 @@ export default function DealsPage() {
   const fetchProducts = useCallback(async () => {
     setIsLoading(true);
     setError(null);
-    const client = createClient(); // Initialize your Prismic client
+    const client = createClient(); 
     
     try {
-      // 1. Build Predicates for filtering and searching based on your model
+      // 1. Build Predicates for filtering and searching based on model
       const predicates = [
         prismic.predicate.at('document.type', 'product')
       ];
       
       if (searchTerm) {
-        // Using 'data.title' which corresponds to your 'Title' field
+        // Using 'data.title' which corresponds to 'Title' field
         predicates.push(prismic.predicate.fulltext('my.product.title', searchTerm));
       }
       if (selectedCategories.length > 0) {
-        // Using 'data.category' which corresponds to your 'Category' field
+        // Using 'data.category' which corresponds to 'Category' field
         predicates.push(prismic.predicate.any('my.product.category', selectedCategories));
       }
 
@@ -106,7 +106,6 @@ export default function DealsPage() {
       setTotalPages(response.total_pages);
 
     } catch (err) {
-      console.error("Failed to fetch products from Prismic:", err);
       setError("We couldn't load the deals right now. Please try again later.");
       setProducts([]);
     } finally {

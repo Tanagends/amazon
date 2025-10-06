@@ -1,7 +1,7 @@
 import ProductsPage from './ProductsPage';
 import {products} from '../../components/products'
 
-export const metadata = {
+/*export const metadata = {
   title: "Amazon Products | Best Deals on Clickys.in",
   description: "Explore top Amazon deals on smartwatches, trimmers, kitchen tools, and wellness products. Shop curated combos at Clickys.in for the best prices in India!",
   keywords: [
@@ -32,6 +32,12 @@ export const metadata = {
     title: "Amazon Products | Clickys.in Deals",
     description: "Discover Amazon’s top smartwatches, grooming kits, and kitchen tools at Clickys.in. Shop now for exclusive offers!"
   }
+};*/
+
+export const metadata = {
+  title: 'Clickys – Amazon Products | Top Deals & Reviews',
+  description: 'Discover Amazon bestsellers with Clickys. Explore electronics, fashion, health, kitchen essentials, laptops, Best AirPods, Best Smartphones, Alexa & more with trusted reviews and offers.',
+  keywords: 'Amazon deals, Amazon products, Amazon reviews, laptops Amazon, AirPods Amazon, Alexa Amazon Echo, Amazon fashion, Amazon electronics',
 };
 
 const page = () => {

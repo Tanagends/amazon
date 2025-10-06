@@ -12,13 +12,14 @@ const inter = Inter({
   variable: '--font-sans', // CSS variable for the font
 });
 
-const siteName = "AffiliateAura";
-const siteUrl = "https://www.affiliateaura.in"; // Replace with your actual domain
+/*
+const siteName = "Clickys";
+const siteUrl = "https://www.clickys.in"; // Replace with your actual domain
 
 export const metadata = {
   // Basic metadata
   title: {
-    default: "AffiliateAura - Discover Top Amazon Picks & Deals",
+    default: "Clickys - Discover Top Amazon Picks & Deals",
     template: `%s | ${siteName}`
   },
   description: "Your ultimate guide to the best products, exclusive deals, and honest reviews for Amazon shopping. We do the research, so you can shop with confidence.",
@@ -88,6 +89,7 @@ export const metadata = {
     },
   },
 };
+*/
 
 export default function RootLayout({ children }) {
   return (
@@ -106,6 +108,25 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-ZVHNBRCRHH');
           `}
         </Script>
+        {/* Analytics script */}
+       {/* Analytics script */}
+        <Script id="cuelinks" strategy="afterInteractive" type="text/javascript">
+          {`
+            var cId = '239712';
+            (function(d, t) {
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src =
+                (document.location.protocol == 'https:'
+                  ? 'https://cdn0.cuelinks.com/js/'
+                  : 'http://cdn0.cuelinks.com/js/') + 'cuelinksv2.js';
+              document.getElementsByTagName('body')[0].appendChild(s);
+            })();
+          `}
+        </Script>
+
+
       </head>
       <body>
         <AppProviders> {/* Handles AnimatePresence and AOS initialization */}

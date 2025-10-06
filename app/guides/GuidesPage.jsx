@@ -13,7 +13,8 @@ export default function GuidesPageClient({ guides }) {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-
+  
+  
   // --- DERIVED STATE & MEMOIZATION ---
   const allCategories = useMemo(
     () => Array.from(new Set(guides.map((g) => g.category))),

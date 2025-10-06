@@ -9,7 +9,7 @@ import CallToAction from '../../components/CallToAction'; // Adjust path
 import styles from '../../styles/AboutPage.module.css'; // Create this CSS Module
 import { FiUsers, FiTarget, FiHeart, FiAward, FiMessageCircle, FiEye } from 'react-icons/fi';
 
-// Metadata for the About Us page
+/* Metadata for the About Us page
 export const metadata = {
   title: "About Us | Clickys.in - Your Shopping Partner",
   description: "Learn about Clickys.in, your trusted affiliate marketing platform for curated Amazon and Flipkart deals on tech, home, and grooming essentials in India.",
@@ -36,7 +36,14 @@ export const metadata = {
     title: "About Clickys.in | Shopping Made Easy",
     description: "Discover Clickys.in, your go-to platform for curated Amazon and Flipkart deals on tech, home, and grooming products!"
   }
+};*/
+
+export const metadata = {
+  title: 'About Clickys – Trusted Deals & Smart Shopping',
+  description: 'Clickys helps shoppers in India, Africa and worldwide with trusted reviews, affiliate deals, and smart shopping guides from Amazon, Flipkart, Myntra & more.',
+  keywords: 'About Clickys, trusted reviews, Amazon deals, Flipkart offers, Myntra discounts, Meesho shopping, Ajio deals, Blinkit affiliate, smart shopping',
 };
+
 export default function AboutPage() {
   return (
     <AnimatedPageWrapper>

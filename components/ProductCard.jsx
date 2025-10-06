@@ -95,7 +95,7 @@ const ProductCard = ({ product, isDeal = false }) => {
   return (
     <motion.div
       className={`${styles.card} ${isDeal ? styles.dealCard : ''}`}
-      style = {{ "--affcolor": affiliateColors[platform] }}
+      style = {{ "--affcolor": affiliateColors[platform] || "#F1C40F" }}
       variants={cardVariants}
       initial="rest"
       whileHover="hover"
@@ -131,7 +131,7 @@ const ProductCard = ({ product, isDeal = false }) => {
           {/* --- THIS IS THE UPDATED PRICE SECTION --- */}
           <div className={styles.priceContainer}>
             { price != 0 && <span className={styles.currentPrice}>{isDeal && '₹'}{price}</span> }
-            { price == 0 && <span className={styles.currentPrice}>On Sale</span> }
+            { (!price || price == 0) && <span className={styles.currentPrice}>On Sale</span> }
             {/* oldPrice can be added later if API provides it */}
           </div>
         </div>
