@@ -16,7 +16,7 @@ export const metadata = {
 
 export const revalidate = 60;
 export default async function GuidesPage() {
-  
+    let guides = [];  
     try {
       const client = createClient();
       
@@ -37,9 +37,9 @@ export default async function GuidesPage() {
           'guide.guide' // Fetched to generate a short excerpt
         ]
       });
-
+      console.log(guidesResponse);
       // Map the raw Prismic data to a cleaner, more usable format for our client component
-      const guides = guidesResponse.map(doc => {
+      guides = guidesResponse.map(doc => {
         // Find the first paragraph in the 'guide' Rich Text field to use as an excerpt
         //const firstParagraph = doc.data.guide.slice(1)?.find(slice => slice.type === 'paragraph');
         const firstParagraph = doc.data.guide?.filter(slice => slice.type === 'paragraph' && slice.text !=='');
@@ -62,7 +62,6 @@ export default async function GuidesPage() {
     } catch (err) {
         guides = [];
     }
-  }
 
 
   // Render the Client Component and pass the fetched guides as a prop
