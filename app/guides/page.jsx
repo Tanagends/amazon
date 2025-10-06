@@ -37,7 +37,6 @@ export default async function GuidesPage() {
           'guide.guide' // Fetched to generate a short excerpt
         ]
       });
-      console.log(guidesResponse);
       // Map the raw Prismic data to a cleaner, more usable format for our client component
       guides = guidesResponse.map(doc => {
         // Find the first paragraph in the 'guide' Rich Text field to use as an excerpt
