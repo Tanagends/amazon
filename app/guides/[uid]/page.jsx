@@ -134,7 +134,7 @@ export default async function Page({ params }) {
                 <h4 className={styles.tagsTitle}><FiTag /> Tags:</h4>
                 <div className={styles.tagsList}>
                 {page.tags.map(tag => (
-                    <a key={tag} href={`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`} className={styles.tagLink}>
+                    <a key={tag} href={`/guides`} className={styles.tagLink}>
                     {tag}
                     </a>
                 ))}
