@@ -8,6 +8,8 @@ import { FiCalendar, FiUser, FiTag, FiChevronsRight, FiExternalLink } from "reac
 import { createClient } from "../../../prismicio"; // Adjust this path if needed
 import styles from "../../../styles/GuideDetailPage.module.css"; // Adjust this path if needed
 
+export const revalidate = 60;
+
 // --- Rich Text Components for Custom Styling ---
 const richTextComponents = {
   paragraph: ({ children }) => <p className={styles.paragraph}>{children}</p>,
